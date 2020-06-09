@@ -28,9 +28,9 @@
         </div>
 
         <div class="footerReglements">
-            <h3 class="footerReglementH3"> Politique de confidentialité </h3>
-            <h3 class="footerReglementH3"> Conditions générales de vente </h3>
-            <h3 class="footerReglementH3"> Mentions légales </h3>
+            <a href=""><h3 class="footerReglementH3"> Politique de confidentialité </h3></a>
+            <a href=""><h3 class="footerReglementH3"> Conditions générales de vente </h3></a>
+            <a href=""><h3 class="footerReglementH3"> Mentions légales </h3></a>
             <a href="Lien vers le profil si connecté"><h3 class="footerReglementH3"> Vos informations personnelles </h3></a>
         </div>
 

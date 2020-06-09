@@ -71,6 +71,14 @@ h3.pageAccroche{
     border-radius: 10px;
 }
 
+.divUserMessage img{
+    margin: 0 5px;
+}
+
+.divUserMessage h4{
+    margin: 10px 5px;
+}
+
 /* Style des accroches des différentes pages */
 .mainAccroche{
     font: 1em 'Montserrat SemiBold', sans-serif;
@@ -80,9 +88,9 @@ h3.pageAccroche{
 }
 
 
-@media (max-width: 875px){
+@media (max-width: 950px){
     .mainAccroche{
-        font-size: 0.75em;
+        font-size: 0.70em;
     }
 }
 
@@ -140,7 +148,11 @@ form{
 form p{
     font: 0.75em var(--mainFont), sans-serif;
     color: white;
-    margin: 2px 0px 24px 0px;
+    margin: 5px 0px 24px 0px;
+}
+
+form p:hover{
+    text-decoration: underline;
 }
 
 /* Style du bouton submit d'inscription */
@@ -177,13 +189,13 @@ form p{
     border: 1.5px solid white;
     border-radius: 5px;
     color: white;
-    width: 25vw;
-    height: 2.75vh;
+    width: calc(100vw * (1/2.75));
+    height: calc(100vh * (1/30));
     background-color: rgba(0, 0, 0, 0.75);
 }
 
 /* Media query pour le responsive des pages Connexion et Inscription*/
-@media (max-width: 1000px){
+@media (max-width: 950px){
 
     .emptySection{
         width: 10vw;
@@ -194,7 +206,7 @@ form p{
     }
 
     .inputForm{
-        width: 30vw;
+        height: calc(100vh * (1/40));
     }
 
 }
@@ -218,8 +230,6 @@ form p{
     color: white;
     margin: 0px;
     text-decoration: none;
-}
-.sectionFormulaire a:hover{
 }
 
 
@@ -245,6 +255,11 @@ form p{
 /* 2eme phrase */
 .divAccrocheAccueil h3{
     margin: 25px 0px;
+}
+
+/* Section du slider des catégories*/
+.sectionCategoriesAccueil{
+    margin-top: 50px;
 }
 
 /* Responsive de la page d'accueil */
@@ -391,15 +406,38 @@ form p{
     margin: 10px;
 }
 
-@media (max-width: 875px){
-    .categoryImg{
-        max-width: 15vw;
+/* Responsive de la page des catégories */
+@media (max-width: 950px){
+
+    .categoryCard{
+        width: calc((100% - 40px));
     }
 
     .categoryName{
-        font-size: 0.75em;
+        font-size: 0.85em;
     }
 
+}
+
+@media (max-width: 610px){
+    .categoryName{
+        font-size: 2vw;
+    }
+}
+
+@media (max-width: 420px){
+    .categoriesContent{
+        flex-direction: column;
+    }
+
+    .categoryName{
+        margin: 5px auto;
+    }
+
+    .categoryCard{
+        margin: 10px auto;
+        width: 25vw;
+    }
 }
 
 /*------------------------------- PRODUCT PAGE -------------------------------*/
@@ -457,6 +495,7 @@ form p{
 /* Style de la carte quand on est en hover dessus */
 .productCard:hover{
     background-color: black;
+    color: white;
 }
 
 /* Style des noms des produits */
@@ -474,21 +513,21 @@ form p{
 /* Style du nom de la catégorie */
 .productName{
     color: var(--mainFontHoveredColor);
-    font: 1.5em "Montserrat SemiBold", sans-serif;
+    font: 1.25em "Montserrat SemiBold", sans-serif;
     margin: 5px;
 }
 
 /* Style de la ville et code postal sur la carte */
 .productTownPostalCode{
     color: var(--mainFontHoveredColor);
-    font: 1.25em "Montserrat Light", sans-serif;
+    font: 1.10em "Montserrat Light", sans-serif;
     margin: 0px;
 }
 
 /* Style de la capacité d'une carte */
 .productCapacity{
     color: var(--mainFontHoveredColor);
-    font: 1.25em "Montserrat Light", sans-serif;
+    font: 1.10em "Montserrat Light", sans-serif;
     margin: 5px;
 }
 
@@ -496,25 +535,66 @@ form p{
     width: 32.5px;
 }
 
-@media (max-width: 875px){
+@media (max-width: 950px){
+
+    .productCard{
+        width: calc((100% - 40px));
+    }
+
     .productImg{
-        max-width: 20vw;
+        width: 20vw;
     }
 
     .productName{
-        font-size: 1em;
+        font-size: 1.60vw;
     }
 
     .productTownPostalCode{
-        font-size: 0.75em;
+        font-size: 1.25vw;
     }
 
     .productCapacity{
-        font-size: 0.75em;
+        font-size: 1.25vw;
     }
 
     .productCapacity img{
-        width: 20px;
+        width: 3vw;
+    }
+
+}
+
+@media (max-width: 520px){
+    .sectionProductInput{
+        flex-direction: column;
+    }
+
+    .divTrierPar{
+        margin-top: 20px;
+    }
+
+    .productsContent{
+        flex-direction: column;
+    }
+
+    .productImg{
+        width: 25vw;
+    }
+
+    .productName{
+        font-size: 1.90vw;
+    }
+
+    .productTownPostalCode{
+        font-size: 1.65vw;
+    }
+
+    .productCapacity{
+        font-size: 1.65vw;
+    }
+
+    .productCard{
+        width: 25vw;
+        margin: 10px auto;
     }
 
 }

@@ -21,8 +21,8 @@
 
             <!-- Div des boutons de modification d'un compte et suppresion -->
             <div class="divButtonsInfos">
-                <a href="index.php?page=profil&action=update&id=<?=$_SESSION['user']['id']?>"><input type="submit" value="Modifier mon compte" class="btnSubmit"></a> <!-- BtnModification des informations -->
-                <a href="index.php?page=profil&action=delete&id=<?=$_SESSION['user']['id']?>"><input type="submit" value="Supprimer mon compte" class="btnSubmit"></a> <!-- BtnSuppresion du compte -->
+                <a href="index.php?page=profil&action=update&id=<?=$_SESSION['user']['id']?>"><input type="submit" value="Modifier" class="btnSubmit"></a> <!-- BtnModification des informations -->
+                <a href="index.php?page=profil&action=delete&id=<?=$_SESSION['user']['id']?>"><input type="submit" value="Supprimer" class="btnSubmit"></a> <!-- BtnSuppresion du compte -->
             </div>
 
         </div>
@@ -52,8 +52,8 @@
             <div class="divPanierArticles">
                 <!-- Div des boutons de modification d'un compte et suppresion -->
                 <div class="divButtonsInfos">
-                    <a href="index.php?page=profil&action=update&id=<?=$_SESSION['user']['id']?>"><input type="submit" value="Modifier mon compte" class="btnSubmit"></a> <!-- BtnModification des informations -->
-                    <a href="index.php?page=profil&action=delete&id=<?=$_SESSION['user']['id']?>"><input type="submit" value="Supprimer mon compte" class="btnSubmit"></a> <!-- BtnSuppresion du compte -->
+                    <a href="index.php?page=profil&action=update&id=<?=$_SESSION['user']['id']?>"><input type="submit" value="Modifier" class="btnSubmit"></a> <!-- BtnModification des informations -->
+                    <a href="index.php?page=profil&action=delete&id=<?=$_SESSION['user']['id']?>"><input type="submit" value="Supprimer" class="btnSubmit"></a> <!-- BtnSuppresion du compte -->
                 </div>
             </div>
 

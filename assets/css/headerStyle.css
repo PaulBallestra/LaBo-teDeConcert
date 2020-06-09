@@ -109,13 +109,17 @@ nav{
 
 
 /* Media query pour le responsive */
-@media (max-width: 750px){
+@media (max-width: 950px){
 
     #navigation .navBurger{
         display: block;
     }
 
     #navigation .navContent{
+        display: none;
+    }
+
+    #navigation .navLogout{
         display: none;
     }
 
@@ -241,9 +245,14 @@ footer{
     text-decoration: none;
 }
 
+.footerReglements a:hover{
+    text-decoration: underline;
+    text-decoration-color: white;
+}
+
 
 /* RESPONSIVE DU FOOTER */
-@media (max-width: 1000px) {
+@media (max-width: 950px) {
     .footerThreeContents{
         flex-direction: column;
     }

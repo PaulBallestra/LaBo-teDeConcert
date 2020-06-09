@@ -1,3 +1,4 @@
+<!-- Section avec le pin et l'accroche du site -->
 <section class="sectionSearchPinAccueil">
 
     <div class="divPinAccueil">
@@ -14,11 +15,15 @@
 
     </div>
 
-    <div class="">
+</section>
+
+<!-- Section du slider des catégories -->
+<section class="sectionCategoriesAccueil">
+
+    <div class="divSliderCategoriesAccueil">
 
         <h1 class="pageTitle"> Ou parcourez nos catégories </h1>
 
     </div>
-
 
 </section>
