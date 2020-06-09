@@ -1,0 +1,520 @@
+/*------------------------------- FONTS IMPORTATION -------------------------------*/
+@import url('https://fonts.googleapis.com/css?family=Concert+One&display=swap'); /* on importe la police d'écriture depuis google */
+
+
+/*------------------------------- VARIABLES -------------------------------*/
+:root{
+    --headerFont: 'Concert One'; /* Police du header utilisée, Concert One */
+    --mainFont: 'Montserrat'; /* Main font */
+    --mainFontColor: white; /* Color du main font */
+}
+
+
+/*------------------------------- GENERAL PAGES -------------------------------*/
+/* Style du body */
+body{
+    font: 1em var(--mainFont), sans-serif;
+    margin: 0;
+    padding: 0;
+    background: url('../images/backgroundNYC3.jpg') no-repeat center center fixed;
+    background-size: cover;
+    filter: grayscale(50%);
+}
+
+main{
+    padding: 20px 0px;
+    background-color: rgba(0, 0, 0, 0.75); /*background noir avec un peu de transparence*/
+    margin: 0;
+}
+
+/* Style du texte des boutons non header */
+a.btnName{
+    text-decoration: none;
+    color: var(--mainFontColor);
+}
+
+/* Changement de la couleur du texte des boutons non header */
+.btnSubmit:hover a{
+    color: black;
+}
+
+/* Style du texte du nom de la page */
+h1.pageTitle{
+    font: 2em 'Montserrat SemiBold', sans-serif;
+    color: var(--mainFontColor);
+    margin: auto;
+    text-align: center;
+}
+
+.leftCenter{
+    text-align: start;
+}
+
+/* Style du texte du nom de la page */
+h3.pageAccroche{
+    font: 1.5em 'Montserrat', sans-serif;
+    color: var(--mainFontColor);
+    margin: auto;
+    text-align: center;
+}
+
+/* Style des box messages qui apparaissent pour aider l'user*/
+.divUserMessage{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 5px;
+    font: 1em var(--mainFont), sans-serif;
+    text-align: center;
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+}
+
+/* Style des accroches des différentes pages */
+.mainAccroche{
+    font: 1em 'Montserrat SemiBold', sans-serif;
+    color: white;
+    text-align: center;
+    margin-bottom: 2.5vh;
+}
+
+
+@media (max-width: 875px){
+    .mainAccroche{
+        font-size: 0.75em;
+    }
+}
+
+/*------------------------------- REGISTER/LOGIN PAGE -------------------------------*/
+/* Style de la phrase d'accroche pour l'inscription */
+.mainAccroche h3{
+    margin: 5px;
+}
+
+.mainAccroche h4{
+    margin-top: 10px;
+}
+
+/* Style de la section register & login, nom de la page + formulaire */
+.mainFormulaire{
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    text-align: center;
+    align-content: space-around;
+}
+
+/* Style des sections gauche et droite pour que la section du formulaire soit toujours au millieu */
+.emptySection{
+    width: 25vw;
+}
+
+/* Style des inputs et de leurs noms */
+.sectionInput{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    margin: 10px;
+}
+
+/* Style de la section qui contient le formulaire */
+.sectionFormulaire{
+    width: 75vw;
+}
+
+.mainFormulaire h1{
+    margin: 5px;
+}
+
+/* Style du formulaire */
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Style du paragraphe champs obligatoire */
+form p{
+    font: 0.75em var(--mainFont), sans-serif;
+    color: white;
+    margin: 2px 0px 24px 0px;
+}
+
+/* Style du bouton submit d'inscription */
+.btnSubmit{
+    font: 1.25em var(--headerFont), sans-serif;
+    margin-top: 5px;
+    margin-right: 7.5px;
+    margin-left: 7.5px;
+    padding: 8px 20px 10px;
+    color: var(--mainFontColor); /* Couleur du texte */
+    border-radius: 20px;
+    border: 1.5px solid white; /* Bordure blanche */
+    background-color: rgba(0, 0, 0, 0.75); /*background noir avec un peu de transparence*/
+}
+
+/* Style du bouton submit d'inscription quand il est hovered */
+.btnSubmit:hover{
+    color: black;
+    background-color: white;
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Style du nom de la textbox */
+.labelName{
+    font: 1em var(--mainFont), sans-serif;
+    color: white;
+    margin: 3px;
+}
+
+/* Style des inputs text */
+.inputForm{
+    font: 1em var(--mainFont), sans-serif;
+    padding: 5px; /* Padding à l'intérieur des inputtexts */
+    border: 1.5px solid white;
+    border-radius: 5px;
+    color: white;
+    width: 25vw;
+    height: 2.75vh;
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+/* Media query pour le responsive des pages Connexion et Inscription*/
+@media (max-width: 1000px){
+
+    .emptySection{
+        width: 10vw;
+    }
+
+    .sectionFormulaire{
+        width: 90vw;
+    }
+
+    .inputForm{
+        width: 30vw;
+    }
+
+}
+
+/*------------------------------- INDEX PAGE -------------------------------*/
+/* Section qui comporte le pin et l'accroche */
+.sectionSearchPinAccueil{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Div du pin et des searchbar */
+.divPinAccueil{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.sectionFormulaire a{
+    color: white;
+    margin: 0px;
+    text-decoration: none;
+}
+.sectionFormulaire a:hover{
+}
+
+
+/* img du pin */
+.imgPinAccueil{
+    width: 30vw;
+}
+
+/* Div qui contient l'accroche de la page (2 phrases) */
+.divAccrocheAccueil{
+    max-height: 35vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-left: 15vw;
+}
+
+/* 1ere phrase */
+.divAccrocheAccueil h1{
+    margin: 25px 0px;
+}
+
+/* 2eme phrase */
+.divAccrocheAccueil h3{
+    margin: 25px 0px;
+}
+
+/* Responsive de la page d'accueil */
+@media (max-width: 1150px){
+    /* img du pin */
+    .imgPinAccueil{
+        width: 35vw;
+    }
+
+    .divAccrocheAccueil{
+        padding-left: 10vw;
+    }
+}
+
+@media (max-width: 875px){
+    /* On met le display flex de la section en column pour améliorer la lecture */
+    .sectionSearchPinAccueil{
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .divAccrocheAccueil{
+        padding-left: 0px;
+    }
+
+}
+
+/*------------------------------- PROFIL PAGE -------------------------------*/
+/* Style du container qui contiendra le profil et le panier */
+.divContentProfilPage{
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+}
+
+/* Style du container qui contiendra les infos de l'user connecté */
+.divProfilContent{
+    display: flex;
+    flex-direction: column;
+    margin: 0px auto;
+    color: white;
+    justify-content: space-between;
+}
+
+/* Style du nom prenom de l'user */
+.divInfosContent h2{
+    font: 1.5em "Montserrat Medium", sans-serif;
+}
+
+/* Style du mail, telephone adresse de l'user */
+.divInfosContent h3{
+    font: 1.25em "Montserrat Thin", sans-serif;
+}
+
+.divButtonsInfos{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: auto;
+}
+
+/* Style du titre de la section profil */
+.divProfilTitle{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+}
+
+.divProfilTitle img{
+    width: 100px;
+}
+
+/* Style du separateur entre panier et le profil */
+.divSeparateurHR hr{
+    width: 3px;
+    height: 75vh;
+    background-color: white;
+    border: none;
+    margin: 5px;
+}
+
+/* Style du panier */
+.divPanierContent{
+    display: flex;
+    flex-direction: column;
+    margin: 0px auto;
+}
+
+/* Style du titre du panier */
+.divPanierTitle{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+}
+
+/* Style du logo du panier */
+.divPanierTitle img{
+    width: 100px;
+}
+
+/*------------------------------- CATEGORY PAGE -------------------------------*/
+/* Section qui va contenir toutes les catégories */
+.categoriesContent{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Style d'une carte d'une catégorie */
+.categoryCard{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid white;
+    border-radius: 10px;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    margin: 20px;
+}
+
+/* Style de la carte quand on est en hover dessus */
+.categoryCard:hover{
+    background-color: black;
+}
+
+/* Style des noms des catégories */
+.categoriesContent a{
+    text-decoration: none;
+}
+
+/* Style de la miniature de la catégorie */
+.categoryImg{
+    max-width: 25vw;
+    border-radius: 10px 10px 0px 0px;
+    margin: auto;
+}
+
+/* Style du nom de la catégorie */
+.categoryName{
+    color: var(--mainFontHoveredColor);
+    font: 1.25em "Montserrat SemiBold", sans-serif;
+    margin: 10px;
+}
+
+@media (max-width: 875px){
+    .categoryImg{
+        max-width: 15vw;
+    }
+
+    .categoryName{
+        font-size: 0.75em;
+    }
+
+}
+
+/*------------------------------- PRODUCT PAGE -------------------------------*/
+/* Style de la section barre de recherche et trier par */
+.sectionProductInput{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 15px;
+    align-items: center;
+}
+
+/* Style de la barre de recherche des produits */
+.sectionProductInput input{
+    margin: 0px 15px;
+}
+
+.divTrierPar{
+    display: flex;
+    flex-direction: row;
+    margin: 0px 15px;
+}
+
+/* Style du select des produits */
+.divTrierPar select{
+    margin: 0px 10px;
+    font: 1em var(--mainFont), sans-serif;
+    padding: 5px; /* Padding à l'intérieur des inputtexts */
+    border: 1.5px solid white;
+    border-radius: 5px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+/* Section qui va contenir tous les produits */
+.productsContent{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Style d'une carte en particulier  */
+.productCard{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid white;
+    border-radius: 10px;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    margin: 20px;
+}
+
+/* Style de la carte quand on est en hover dessus */
+.productCard:hover{
+    background-color: black;
+}
+
+/* Style des noms des produits */
+.productsContent a{
+    text-decoration: none;
+}
+
+/* Style de la miniature de la catégorie */
+.productImg{
+    max-width: 25vw;
+    border-radius: 10px 10px 0px 0px;
+    margin: auto;
+}
+
+/* Style du nom de la catégorie */
+.productName{
+    color: var(--mainFontHoveredColor);
+    font: 1.5em "Montserrat SemiBold", sans-serif;
+    margin: 5px;
+}
+
+/* Style de la ville et code postal sur la carte */
+.productTownPostalCode{
+    color: var(--mainFontHoveredColor);
+    font: 1.25em "Montserrat Light", sans-serif;
+    margin: 0px;
+}
+
+/* Style de la capacité d'une carte */
+.productCapacity{
+    color: var(--mainFontHoveredColor);
+    font: 1.25em "Montserrat Light", sans-serif;
+    margin: 5px;
+}
+
+.productCapacity img{
+    width: 32.5px;
+}
+
+@media (max-width: 875px){
+    .productImg{
+        max-width: 20vw;
+    }
+
+    .productName{
+        font-size: 1em;
+    }
+
+    .productTownPostalCode{
+        font-size: 0.75em;
+    }
+
+    .productCapacity{
+        font-size: 0.75em;
+    }
+
+    .productCapacity img{
+        width: 20px;
+    }
+
+}

@@ -1,0 +1,283 @@
+/* Fichier css du header, il est fait a part pour éviter de surcharger le fichier style de base */
+
+/*------------------------------- FONTS IMPORTATION -------------------------------*/
+@import url('https://fonts.googleapis.com/css?family=Concert+One&display=swap'); /* on importe la police d'écriture depuis google */
+
+/*------------------------------- VARIABLES -------------------------------*/
+:root{
+    --headerFont: 'Concert One'; /* Police de base utilisée, Concert One */
+    --mainFontColor: white;
+    --mainFontHoveredColor: black;
+}
+
+
+/*------------------------------- HEADER UNCONNECTED / CONNECTED-------------------------------*/
+/* Style du header */
+header{
+    max-width: 100%;
+    margin: 0 auto;
+    border-bottom: 1px solid white;
+}
+
+nav{
+    margin: 0 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+/* Style du logo */
+#logo{
+    margin: 35px 30px;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+}
+
+/* Style général de la barre de nav */
+#navigation{
+    display: flex;
+    flex-direction: row;
+    margin: 35px 30px; /* Margin de la barre */
+    padding: 0;
+    list-style: none;
+    text-align: center;
+}
+
+/* Style des boutons de nav */
+#navigation li{
+    display: inline;
+    margin-right: 7.5px;
+    margin-left: 7.5px;
+    padding: 10px 0 10px 0;
+    color: var(--mainFontColor);
+    border-radius: 20px;
+}
+
+/* Style du bouton d'inscription */
+#navigation li.navInscription{
+    border: 1.5px solid white;
+}
+
+/* Style du bouton d'inscription hovered */
+#navigation li.navInscription:hover{
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Style du texte a l'intérieur des boutons */
+#navigation li a{
+    font: 1.25em var(--headerFont), sans-serif;
+    line-height: 1em;
+    text-align: center;
+    text-decoration: none;
+    color: var(--mainFontColor);
+}
+
+/* Style des textes des Catégories, Produits et Connexion, Profil (si connecté) */
+.navContent a{
+    padding: 10px 15px;
+}
+
+.navContent:hover{
+    background-color: var(--mainFontColor);
+    color: var(--mainFontHoveredColor);
+}
+
+/* Style propre au bouton d'inscription */
+.navInscription a{
+    padding: 10px 15px;
+}
+
+/* Style de l'icone du menu burger */
+#navigation .navBurger{
+    margin: auto;
+    color: var(--mainFontColor);
+    display: none;
+}
+
+/* Style dy background des boutons quand la souris est dessus (hover)*/
+#navigation li:hover{
+    background-color: var(--mainFontColor);
+}
+
+/* Style du texte quand le souris est dessus (hover) */
+#navigation li a:hover{
+    color: var(--mainFontHoveredColor); /* Noire */
+}
+
+
+/* Media query pour le responsive */
+@media (max-width: 750px){
+
+    #navigation .navBurger{
+        display: block;
+    }
+
+    #navigation .navContent{
+        display: none;
+    }
+
+    #navigation .navInscription{
+        display: none;
+    }
+
+    #navigation{
+        flex-direction: column;
+    }
+
+}
+
+/*--------------------------- CONNECTED ---------------------------*/
+/* Style du bouton déconnexion du header connecté */
+.navLogout{
+    display: inline;
+    margin-right: 7.5px;
+    margin-left: 7.5px;
+    padding: 10px 0 10px 0;
+    color: var(--mainFontColor);
+    border-radius: 20px;
+    border: 1.5px solid white;
+}
+
+/* Padding sur le texte du bouton */
+.navLogout a{
+    padding: 10px 15px;
+}
+
+/* Style du hover du bouton logout */
+li.navLogout:hover{
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Style du texte des boutons déconnexion et profil */
+.titleNavConnected{
+    padding: 0px 10px 0px 10px;
+}
+
+
+/* FOOTER STYLE */
+footer{
+    margin: 0;
+    padding: 15px 0px;
+    background-color: #151515;
+    border-top: 1px solid white;
+}
+
+/* Style du container qui contiendra les 3 livraisons, paiement et contact */
+.footerThreeContents{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.footerContentH2{
+    font: 1.5em 'Montserrat Medium', sans-serif;
+    color: white;
+}
+
+.footerContentH3{
+    font: 1em 'Montserrat Medium', sans-serif;
+    color: white;
+    align-self: center;
+}
+
+/* Style des images du footer */
+.footerImages{
+    width: 115px;
+}
+
+/* Style du livraison du footer */
+.footerLivraison{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Style des modes de paiements */
+.footerPaiement{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Style de la div qui contiendra les miniatures des paiements */
+.footerPaiementStyles{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* Style des miniatures des paiements */
+.paiementMiniature{
+    width: 66px;
+}
+
+/* Style de la partie contact du footer */
+.footerContact{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footerReglements{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.footerReglementH3{
+    margin: 25px 50px;
+    font: 0.75em 'Montserrat Thin', sans-serif;
+    color: white;
+}
+
+.footerReglements a{
+    text-decoration: none;
+}
+
+
+/* RESPONSIVE DU FOOTER */
+@media (max-width: 1000px) {
+    .footerThreeContents{
+        flex-direction: column;
+    }
+
+    .footerContentH3{
+        font-size: 0.85em;
+    }
+
+    .footerContentH2{
+        font-size: 1.15em;
+    }
+
+    .footerLivraison, .footerPaiement, .footerContact{
+        margin: 20px;
+    }
+
+    .footerPaiementStyles{
+        justify-content: center;
+    }
+
+    .paiementMiniature{
+        width: 50px;
+        margin: 0px 20px;
+    }
+
+    .footerImages{
+        width: 75px;
+    }
+
+    .footerReglements{
+        flex-direction: column;
+    }
+
+    .footerReglementH3{
+        margin: 12.5px 25px;
+    }
+}
