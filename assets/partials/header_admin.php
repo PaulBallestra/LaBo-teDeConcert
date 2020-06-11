@@ -5,6 +5,9 @@
 
 <header>
 
+    <!-- Checkbox qui sera utilisée pour la version mobile -->
+    <input type="checkbox" class="trigger">
+
     <nav>
 
         <!-- Logo du site -->
@@ -20,6 +23,8 @@
             <li class="navContent"><a class="titleNavConnected" href="index.php?page=admin">Administration</a></li> <!-- Lien pour se deconnecter -->
             <li class="navLogout"><a class="titleNavConnected" href="index.php?page=logout">Déconnexion</a></li> <!-- Lien pour se deconnecter -->
             <li class="navBurger"><img src="assets/images/pictos/picto-burger.svg"></li>
+            <li class="navCrossBurger"><img src="assets/images/pictos/picto-cross.svg"></li>
+
         </ul>
 
     </nav>

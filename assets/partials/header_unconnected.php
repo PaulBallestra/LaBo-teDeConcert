@@ -5,6 +5,9 @@
 
 <header>
 
+    <!-- Checkbox qui sera utilisée pour la version mobile -->
+    <input type="checkbox" class="trigger">
+
     <nav>
 
         <!-- Logo du site -->
@@ -19,6 +22,7 @@
             <li class="navContent"><a href="index.php?page=login">Connexion</a></li> <!-- Lien vers la page de connexion -->
             <li class="navInscription"><a href="index.php?page=register">Inscription</a></li> <!-- Lien vers la page d'inscription -->
             <li class="navBurger"><img src="assets/images/pictos/picto-burger.svg"></li>
+            <li class="navCrossBurger"><img src="assets/images/pictos/picto-cross.svg"></li>
         </ul>
 
     </nav>

@@ -1,5 +1,7 @@
 <?php
     //CONTROLER DE L'USER
+    require 'models/User.php';
+
 
     //On vérifie qu'il y a bien un post envoyé
     if(isset($_GET['page']) && isset($_SESSION['is_connected'])) {
@@ -9,24 +11,43 @@
             case 'profil': //dans le cas ou il veut afficher sa page de profil
                 $title = "La Boîte de Concert - Votre Profil";
                 $view = 'views/profil.php';
-                break;
 
-            case 'update': //dans le cas ou l'user veut modifier des informations de son compte
+                if(isset($_GET['action'])){
 
-                if(isset($_GET['id'])){
-                    $title = "La Boîte de Concert - Modification Profil";
-                    $view = 'views/update_profil.php';
-                }else{ //redirection vers sa page de profil
-                    $title = "La Boîte de Concert - Votre Profil";
-                    $view = 'views/profil.php';
+                    switch ($_GET['action']){
+
+                        case 'update': //dans le cas ou l'user veut modifier des informations de son compte
+
+                            if(isset($_GET['id'])){
+                                $title = "La Boîte de Concert - Modification Profil";
+                                $view = 'views/update_profil.php';
+                            }else{ //redirection vers sa page de profil
+                                $title = "La Boîte de Concert - Votre Profil";
+                                $view = 'views/profil.php';
+                            }
+                            break;
+
+                        case 'delete': //dans le cas ou l'user veut supprimer son compte
+                            $title = "La Boîte de Concert - Suppresion Profil";
+                            $view = 'views/delete_profil.php';
+                            break;
+
+
+                        case 'update_profile': //dans le cas ou il a voulu modifier son profil
+
+                            //on lance la fonction qui va updater ses informations
+                            $userProfileUpdated = updateUserProfile($_POST, $_SESSION['user']['id']);
+
+
+
+                            break;
+
+                        case 'update_address': //dans le cas ou il a voulu modifier son adresse
+                            break;
+                    }
+
                 }
 
-
-                break;
-
-            case 'delete': //dans le cas ou l'user veut supprimer son compte
-                $title = "La Boîte de Concert - Suppresion Profil";
-                $view = 'views/delete_profil.php';
                 break;
 
         }

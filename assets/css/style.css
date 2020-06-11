@@ -19,6 +19,7 @@ body{
     background: url('../images/backgroundNYC3.jpg') no-repeat center center fixed;
     background-size: cover;
     filter: grayscale(50%);
+    vertical-align: baseline;
 }
 
 main{
@@ -224,6 +225,7 @@ form p:hover{
 .divPinAccueil{
     display: flex;
     justify-content: flex-end;
+    padding-left: 7.5vw;
 }
 
 .sectionFormulaire a{
@@ -244,7 +246,7 @@ form p:hover{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    padding-left: 15vw;
+    padding-left: 5vw;
 }
 
 /* 1ere phrase */
@@ -598,3 +600,63 @@ form p:hover{
     }
 
 }
+
+/*------------------------------- MODIFICATION PROFIL PAGE -------------------------------*/
+.divContentUpdateProfilPage{
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+}
+
+.divUpdateProfil{
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    margin: 0px auto;
+    color: white;
+    justify-content: center;
+}
+
+.divUpdateAdresse{
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    margin: 0px auto;
+    color: white;
+    justify-content: center;
+}
+
+.divUpdateButton{
+    display: none;
+}
+
+.divUpdateButton button{
+    align-self: center;
+}
+
+.sectionButtonSaveUpdateProfil{
+    align-self: center;
+    margin-top: 25px;
+}
+
+.sectionButtonCancelUpdateProfil{
+    align-self: center;
+    margin-top: 25px;
+}
+
+@media (max-width: 950px){
+    .divContentUpdateProfilPage{
+        flex-direction: column;
+        margin: 10px;
+    }
+
+    .divSeparateurHR{
+        display: none;
+    }
+
+    .divUpdateAdresse{
+        margin-top: 55px;
+    }
+
+}
+

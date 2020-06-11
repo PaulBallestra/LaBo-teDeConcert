@@ -1,6 +1,6 @@
 <?php
 
-    require_once 'models/User.php';
+    require 'models/User.php';
 
     $title = "La Boîte de Concert - Connexion";
     $view = 'views/login.php';

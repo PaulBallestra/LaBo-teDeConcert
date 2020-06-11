@@ -61,3 +61,61 @@
             return [false, true];
         }
     }
+
+    //Fonctio qui va modifier les valeurs d'un user (nom, prenom, telephone, email, mdp, et adresse)
+    function updateUserProfile($informations, $id){
+
+        $db = dbConnect();
+
+        //String qui contiendra la requete finale en fonction des choix de l'user
+        $contentQuery = "(";
+
+        $arrayKeys = ['lastname', 'firstname', 'email', 'password', 'phone']; //array qui contient les clés
+
+        //2 ints qui nous serviront a générer la requete en fonction des valeurs modifiées de l'user
+        $numberOfActualModifiedValues = 0; //nombre de valeur modifiée actuelle (quand on sera dans la boucle for)
+        $lastModifiedValueInArray = 0; //Int qui contiendra le dernier id de l'input modifié
+
+
+        //String qui contiendra l'execute en fonction de la requete finale
+        $queryExecuteString = "";
+
+        //Pour chaque input du profil, on vérifie si il a été modifié et si oui on met un 1 dans l'array, 0 sinon
+        for($i = 0; $i < sizeof($informations); $i++){
+            if(!empty($informations[$arrayKeys[$i]])){
+                $arrayIsModified[$i] = 1;
+                $lastModifiedValueInArray = $i; //on met a jour la valeur max modifiée a chaque fois
+            }
+            else
+                $arrayIsModified[$i] = 0;
+        }
+
+        //Génération de la réquete en fonction des valeurs modifiées
+        for($i = 0; $i < sizeof($informations); $i++){
+            if($arrayIsModified[$i] == 1 && $numberOfActualModifiedValues != $lastModifiedValueInArray){
+                $contentQuery .= $arrayKeys[$i] . ' = ?, ';
+                $queryExecuteString .= "\$informations['$arrayKeys[$i]'],\n"; //idem pour la modification du execute en fonction de la requete
+            }
+            else if($arrayIsModified[$i] == 1 && $numberOfActualModifiedValues == $lastModifiedValueInArray){ //si c'est la dernière valeur modifiée, alors on adapte la requete sans la virgule
+                $contentQuery .= $arrayKeys[$i] . ' = ?';
+                $queryExecuteString .= "\$informations['$arrayKeys[$i]'],\n";
+            }
+            $numberOfActualModifiedValues++;
+        }
+
+        $contentQuery .= ")"; //on ferme la requete
+
+        //on ajoute l'id dans le string de l'execute de la requete
+        $queryExecuteString .= "\$id";
+
+        //String qui contiendra les champs a modifier en fonction des champs modifiés par l'user
+        $queryPrepareString = "UPDATE user SET $contentQuery WHERE id = ?";
+
+        $queryUpdateInfos = $db->prepare($queryPrepareString); //preparation de la requete avec le string
+
+        //Execution de la requete avec la string générée en fonction des valeurs modifiées de l'user
+        $result = $queryUpdateInfos->execute($queryExecuteString);
+
+        return $result;
+
+    }
