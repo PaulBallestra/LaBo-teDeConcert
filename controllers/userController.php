@@ -78,13 +78,10 @@
 
                         case 'update_address': //dans le cas ou il a voulu modifier son adresse
 
-
-                            if(!checkAddressAlreadySet($_SESSION['user']['id'])){
+                            if(!checkAddressExists($_SESSION['user']['id']))
                                 $userAddressUpdated = addUserAddress($_POST, $_SESSION['user']['id']);
-                            }else{
+                            else
                                 $userAddressUpdated = updateUserAddress($_POST, $_SESSION['user']['id']);
-                            }
-
 
 
                             //si il y a eu une erreur avec les champs vides

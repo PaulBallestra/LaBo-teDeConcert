@@ -1,6 +1,7 @@
 <?php
 
     require 'models/User.php';
+    require 'models/Address.php';
 
     $title = "La Boîte de Concert - Connexion";
     $view = 'views/login.php';
@@ -58,6 +59,21 @@
                             'is_admin' => $user['is_admin'],
                             'phone' => $user['phone']
                         ];
+
+                        //On teste maintenant si il a une adresse liée a son compte
+                        if(checkAddressExists($_SESSION['user']['id'])){
+                            //on la récupère et on la met en session
+                            $userAddress = getAddress($_SESSION['user']['id'], true); //on enregistre son address dans une variables pour l'enregistrer ensuite en session
+
+                            $_SESSION['user']['address'] = [
+                                'id' => $userAddress['id'],
+                                'number' => $userAddress['number'],
+                                'street' => $userAddress['street'],
+                                'town' => $userAddress['town'],
+                                'postal_code' => $userAddress['postal_code'],
+                                'country' => $userAddress['country']
+                            ];
+                        }//sinon on ne l'enregistre pas
 
                         //on indique a l'user qu'il est bien connecté
                         $_SESSION['message'] = $_SESSION['user']['firstname'] . ' connexion établie ! ';

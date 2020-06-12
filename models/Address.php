@@ -20,7 +20,7 @@
     }
 
     //FONCTION QUI RETOURNE VRAI SI L'ADRESSE EST DEJA EXISTANTE POUR UN CERTAIN USER
-    function checkAddressAlreadySet($id)
+    function checkAddressExists($id)
     {
         $db = dbConnect();
 
