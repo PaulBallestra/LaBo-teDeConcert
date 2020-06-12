@@ -7,7 +7,7 @@
         $db = dbConnect();
 
         //Requete qui va recherche si l'email utilisée n'est pas déjà prise
-        $queryTestEmail = $db->prepare("SELECT email FROM users WHERE email = ?");
+        $queryTestEmail = $db->prepare("SELECT email, id FROM users WHERE email = ?");
         $queryTestEmail->execute([
             $email
         ]);
@@ -43,7 +43,8 @@
                 'firstname' => $informations['firstname'],
                 'lastname' => $informations['lastname'],
                 'email' => $informations['email'],
-                'is_admin' => 0
+                'is_admin' => 0,
+                'phone' => ""
             ];
 
             return [$result, false]; //on retourne le resultat de la query (si ça s'est bien passé ou non) ainsi que false pour indiquer qu'il n'y a pas eu d'erreur d'email déjà utilisée
@@ -117,7 +118,8 @@
                         break;
                     case 'email':
                         //on vérifie si l'email modifiée n'est pas déjà utilisée
-                        if(checkEmailAlreadyUsed($informations[$arrayKey])) //si elle est déjà utilisée
+                        $email = checkEmailAlreadyUsed($informations[$arrayKey]);
+                        if($email && $email['id'] != $id) //si elle est déjà utilisée par un autre user que lui meme
                             return [false, true]; //on retourne false puisqu'il n'y a pas eu de retour de query et true puisqu'il y a une erreur du l'email
                         break;
                 }
