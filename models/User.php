@@ -1,6 +1,22 @@
 <?php
     //Model des USERS
 
+    //FONCTION GET UN UTILISATEUR
+    function getUser($id)
+    {
+        $db = dbConnect();
+
+        $queryGetUser = $db->prepare('SELECT * FROM users WHERE id = ?');
+
+        $queryGetUser->execute([
+            $id
+        ]);
+
+        $resultUser = $queryGetUser->fetch();
+
+        return $resultUser;
+    }
+
     //FONCTION QUI RENVOIT VRAI SI L'EMAIL EST DEJA UTILISEE
     function checkEmailAlreadyUsed($email){
 
@@ -52,22 +68,6 @@
         }else{
             return [false, true]; //on retourne faux pour indiquer qu'il y a une erreur et true car l'adresse mail existe déjà
         }
-    }
-
-    //FONCTION GET UN UTILISATEUR
-    function getUser($id)
-    {
-        $db = dbConnect();
-
-        $queryGetUser = $db->prepare('SELECT * FROM users WHERE id = ?');
-
-        $queryGetUser->execute([
-            $id
-        ]);
-
-        $resultUser = $queryGetUser->fetch();
-
-        return $resultUser;
     }
 
     //FONCTION DE CONNEXION D'UN UTILISATEUR

@@ -15,7 +15,11 @@
                 <h2> <?= $_SESSION['user']['firstname'] . ' ' . $_SESSION['user']['lastname'] ?> </h2>
                 <h3> <?= $_SESSION['user']['email'] ?> </h3>
                 <h3> <?= !empty($_SESSION['user']['phone']) ? $_SESSION['user']['phone'] : 'Aucun numéro de téléphone.' ?> </h3>
-                <h3> <?= !empty($_SESSION['user']['address']) ? $_SESSION['user']['address'] : 'Aucune adresse.' ?> </h3>
+                <h3> <?= !empty($_SESSION['user']['address']) ? $_SESSION['user']['address']['number'] . ' ' . $_SESSION['user']['address']['street'] : 'Aucune adresse.' ?> </h3>
+                <?php if(!empty($_SESSION['user']['address'])): //si il a une adresse on l'affiche entièrement ?>
+                    <h3> <?= $_SESSION['user']['address']['town'] . ', ' . $_SESSION['user']['address']['postal_code'] ?> </h3>
+                    <h3> <?= $_SESSION['user']['address']['country'] ?> </h3>
+                <?php endif; ?>
 
             </div>
 
@@ -45,7 +49,7 @@
                 <h2> <?= $_SESSION['user']['firstname'] . ' ' . $_SESSION['user']['lastname'] ?> </h2>
                 <h3> <?= $_SESSION['user']['email'] ?> </h3>
                 <h3> <?= !empty($_SESSION['user']['phone']) ? $_SESSION['user']['phone'] : 'Aucun numéro de téléphone.' ?> </h3>
-                <h3> <?= !empty($_SESSION['user']['address']) ? $_SESSION['user']['address'] : 'Aucune adresse.' ?> </h3>
+
 
             </div>
 
