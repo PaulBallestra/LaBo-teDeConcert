@@ -39,7 +39,7 @@
                             $userProfileUpdated = updateUserProfile($_POST, $_SESSION['user']['id']);
 
                             //en fonction du resultat renvoyé par la fonction, on adapte le message
-                            if($userProfileUpdated){
+                            if($userProfileUpdated[0]){
                                 //Affichage du message si tous s'est bien passé
                                 $_SESSION['message'] = 'Vous avez modifié vos informations.';
 
@@ -54,9 +54,23 @@
                                     'phone' => $user['phone']
                                 ];
 
-                            }else{
+                            }elseif($userProfileUpdated[1] == true && $userProfileUpdated[0] == false){ //si l'email est déjà utilisée
+                                //Affichage du message si il y a eu un problème
+                                $_SESSION['message'] = 'L\'email que vous désirez est déjà utilisée. Veuillez la changer.';
+
+                                //Et on sauvegarde les anciens inputs pour éviter qu'il retape tout dans le rechargement de la page
+                                $_SESSION['old_inputs'] = $_POST;
+
+                                header('Location: index.php?page=profile&action=update&id=' . $_SESSION['user']['id']); //redirection vers la création d'un compte en réaffichant ses anciennes valeurs
+                                exit;
+
+                            }elseif($userProfileUpdated[0] == false && $userProfileUpdated[1] == false){ //si il y a eu un problème dans la query ou la base de donnée
                                 //Affichage du message si il y a eu un problème
                                 $_SESSION['message'] = 'Erreur lors de la modification de vos informations. Veuillez recommencer.';
+
+                                //Et on sauvegarde les anciens inputs pour éviter qu'il retape tout dans le rechargement de la page
+                                $_SESSION['old_inputs'] = $_POST;
+
                             }
 
                             break;

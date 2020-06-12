@@ -24,7 +24,7 @@
         $db = dbConnect(); //Connexion
 
         //Si elle est false cela veut dire que l'email n'est pas utilisée
-        if(checkEmailAlreadyUsed($informations['email'])){
+        if(!checkEmailAlreadyUsed($informations['email'])){
 
             //Ajout des valeurs de l'user
             $query = $db->prepare("INSERT INTO users (lastname, firstname, email, password) VALUES (?, ?, ?, ?)");
@@ -116,6 +116,9 @@
                         //if($informations[$arrayKey])
                         break;
                     case 'email':
+                        //on vérifie si l'email modifiée n'est pas déjà utilisée
+                        if(checkEmailAlreadyUsed($informations[$arrayKey])) //si elle est déjà utilisée
+                            return [false, true]; //on retourne false puisqu'il n'y a pas eu de retour de query et true puisqu'il y a une erreur du l'email
                         break;
                 }
             }
@@ -171,7 +174,6 @@
         //Execution de la requete avec la string générée en fonction des valeurs modifiées de l'user
         $result = $queryUpdateInfos->execute($queryFinalExecuteString);
 
-
-        return $result; //on retourne le resultat de la fonction (vrai si les valeurs on été modifiées; faux sinon)
+        return [$result, false]; //on retourne le resultat de la fonction (vrai si les valeurs on été modifiées; faux sinon)
 
     }

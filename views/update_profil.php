@@ -13,19 +13,19 @@
                 <section class="sectionInput">
                     <!-- Nom de l'user -->
                     <label for="lastname" class="labelName"> Nom </label>
-                    <input id="lastname" type="text" name="lastname" class="inputForm" value="<?= isset($_SESSION['user']) ? $_SESSION['user']['lastname'] : '' ?>">
+                    <input id="lastname" type="text" name="lastname" class="inputForm" value="<?= isset($_SESSION['old_inputs']) ? $_SESSION['old_inputs']['lastname'] : (isset($_SESSION['user']) ? $_SESSION['user']['lastname'] : '') ?>">
                 </section>
 
                 <section class="sectionInput">
                     <!-- Prenom de l'user -->
                     <label for="firstname" class="labelName"> Prénom </label>
-                    <input id="firstname" type="text" name="firstname" class="inputForm" value="<?= isset($_SESSION['user']) ? $_SESSION['user']['firstname'] : '' ?>">
+                    <input id="firstname" type="text" name="firstname" class="inputForm" value="<?= isset($_SESSION['old_inputs']) ? $_SESSION['old_inputs']['firstname'] : (isset($_SESSION['user']) ? $_SESSION['user']['firstname'] : '') ?>">
                 </section>
 
                 <section class="sectionInput">
                     <!-- Email de l'user -->
                     <label for="email" class="labelName"> Email </label>
-                    <input id="email" type="email" name="email" class="inputForm" value="<?= isset($_SESSION['user']) ? $_SESSION['user']['email'] : '' ?>">
+                    <input id="email" type="email" name="email" class="inputForm" value="<?= isset($_SESSION['old_inputs']) ? $_SESSION['old_inputs']['email'] : (isset($_SESSION['user']) ? $_SESSION['user']['email'] : '') ?>">
                 </section>
 
                 <section class="sectionInput">
@@ -37,7 +37,7 @@
                 <section class="sectionInput">
                     <!-- Téléphone de l'user -->
                     <label for="phone" class="labelName"> Téléphone </label>
-                    <input id="phone" type="text" name="phone" class="inputForm" value="<?= isset($_SESSION['user']) && !empty($_SESSION['user']['phone']) ? $_SESSION['user']['phone'] : '' ?>">
+                    <input id="phone" type="text" name="phone" class="inputForm" value="<?= isset($_SESSION['old_inputs']) ? $_SESSION['old_inputs']['phone'] : (isset($_SESSION['user']) ? $_SESSION['user']['phone'] : '') ?>">
                 </section>
 
                 <!-- Section du boutton valider -->
