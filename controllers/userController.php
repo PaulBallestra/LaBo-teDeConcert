@@ -54,22 +54,24 @@
                                     'phone' => $user['phone']
                                 ];
 
-                            }elseif($userProfileUpdated[1] == true && $userProfileUpdated[0] == false){ //si l'email est déjà utilisée
-                                //Affichage du message si il y a eu un problème
-                                $_SESSION['message'] = 'L\'email que vous désirez est déjà utilisée. Veuillez la changer.';
+                            }elseif($userProfileUpdated[0] == false){ //Si il y a eu un probleme
+
+                                if($userProfileUpdated[1] == true && $userProfileUpdated[2] == false){
+                                    //Affichage du message si il y a eu un problème avec l'email
+                                    $_SESSION['message'] = 'L\'email que vous désirez est déjà utilisée. Veuillez la changer.';
+                                }elseif($userProfileUpdated[1] == false && $userProfileUpdated[2] == true){
+                                    //Affichage du message si il y a eu un problème avec le téléphone
+                                    $_SESSION['message'] = 'Ce numéro de téléphone n\'existe pas. Veuillez le changer.';
+                                }else{
+                                    //Affichage du message si il y a eu un problème si il y a eu un problème en bd
+                                    $_SESSION['message'] = 'Erreur lors de la modification de vos informations. Veuillez recommencer.';
+                                }
 
                                 //Et on sauvegarde les anciens inputs pour éviter qu'il retape tout dans le rechargement de la page
                                 $_SESSION['old_inputs'] = $_POST;
 
                                 header('Location: index.php?page=profile&action=update&id=' . $_SESSION['user']['id']); //redirection vers la création d'un compte en réaffichant ses anciennes valeurs
                                 exit;
-
-                            }elseif($userProfileUpdated[0] == false && $userProfileUpdated[1] == false){ //si il y a eu un problème dans la query ou la base de donnée
-                                //Affichage du message si il y a eu un problème
-                                $_SESSION['message'] = 'Erreur lors de la modification de vos informations. Veuillez recommencer.';
-
-                                //Et on sauvegarde les anciens inputs pour éviter qu'il retape tout dans le rechargement de la page
-                                $_SESSION['old_inputs'] = $_POST;
 
                             }
 

@@ -114,13 +114,15 @@
             if(!empty($informations[$arrayKey])){
                 switch($arrayKey){
                     case 'phone':
-                        //if($informations[$arrayKey])
+                        if(!is_numeric($informations[$arrayKey])){ //on vérifie si le numéro est bien un numérique
+                            return [false, false, true];
+                        }
                         break;
                     case 'email':
                         //on vérifie si l'email modifiée n'est pas déjà utilisée
                         $email = checkEmailAlreadyUsed($informations[$arrayKey]);
                         if($email && $email['id'] != $id) //si elle est déjà utilisée par un autre user que lui meme
-                            return [false, true]; //on retourne false puisqu'il n'y a pas eu de retour de query et true puisqu'il y a une erreur du l'email
+                            return [false, true, false]; //on retourne false puisqu'il n'y a pas eu de retour de query et true puisqu'il y a une erreur du l'email
                         break;
                 }
             }
@@ -176,6 +178,6 @@
         //Execution de la requete avec la string générée en fonction des valeurs modifiées de l'user
         $result = $queryUpdateInfos->execute($queryFinalExecuteString);
 
-        return [$result, false]; //on retourne le resultat de la fonction (vrai si les valeurs on été modifiées; faux sinon)
+        return [$result, false, false]; //on retourne le resultat de la fonction (vrai si les valeurs on été modifiées; faux sinon)
 
     }

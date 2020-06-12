@@ -37,7 +37,7 @@
                 <section class="sectionInput">
                     <!-- Téléphone de l'user -->
                     <label for="phone" class="labelName"> Téléphone </label>
-                    <input id="phone" type="text" name="phone" class="inputForm" value="<?= isset($_SESSION['old_inputs']) ? $_SESSION['old_inputs']['phone'] : (isset($_SESSION['user']) ? $_SESSION['user']['phone'] : '') ?>">
+                    <input id="phone" type="tel" name="phone" pattern="[0-9]{10}" class="inputForm" value="<?= isset($_SESSION['old_inputs']) ? $_SESSION['old_inputs']['phone'] : (isset($_SESSION['user']) ? $_SESSION['user']['phone'] : '') ?>">
                 </section>
 
                 <!-- Section du boutton valider -->
