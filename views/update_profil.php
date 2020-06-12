@@ -8,7 +8,7 @@
                 <h1 class="pageTitle"> Profil </h1>
             </div>
 
-            <form action="index.php?page=profil&action=update_profile" method="post">
+            <form action="index.php?page=profile&action=update_profile" method="post">
 
                 <section class="sectionInput">
                     <!-- Nom de l'user -->
@@ -25,7 +25,7 @@
                 <section class="sectionInput">
                     <!-- Email de l'user -->
                     <label for="email" class="labelName"> Email </label>
-                    <input id="email" type="text" name="email" class="inputForm" value="<?= isset($_SESSION['user']) ? $_SESSION['user']['email'] : '' ?>">
+                    <input id="email" type="email" name="email" class="inputForm" value="<?= isset($_SESSION['user']) ? $_SESSION['user']['email'] : '' ?>">
                 </section>
 
                 <section class="sectionInput">

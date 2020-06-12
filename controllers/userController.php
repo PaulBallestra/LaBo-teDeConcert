@@ -8,7 +8,7 @@
 
         switch ($_GET['page']) {
 
-            case 'profil': //dans le cas ou il veut afficher sa page de profil
+            case 'profile': //dans le cas ou il veut afficher sa page de profil
                 $title = "La Boîte de Concert - Votre Profil";
                 $view = 'views/profil.php';
 
@@ -38,7 +38,26 @@
                             //on lance la fonction qui va updater ses informations
                             $userProfileUpdated = updateUserProfile($_POST, $_SESSION['user']['id']);
 
+                            //en fonction du resultat renvoyé par la fonction, on adapte le message
+                            if($userProfileUpdated){
+                                //Affichage du message si tous s'est bien passé
+                                $_SESSION['message'] = 'Vous avez modifié vos informations.';
 
+                                //si ca s'est bien passé on modifie les valeurs en session pour qu'elles soient directement actives (mais que si ça s'est bien passé)
+                                $user = getUser($_SESSION['user']['id']);
+                                $_SESSION['user'] = [
+                                    'id' => $user['id'],
+                                    'firstname' => $user['firstname'],
+                                    'lastname' => $user['lastname'],
+                                    'email' => $user['email'],
+                                    'is_admin' => $user['is_admin'],
+                                    'phone' => $user['phone']
+                                ];
+
+                            }else{
+                                //Affichage du message si il y a eu un problème
+                                $_SESSION['message'] = 'Erreur lors de la modification de vos informations. Veuillez recommencer.';
+                            }
 
                             break;
 

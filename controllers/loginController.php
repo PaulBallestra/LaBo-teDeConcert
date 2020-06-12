@@ -48,13 +48,15 @@
 
                         $_SESSION['is_connected'] = 1; //on passe le flag de connexion à 1
 
+                        $user = getUser($isUserConnected[0]['id']);
+
                         $_SESSION['user'] = [
-                            'id' => $isUserConnected[0]['id'],
-                            'firstname' => $isUserConnected[0]['firstname'],
-                            'lastname' => $isUserConnected[0]['lastname'],
-                            'email' => $isUserConnected[0]['email'],
-                            'is_admin' => $isUserConnected[0]['is_admin'],
-                            'phone' => $isUserConnected[0]['phone']
+                            'id' => $user['id'],
+                            'firstname' => $user['firstname'],
+                            'lastname' => $user['lastname'],
+                            'email' => $user['email'],
+                            'is_admin' => $user['is_admin'],
+                            'phone' => $user['phone']
                         ];
 
                         //on indique a l'user qu'il est bien connecté

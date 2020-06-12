@@ -1,5 +1,6 @@
 <?php
 
+    //lancement de la session
     session_start();
 
     $_SESSION['cart'] = []; //Création du panier des la connexion de l'user
@@ -34,7 +35,7 @@
                 header('Location: index.php');
                 break;
 
-            case 'profil':
+            case 'profile':
                 require 'controllers/userController.php';
                 break;
 

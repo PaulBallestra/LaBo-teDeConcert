@@ -48,13 +48,6 @@
 
                         }else{ //Si ça s'est bien passé alors on enregistre ses données dans la session
 
-                            $_SESSION['user'] = [
-                                'firstname' => $isUserAdded[0]['firstname'],
-                                'lastname' => $isUserAdded[0]['lastname'],
-                                'email' => $isUserAdded[0]['email'],
-                                'is_admin' => $isUserAdded[0]['is_admin']
-                            ];
-
                             $_SESSION['is_connected'] = 1; //on passe le flag de connexion à 1
 
                             //on indique a l'user si son compte a pu étre créé ou non
