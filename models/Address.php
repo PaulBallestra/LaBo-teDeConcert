@@ -39,15 +39,16 @@
     {
         $db = dbConnect();
 
-        var_dump($informations);
-
         //SOn vérifie qu'il n'y ait aucuns champs vides
         if(empty($informations['addressNumber']) || empty($informations['addressStreet']) || empty($informations['addressTown']) || empty($informations['addressPostal']) || empty($informations['addressCountry'])) {
             //on renvoit une erreur
             return [false, true, false]; //on renvoit vrai dans le 1 du return pour indiquer au controller qu'il y a des champs vides, false apres pour indiquer qu'il n'y a pas d'erreur de nombre (code postal ou numéro)
 
         }
-        //si tous les champs sont bien remplis
+        //si tous les champs sont bien remplis on vérifie les champs number et code postal qui ne doivent etre que des nombres
+        if(!is_numeric($informations['addressNumber']) || !is_numeric($informations['addressPostal'])){
+            return [false, false, true]; //on renvoit false, false, et true ppour indiquer qu'il y a un problème avec le numéro ou le code postal
+        }
 
         //Préparation de l'insertion
         $queryAddUserAddress = $db->prepare("INSERT INTO addresses (number, street, town, postal_code, country, id_user) VALUES (?, ?, ?, ?, ?, ?)");
@@ -70,38 +71,29 @@
     {
         $db = dbConnect();
 
-        //on teste pour voir si il a déjà une adresse liée
-        if(!checkAddressAlreadySet($id)){ //si ce n'est pas le cas ou va la créer directement
-            $resultUpdatedAddress = addUserAddress($informations, $id); //appel de la création d'une nouvelle addresse
-
-            return [$resultUpdatedAddress, false, false];
-
-        }else{
-
-            //On vérifie qu'il n'y ait aucuns champs vides
-            if(empty($informations['addressNumber']) || empty($informations['addressStreet']) || empty($informations['addressTown']) || empty($informations['addressPostal']) || empty($informations['addressCountry'])) {
-                //on renvoit une erreur
-                return [false, true, false]; //on renvoit vrai dans le 1 du return pour indiquer au controller qu'il y a des champs vides
-            }
-
-            //vérification du champs number et code postal qui ne doivent etre que des nombres
-            if(!is_numeric($informations['addressNumber']) || !is_numeric($informations['addressPostal'])){
-                return [false, false, true]; //on renvoit false, false, et true ppour indiquer qu'il y a un problème avec le numéro ou le code postal
-            }
-
-            //sinon on prepare la requete de mise a jour
-            $queryUpdateUserAddress = $db->prepare("UPDATE addresses SET number = ?, street = ?, town = ?, postal_code = ?, country = ? WHERE id_user = ?");
-
-            //execution de la requete
-            $resultUpdatedAddress = $queryUpdateUserAddress->execute([
-                $informations['addressNumber'],
-                $informations['addressStreet'],
-                $informations['addressTown'],
-                $informations['addressPostal'],
-                $informations['addressCountry'],
-                $id
-            ]);
-
-            return [$resultUpdatedAddress, false, false];
+        //On vérifie qu'il n'y ait aucuns champs vides
+        if(empty($informations['addressNumber']) || empty($informations['addressStreet']) || empty($informations['addressTown']) || empty($informations['addressPostal']) || empty($informations['addressCountry'])) {
+            //on renvoit une erreur
+            return [false, true, false]; //on renvoit vrai dans le 1 du return pour indiquer au controller qu'il y a des champs vides
         }
+
+        //vérification du champs number et code postal qui ne doivent etre que des nombres
+        if(!is_numeric($informations['addressNumber']) || !is_numeric($informations['addressPostal'])){
+            return [false, false, true]; //on renvoit false, false, et true ppour indiquer qu'il y a un problème avec le numéro ou le code postal
+        }
+
+        //sinon on prepare la requete de mise a jour
+        $queryUpdateUserAddress = $db->prepare("UPDATE addresses SET number = ?, street = ?, town = ?, postal_code = ?, country = ? WHERE id_user = ?");
+
+        //execution de la requete
+        $resultUpdatedAddress = $queryUpdateUserAddress->execute([
+            $informations['addressNumber'],
+            $informations['addressStreet'],
+            $informations['addressTown'],
+            $informations['addressPostal'],
+            $informations['addressCountry'],
+            $id
+        ]);
+
+        return [$resultUpdatedAddress, false, false];
     }

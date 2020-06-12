@@ -41,7 +41,7 @@
                             //en fonction du resultat renvoyé par la fonction, on adapte le message
                             if($userProfileUpdated[0]){
                                 //Affichage du message si tous s'est bien passé
-                                $_SESSION['message'] = 'Vous avez modifié vos informations.';
+                                $_SESSION['message'] = 'Informations modifiées avec succès !';
 
                                 //si ca s'est bien passé on modifie les valeurs en session pour qu'elles soient directement actives (mais que si ça s'est bien passé)
                                 $user = getUser($_SESSION['user']['id']);
@@ -78,7 +78,14 @@
 
                         case 'update_address': //dans le cas ou il a voulu modifier son adresse
 
-                            $userAddressUpdated = updateUserAddress($_POST, $_SESSION['user']['id']);
+
+                            if(!checkAddressAlreadySet($_SESSION['user']['id'])){
+                                $userAddressUpdated = addUserAddress($_POST, $_SESSION['user']['id']);
+                            }else{
+                                $userAddressUpdated = updateUserAddress($_POST, $_SESSION['user']['id']);
+                            }
+
+
 
                             //si il y a eu une erreur avec les champs vides
                             if($userAddressUpdated[1]){
