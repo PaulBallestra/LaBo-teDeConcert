@@ -72,7 +72,6 @@
 
                                 header('Location: index.php?page=profile&action=update&id=' . $_SESSION['user']['id']); //redirection vers la création d'un compte en réaffichant ses anciennes valeurs
                                 exit;
-
                             }
 
                             break;
