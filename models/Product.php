@@ -10,6 +10,7 @@
             $id //id du produit selectionné
         ]);
 
+        return $queryGetProduct->fetch();
 
     }
 

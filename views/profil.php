@@ -45,10 +45,9 @@
 
             <div class="divInfosContent">
 
-                <!-- Affichage des infos l'user -->
-                <h2> <?= $_SESSION['user']['firstname'] . ' ' . $_SESSION['user']['lastname'] ?> </h2>
-                <h3> <?= $_SESSION['user']['email'] ?> </h3>
-                <h3> <?= !empty($_SESSION['user']['phone']) ? $_SESSION['user']['phone'] : 'Aucun numéro de téléphone.' ?> </h3>
+                <?php if(empty($_SESSION['cart'])): ?>
+                    <h2 style="color: white;"> Vous n'avez pas de produit. </h2>
+                <?php endif; ?>
 
             </div>
 
