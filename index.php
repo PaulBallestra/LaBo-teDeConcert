@@ -50,8 +50,7 @@
                 if($_SESSION['user']['is_admin'] != 1)
                     require 'controllers/indexController.php';
                 else{
-                    header('Location: pute.php');
-                    exit;
+                    require 'admin/index.php';
                 }
                 break;
 
