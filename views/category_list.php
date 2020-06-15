@@ -10,7 +10,7 @@
     <!-- Pour chaque catégorie on boucle pour créer sa carte -->
     <?php foreach ($categories as $category): ?>
 
-        <a href="index.php?page=caterogies&action=display&id=<?= $category['id'] ?>">
+        <a href="index.php?page=categories&action=display&id=<?= $category['id'] ?>">
             <div class="categoryCard cat-<?= $category['id'] ?>">
                 <img class="categoryImg" src="assets/images/backgroundLA.jpg">
                 <h2 class="categoryName"> <?= $category['name'] ?> </h2>

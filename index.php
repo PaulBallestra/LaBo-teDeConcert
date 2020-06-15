@@ -30,13 +30,29 @@
                 break;
 
             case 'logout': //si il se logout, on détruit la session et on redirige vers l'index
+
                 $_SESSION['is_connected'] = 0; //on passe le flag de connexion a 0
-                session_destroy(); //destruction de la session
+
+                unset($_SESSION['user']); //on unset la session de l'user
+
                 header('Location: index.php');
+                exit;
                 break;
 
             case 'profile':
                 require 'controllers/userController.php';
+                break;
+
+                /* Dans le cas ou l'user est admin et qu'il veut aller dans la gestion d'admin */
+            case 'admin':
+
+                //si un user non admin veut atteindre la page d'admin, on le renvoit sur l'index
+                if($_SESSION['user']['is_admin'] != 1)
+                    require 'controllers/indexController.php';
+                else{
+                    header('Location: pute.php');
+                    exit;
+                }
                 break;
 
             default :

@@ -23,3 +23,27 @@
 
         return $selectedProducts; //On retourne le tableau de tous les produits
     }
+
+    //FONCTION QUI RETOURNE TOUS LES PRODUITS EN FONCTION DE LA CATEGORIE SELECTIONNÉE
+    function getProductsByCategory($idCategory)
+    {
+        $db = dbConnect();
+
+        /* Jointure qui chopera tous les produits inclus dans une catégories précise */
+        $queryGetProductsByCategory = $db->prepare("
+            SELECT P.*
+            FROM categories C
+            INNER JOIN product_categories PC ON C.id = PC.id_category
+            INNER JOIN products P ON PC.id_product = P.id
+            WHERE c.id = ?
+        ");
+
+        $queryGetProductsByCategory->execute([
+            $idCategory
+        ]);
+
+        $resultGetProductsByCategory = $queryGetProductsByCategory->fetchAll();
+
+        return $resultGetProductsByCategory;
+
+    }

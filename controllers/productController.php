@@ -11,7 +11,7 @@
                 $products = getProducts(); //on récupère toutes les catégories
 
                 $title = 'La Boîte de Concert - Produits';
-                $view = 'views/product.php';
+                $view = 'views/product_list.php';
 
                 break;
 
@@ -32,8 +32,8 @@
                 break;
 
             default:
-                $title = 'La Boîte de Concert - Accueil';
-                $view = 'views/index.php';
+                $title = 'La Boîte de Concert - Produits';
+                $view = 'views/product_list.php';
                 break;
 
         }

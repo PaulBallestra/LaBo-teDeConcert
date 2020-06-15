@@ -104,6 +104,11 @@
 
         $db = dbConnect();
 
+        //vérification qu'un user ne modifie que son profil et pas un autre
+        if($_SESSION['user']['id'] != $id){
+            return [false];
+        }
+
         //String qui contiendra la requete finale en fonction des choix de l'user
         $contentQuery = "";
 
