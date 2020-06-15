@@ -1,0 +1,2 @@
+<?php
+    //CONTROLLER DES PRODUITS

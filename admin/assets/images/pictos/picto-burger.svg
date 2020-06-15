@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="15" viewBox="0 0 24 15">
+  <g id="picto-burger" transform="translate(0 -6)">
+    <path id="Tracé_1" data-name="Tracé 1" d="M24,19.846V21H0V19.846Zm0-6.923v1.154H0V12.923ZM24,6V7.154H0V6Z" fill="#fff" fill-rule="evenodd"/>
+    <path id="Tracé_2" data-name="Tracé 2" d="M24,21H0V19.846H24Zm0-6.923H0V12.923H24Zm0-6.923H0V6H24Z" fill="#fff" fill-rule="evenodd"/>
+  </g>
+</svg>

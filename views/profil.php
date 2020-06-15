@@ -12,7 +12,7 @@
             <div class="divInfosContent">
 
                 <!-- Affichage des infos l'user -->
-                <h2> <?= $_SESSION['user']['firstname'] . ' ' . $_SESSION['user']['lastname'] ?> </h2>
+                <h2> <?= $_SESSION['user']['firstname'] . ' ' . $_SESSION['user']['lastname'] ?> <?php if($_SESSION['user']['is_admin'] == 1)  echo '(Admin)'; ?> </h2>
                 <h3> <?= $_SESSION['user']['email'] ?> </h3>
                 <h3> <?= !empty($_SESSION['user']['phone']) ? $_SESSION['user']['phone'] : 'Aucun numéro de téléphone.' ?> </h3>
                 <h3> <?= !empty($_SESSION['user']['address']) ? $_SESSION['user']['address']['number'] . ' ' . $_SESSION['user']['address']['street'] : 'Aucune adresse.' ?> </h3>

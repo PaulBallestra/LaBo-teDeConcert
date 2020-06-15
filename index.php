@@ -39,19 +39,8 @@
                 exit;
                 break;
 
-            case 'profile':
+            case 'profile': //appel du controller du profil
                 require 'controllers/userController.php';
-                break;
-
-                /* Dans le cas ou l'user est admin et qu'il veut aller dans la gestion d'admin */
-            case 'admin':
-
-                //si un user non admin veut atteindre la page d'admin, on le renvoit sur l'index
-                if($_SESSION['user']['is_admin'] != 1)
-                    require 'controllers/indexController.php';
-                else{
-                    require 'admin/index.php';
-                }
                 break;
 
             default :
