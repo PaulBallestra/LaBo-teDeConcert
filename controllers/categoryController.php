@@ -13,5 +13,14 @@
                 $view = 'views/category.php';
 
                 break;
+
+            default:
+                $categories = getCategories(); //on récupère toutes les catégories
+                $title = "La Boîte de Concert - Catégories";
+                $view = 'views/category.php';
+                break;
         }
+    }else{
+        header('Location: index.php');
+        exit;
     }

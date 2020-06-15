@@ -28,7 +28,7 @@
                             break;
 
                         case 'delete': //dans le cas ou l'user veut supprimer son compte
-                            $title = "La Boîte de Concert - Suppresion Profil";
+                            $title = "La Boîte de Concert - Suppression Profil";
                             $view = 'views/delete_profil.php';
                             break;
 

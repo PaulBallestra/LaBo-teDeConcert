@@ -18,9 +18,9 @@
             case 'display': //pour l'affichage unique d'un produit en fonction de son id
 
                 //si l'id n'est pas set, on renvoit sur l'accueil
-                if(!isset($_GET['id'])){
-                    $title = 'La Boîte de Concert - Accueil';
-                    $view = 'views/index.php';
+                if(!isset($_GET['id']) || !ctype_digit($_GET['id'])){
+                    header('Location: index.php');
+                    exit;
                 }
 
                 //on stocke l'unique produit
@@ -29,7 +29,6 @@
 
                 $title = 'La Boîte de Concert - ' . $product['name'];
                 $view = 'views/product_unique.php';
-
                 break;
 
             default:
@@ -38,4 +37,7 @@
                 break;
 
         }
+    }else{
+        header('Location: index.php');
+        exit;
     }
