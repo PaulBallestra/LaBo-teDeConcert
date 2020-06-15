@@ -13,5 +13,14 @@
                 $view = 'views/product.php';
 
                 break;
+
+            case 'display': //pour l'affichage unique d'un produit en fonction de son id
+
+
+                $title = 'La Boîte de Concert - ';
+                $view = 'views/product_unique.php';
+
+                break;
+
         }
     }

@@ -62,6 +62,9 @@
                                 }elseif($userProfileUpdated[1] == false && $userProfileUpdated[2] == true){
                                     //Affichage du message si il y a eu un problème avec le téléphone
                                     $_SESSION['message'] = 'Ce numéro de téléphone n\'existe pas. Veuillez le changer.';
+                                }elseif($userProfileUpdated[3] == true){
+                                    //Affichage du message si il y a eu un problème avec le téléphone
+                                    $_SESSION['message'] = 'Votre profil ne peut être changé si vous ne rentrez rien.';
                                 }else{
                                     //Affichage du message si il y a eu un problème si il y a eu un problème en bd
                                     $_SESSION['message'] = 'Erreur lors de la modification de vos informations. Veuillez recommencer.';

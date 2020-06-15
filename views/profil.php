@@ -50,7 +50,6 @@
                 <h3> <?= $_SESSION['user']['email'] ?> </h3>
                 <h3> <?= !empty($_SESSION['user']['phone']) ? $_SESSION['user']['phone'] : 'Aucun numéro de téléphone.' ?> </h3>
 
-
             </div>
 
             <div class="divPanierArticles">

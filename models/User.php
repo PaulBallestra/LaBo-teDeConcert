@@ -109,20 +109,24 @@
 
         $arrayKeys = ['lastname', 'firstname', 'email', 'password', 'phone']; //array qui contient les clés
 
+        //on vérifie que les valeurs ne sont pas vides
+        if(empty($informations['lastname']) && empty($informations['firstname']) && empty($informations['email']) && empty($informations['password']) && empty($informations['phone'])){
+            return [false, false, false, true]; //on retourne true pour indiquer que ses valeurs ne peuvent etre modifiées si elles sont vides
+        }
+
         //ici on vérifie le typage de certain champ (phone qui ne doit pas contenir de lettre) et email qui ne doit pas etre utilisée)
         foreach ($arrayKeys as $arrayKey){
             if(!empty($informations[$arrayKey])){
                 switch($arrayKey){
                     case 'phone':
-                        if(!is_numeric($informations[$arrayKey])){ //on vérifie si le numéro est bien un numérique
+                        if(!is_numeric($informations[$arrayKey])) //on vérifie si le numéro est bien un numérique
                             return [false, false, true];
-                        }
                         break;
                     case 'email':
                         //on vérifie si l'email modifiée n'est pas déjà utilisée
                         $email = checkEmailAlreadyUsed($informations[$arrayKey]);
                         if($email && $email['id'] != $id) //si elle est déjà utilisée par un autre user que lui meme
-                            return [false, true, false]; //on retourne false puisqu'il n'y a pas eu de retour de query et true puisqu'il y a une erreur du l'email
+                            return [false, true, false]; //on retourne false puisqu'il n'y a pas eu de retour de query et true puisqu'il y a une erreur du l'email, false pour le phone
                         break;
                 }
             }
