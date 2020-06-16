@@ -143,3 +143,57 @@ h3.pageAccroche{
     color: var(--mainFontColor);
     margin: 10px 15px 15px 15px;
 }
+
+/*------------------------------- LISTE CATEGORIES/PRODUCT/USERS PAGE -------------------------------*/
+/* Style de la section qui contiendra toute la liste des categories */
+.containerList{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 50px 50px 25px 50px;
+}
+
+/* Style d'une ligne */
+.listContentLine{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(60, 60, 60, 0.7); /* Couleur sombre pour différencier */
+    border-bottom: 1px solid black;
+}
+
+/* Modification du background pour les nombre pair pour simplifier l'affichage */
+.listContentBright{
+    background-color: rgba(120, 120, 120, 0.7);
+}
+
+/* Style du nom de la ligne */
+.lineName{
+    align-self: start;
+    font: 1.15em var(--mainFont), sans-serif;
+    color: var(--mainFontColor);
+    margin: 15px 10px;
+}
+
+/* Style des boutons modifier et supprimer */
+.lineButtons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+/* Style des textes des boutons */
+.lineButtons a{
+    border: 1px solid var(--mainFontColor);
+    border-radius: 5px;
+    margin: 0px 10px;
+    padding: 5px 5px;
+}
+
+/* Style des boutons lors d'un hover */
+.lineButtons a:hover{
+    border-color: black;
+    background-color: var(--mainFontColor);
+    color: black;
+}
