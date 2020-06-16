@@ -7,6 +7,16 @@
 <!-- Affichage de la liste des catégories-->
 <section class="containerList">
 
+    <!-- Affichage de la ligne de création d'une nouvelle catégorie -->
+    <div class="listContentLine listContentAdd">
+
+        <h4 class="lineName"> Nouvelle Catégorie ? </h4>
+        <div class="lineButtons">
+            <a href="index.php?page=categories&action=new"> Ajouter </a>
+        </div>
+
+    </div>
+
     <!-- Pour chaque catégories, on créé une ligne avec un bouton modifier et supprimer -->
     <?php $mod = 0; foreach ($categories as $category): ?>
 

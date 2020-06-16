@@ -7,6 +7,16 @@
 <!-- Affichage de la liste des produits-->
 <section class="containerList">
 
+    <!-- Affichage de la ligne de création d'un nouveau produit -->
+    <div class="listContentLine listContentAdd">
+
+        <h4 class="lineName"> Nouveau Produit ? </h4>
+        <div class="lineButtons">
+            <a href="index.php?page=products&action=add"> Ajouter </a>
+        </div>
+
+    </div>
+
     <!-- Pour chaque produits, on créé une ligne avec un bouton modifier et supprimer -->
     <?php $mod = 0; foreach ($products as $product): ?>
 

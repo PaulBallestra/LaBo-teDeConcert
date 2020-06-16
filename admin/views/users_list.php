@@ -7,6 +7,16 @@
 <!-- Affichage de la liste des users-->
 <section class="containerList">
 
+    <!-- Affichage de la ligne de création d'un nouvel user -->
+    <div class="listContentLine listContentAdd">
+
+        <h4 class="lineName"> Nouvel Utilisateur ? </h4>
+        <div class="lineButtons">
+            <a href="index.php?page=users&action=add"> Ajouter </a>
+        </div>
+
+    </div>
+
     <!-- Pour chaque utilisateurs, on créé une ligne avec un bouton modifier et supprimer -->
     <?php $mod = 0; foreach ($users as $user): ?>
 

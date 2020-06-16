@@ -88,6 +88,26 @@ h3.pageAccroche{
     margin-bottom: 2.5vh;
 }
 
+/* Style des boutons */
+.btnSubmit{
+    font: 1.25em var(--headerFont), sans-serif;
+    margin-top: 5px;
+    margin-right: 7.5px;
+    margin-left: 7.5px;
+    padding: 8px 20px 10px;
+    color: var(--mainFontColor); /* Couleur du texte */
+    border-radius: 20px;
+    border: 1.5px solid white; /* Bordure blanche */
+    background-color: rgba(0, 0, 0, 0.75); /*background noir avec un peu de transparence*/
+}
+
+/* Style des boutons quand hovered */
+.btnSubmit:hover{
+    color: black;
+    background-color: white;
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
+}
+
 
 @media (max-width: 950px){
     .mainAccroche{
@@ -222,6 +242,11 @@ h3.pageAccroche{
     background-color: rgba(120, 120, 120, 0.7);
 }
 
+.listContentAdd{
+    background-color: rgb(52, 51, 119);
+    margin-bottom: 20px;
+}
+
 /* Style du nom de la ligne */
 .lineName{
     align-self: start;
@@ -303,4 +328,23 @@ form{
     width: calc(100vw * (1/2.75));
     height: calc(100vh * (1/30));
     background-color: rgba(0, 0, 0, 0.75);
+}
+
+/* Style des inputs description */
+.inputFormDescription{
+    resize: none; /* on ne pourra pas resize le textarea */
+    font: 1em var(--mainFont), sans-serif;
+    padding: 5px; /* Padding à l'intérieur des inputtexts */
+    border: 1.5px solid white;
+    border-radius: 5px;
+    color: white;
+    width: calc(100vw * (1/2.75));
+    height: calc(100vh * (1/10));
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+/* Style de la section qui contiendra le bouton valider */
+.sectionButtonCreate{
+    align-self: center;
+    margin-top: 25px;
 }

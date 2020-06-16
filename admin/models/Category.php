@@ -25,6 +25,63 @@
         return $resultCategories;
     }
 
+    //FONCTION QUI VA PUSH DANS LA BD UNE NOUVELLE CATEGORIE
+    function addCategory($informations)
+    {
+        $db = dbConnect();
+
+        if(empty($informations['categoryName']) || empty($informations['categoryDescription'])){
+            return [false, true]; //on renvoit que tous les champs sont obligatoires
+        }
+
+        //Query qui va push dans la base de donnée, le nom et la description de la nouvelle catégorie
+        $queryAddCategory = $db->prepare('INSERT INTO categories (name, description) VALUES (?, ?)');
+        $resultAddCategory = $queryAddCategory->execute([
+            $informations['categoryName'],
+            $informations['categoryDescription']
+        ]);
+
+        if($resultAddCategory){
+            $categoryId = $db->lastInsertId(); //retourne l'id de la dernière ligne insérée
+
+            insertCategoryImage($categoryId); //on appele ensuite la fonction d'ajout d'une image
+        }
+
+        return $resultAddCategory;
+    }
+
+    //FONCTION QUI VA AJOUTER UNE IMAGE A UNE CATEGORIE
+    function insertCategoryImage($categoryId)
+    {
+        $db = dbConnect();
+
+        $resultUploadImg = false;
+
+        if(!empty($_FILES['categoryImage']['tmp_name'])) { //Si il a selectionné un fichier
+
+            //on vire l'ancienne image si il y en a une (quand on utilise la fonction en update)
+            if(getCategory($categoryId)['image'] != null)
+                unlink('../assets/images/categories/' . getCategory($categoryId)['image']);
+
+            $allowed_extensions = array('jpg', 'png', 'jpeg', 'gif');
+            $my_file_extension = pathinfo($_FILES['categoryImage']['name'], PATHINFO_EXTENSION);
+
+            if (in_array($my_file_extension, $allowed_extensions)) {
+
+                $new_file_name = $categoryId . '.' . $my_file_extension;
+                $destination = '../assets/images/categories/' . $new_file_name;
+                $resultUploadImg = move_uploaded_file($_FILES['categoryImage']['tmp_name'], $destination);
+
+                //update du nom de l'image de l'enregistrement d'id
+                $query = $db->query("UPDATE categories SET image = '$new_file_name' WHERE id = $categoryId");
+
+                return $query;
+            }
+        }
+
+        return $resultUploadImg;
+    }
+
     //FONCTION QUI VA RETOURNER VRAI SI UNE CERTAINE CATEGORIE EXISTE
     function checkCategoryExists($id)
     {

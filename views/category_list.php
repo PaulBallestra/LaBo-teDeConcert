@@ -12,7 +12,7 @@
 
         <a href="index.php?page=categories&action=display&id=<?= $category['id'] ?>">
             <div class="categoryCard cat-<?= $category['id'] ?>">
-                <img class="categoryImg" src="assets/images/backgroundLA.jpg">
+                <img class="categoryImg" src="assets/images/categories/<?= $category['image'] ?>" alt="Miniature-Categorie-<?= $category['name'] ?>">
                 <h2 class="categoryName"> <?= $category['name'] ?> </h2>
             </div>
         </a>

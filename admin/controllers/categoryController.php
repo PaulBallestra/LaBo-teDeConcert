@@ -17,6 +17,41 @@
                 $view = 'views/categories_list.php';
                 break;
 
+            case 'new': //dans le cas ou l'action est de créer une nouvelle catégorie
+
+                $title = "La Boîte de Concert - Création Catégorie";
+                $view = 'views/create_category.php';
+                break;
+
+            case 'add': //si l'admin a décidé de valider les informations, on vérifie que tout va bien et on l'ajoute
+
+                //on vérifie que rien n'est vide
+                if(empty($_POST['categoryName']) || empty($_POST['categoryDescription']) || empty($_FILES['categoryImage'])){
+
+                    //Si il a oublié un champ on l'indique
+                    $_SESSION['message'] = 'Tous les champs sont obligatoires !';
+
+                    //Et on sauvegarde les anciens inputs pour éviter qu'il retape tout dans le rechargement
+                    $_SESSION['old_inputs'] = $_POST;
+
+                    header('Location: index.php?page=categories&action=new'); //lien vers la page de création d'une catégorie
+                    exit;
+
+                }else{ //sinon, on lance la requete d'enregistrement d'une nouvelle catégorie
+
+                    $informations = $_POST;
+
+                    $result = addCategory($informations); //appel de la fonction d'ajout d'une catégorie
+
+                    $_SESSION['message'] = $result ? 'Catégorie enregistrée !' : 'Erreur lors de l\'enregistrement...';
+
+                    header('Location: index.php?page=categories&action=list'); //redirection vers la liste des artistes
+                    exit;
+
+                }
+
+                break;
+
             case 'update': //dans le cas ou l'action est de modifier une catégorie
 
                 //on vérifie que l'id n'est pas vide et qu'il y a obligatoirement un id
