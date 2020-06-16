@@ -133,16 +133,70 @@ h3.pageAccroche{
 
 /* Style du nombre d'items */
 .numberOf-card{
-    font: 2.5em 'Montserrat SemiBold', sans-serif;
+    font: 4vw 'Montserrat SemiBold', sans-serif;
     color: var(--mainFontColor);
     margin: 15px 15px 10px 15px;
 }
 
 .titleOf-card{
-    font: 1.75em var(--mainFont), sans-serif;
+    font: 2vw var(--mainFont), sans-serif;
     color: var(--mainFontColor);
     margin: 10px 15px 15px 15px;
 }
+
+@media (max-width: 950px){
+
+    .dashboardCards{
+        flex-direction: column;
+        margin: 0 auto;
+    }
+
+    /* Style d'une carte en particulier */
+    .dashboard-card{
+        margin: 20px auto;
+        width: 25vw;
+        height: 20vh;
+    }
+
+    /* Style du nombre d'items */
+    .numberOf-card{
+        font: 2.75em 'Montserrat SemiBold', sans-serif;
+        color: var(--mainFontColor);
+        margin: 15px 15px 10px 15px;
+    }
+
+    .titleOf-card{
+        font: 1.5em var(--mainFont), sans-serif;
+        color: var(--mainFontColor);
+        margin: 10px 15px 15px 15px;
+    }
+
+}
+
+@media (max-width: 550px){
+
+    /* Style d'une carte en particulier */
+    .dashboard-card{
+        margin: 20px auto;
+        width: 45vw;
+        height: 25vh;
+    }
+
+    /* Style du nombre d'items */
+    .numberOf-card{
+        font: 2.5em 'Montserrat SemiBold', sans-serif;
+        color: var(--mainFontColor);
+        margin: 15px 15px 10px 15px;
+    }
+
+    .titleOf-card{
+        font: 1.15em var(--mainFont), sans-serif;
+        color: var(--mainFontColor);
+        margin: 10px 15px 15px 15px;
+    }
+
+}
+
 
 /*------------------------------- LISTE CATEGORIES/PRODUCT/USERS PAGE -------------------------------*/
 /* Style de la section qui contiendra toute la liste des categories */
@@ -196,4 +250,21 @@ h3.pageAccroche{
     border-color: black;
     background-color: var(--mainFontColor);
     color: black;
+}
+
+@media (max-width: 550px){
+
+    .listContentLine{
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .lineName{
+        align-self: center;
+    }
+
+    .lineButtons{
+        margin-bottom: 15px;
+    }
+
 }
