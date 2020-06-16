@@ -41,13 +41,40 @@
             $informations['categoryDescription']
         ]);
 
+        //Si ça s'est bien passé, on ajoute l'image
         if($resultAddCategory){
             $categoryId = $db->lastInsertId(); //retourne l'id de la dernière ligne insérée
-
             insertCategoryImage($categoryId); //on appele ensuite la fonction d'ajout d'une image
         }
 
         return $resultAddCategory;
+    }
+
+    //FONCTION QUI VA UPDATE UNE CATEGORIE EN FOONCTION DE SON ID
+    function updateCategory($id, $informations)
+    {
+        $db = dbConnect();
+
+        var_dump($informations);
+
+        //on check tous les champs
+        if(empty($informations['categoryName']) || empty($informations['categoryDescription']) || empty($informations['categoryImage'])){
+            return [false, true]; //on renvoit que tous les champs sont obligatoires
+        }
+
+        //Query qui va update dans la base de donnée, le nom et la description de la catégorie selectionnée
+        $queryUpdateCategory = $db->prepare('UPDATE categories SET name = ?, description = ? WHERE id = ?');
+        $resultUpdateCategory = $queryUpdateCategory->execute([
+            $informations['categoryName'],
+            $informations['categoryDescription'],
+            $id
+        ]);
+
+        //si ça s'est bien passé, on met a jour l'image
+        if($resultUpdateCategory)
+            insertCategoryImage($id);
+
+        return $resultUpdateCategory;
     }
 
     //FONCTION QUI VA AJOUTER UNE IMAGE A UNE CATEGORIE
@@ -56,6 +83,9 @@
         $db = dbConnect();
 
         $resultUploadImg = false;
+
+        var_dump($categoryId);
+        var_dump($_FILES);
 
         if(!empty($_FILES['categoryImage']['tmp_name'])) { //Si il a selectionné un fichier
 
