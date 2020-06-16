@@ -178,19 +178,19 @@ h3.pageAccroche{
     /* Style d'une carte en particulier */
     .dashboard-card{
         margin: 20px auto;
-        width: 45vw;
-        height: 25vh;
+        width: 40vw;
+        height: 20vh;
     }
 
     /* Style du nombre d'items */
     .numberOf-card{
-        font: 2.5em 'Montserrat SemiBold', sans-serif;
+        font: 2em 'Montserrat SemiBold', sans-serif;
         color: var(--mainFontColor);
         margin: 15px 15px 10px 15px;
     }
 
     .titleOf-card{
-        font: 1.15em var(--mainFont), sans-serif;
+        font: 1.25em var(--mainFont), sans-serif;
         color: var(--mainFontColor);
         margin: 10px 15px 15px 15px;
     }
