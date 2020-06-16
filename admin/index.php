@@ -10,29 +10,20 @@
         exit;
     }
 
-    if (isset($_GET['controller'])) {
+    if (isset($_GET['page'])) {
 
-        switch ($_GET['controller']) {
+        switch ($_GET['page']) {
 
-            case 'categories': //si il veut afficher les catégories
+            case 'categories': //si il veut afficher la gestion des catégories
                 require 'controllers/categoryController.php';
                 break;
 
-            case 'products':
+            case 'products': //si il veut afficher la gestion des produits
                 require 'controllers/productController.php';
                 break;
 
-            case 'users': //si il veut afficher les users
+            case 'users': //si il veut afficher la gestion des users
                 require 'controllers/userController.php';
-                break;
-
-            case 'logout':
-                $_SESSION['is_connected'] = 0; //on passe le flag de connexion a 0
-
-                unset($_SESSION['user']); //on unset la session de l'user
-
-                header('Location: ../index.php');
-                exit;
                 break;
 
             default :

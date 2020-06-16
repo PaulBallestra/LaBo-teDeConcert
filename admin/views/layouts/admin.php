@@ -33,6 +33,12 @@
 
         </main>
 
+        <?php //on inclut le footer en bas de page
+
+            require 'assets/partials/footer.php';
+
+        ?>
+
     </body>
 
 </html>

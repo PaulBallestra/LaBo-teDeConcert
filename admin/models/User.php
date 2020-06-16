@@ -10,6 +10,16 @@
         $numberOfUsers = $queryNumberOfUsers->fetch();
         $queryNumberOfUsers->closeCursor();
 
-        return $numberOfUsers;
+        return $numberOfUsers['numberOfUsers'];
+    }
 
+    //FONCTION QUI VA RETOURNER TOUS LES USERS
+    function getUsers()
+    {
+        $db = dbConnect();
+
+        $queryGetUsers = $db->query('SELECT * FROM users');
+        $resultUsers = $queryGetUsers->fetchAll();
+
+        return $resultUsers;
     }

@@ -29,7 +29,7 @@ main{
 }
 
 /* Style du texte des boutons non header */
-a.btnName{
+a{
     text-decoration: none;
     color: var(--mainFontColor);
 }

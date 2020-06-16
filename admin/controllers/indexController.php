@@ -8,6 +8,8 @@
 
     //Récupération d'informations totales sur les différentes parties du site (User, Catégories, Produits)
     $numberOfUsers = getNumberOfUsers(); //on récupère le nombre total d'user
+    $numberOfCategories = getNumberOfCategories(); //on récupère le nombre total de catégories
+    $numberOfProducts = getNumberOfProducts(); //on récupère le nombre total de produits
 
     $title = 'La Boîte de Concert - Dashboard';
     $view = 'views/index.php';

@@ -29,7 +29,7 @@ main{
 }
 
 /* Style du texte des boutons non header */
-a.btnName{
+a{
     text-decoration: none;
     color: var(--mainFontColor);
 }
@@ -93,4 +93,53 @@ h3.pageAccroche{
     .mainAccroche{
         font-size: 0.70em;
     }
+}
+
+
+/*------------------------------- DASHBOARD PAGE -------------------------------*/
+/* Style du container des cards */
+.dashboardCards{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+/* Style d'une carte en particulier */
+.dashboard-card{
+    width: 15vw;
+    height: 22.5vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid var(--mainFontColor);
+    border-radius: 15px;
+    margin: 0px 20px;
+}
+
+/* Style de la carte une fois qu'elle est hovered */
+.dashboard-card:hover{
+    background-color: var(--mainFontColor);
+    border: 3px solid black;
+}
+
+.dashboard-card:hover h1{
+    color: black;
+}
+
+.dashboard-card:hover h2 {
+    color: black;
+}
+
+/* Style du nombre d'items */
+.numberOf-card{
+    font: 2.5em 'Montserrat SemiBold', sans-serif;
+    color: var(--mainFontColor);
+    margin: 15px 15px 10px 15px;
+}
+
+.titleOf-card{
+    font: 1.75em var(--mainFont), sans-serif;
+    color: var(--mainFontColor);
+    margin: 10px 15px 15px 15px;
 }
