@@ -18,7 +18,25 @@
             case 'display': //pour l'affichage unique d'un produit en fonction de son id
 
                 //si l'id n'est pas set, on renvoit sur l'accueil
-                if(!isset($_GET['id']) || !ctype_digit($_GET['id'])){
+                if(!isset($_GET['id'])){
+                    $_SESSION['message'] = 'Aucun produit de ce type.';
+
+                    header('Location: index.php');
+                    exit;
+                }
+
+                //si l'id n'est pas de type number, on renvoit sur l'accueil
+                if(!ctype_digit($_GET['id'])){
+                    $_SESSION['message'] = 'L\'id n\'est pas valide.';
+
+                    header('Location: index.php');
+                    exit;
+                }
+
+                //si l'id n'existe pas en bd, on renvoit sur l'accueil
+                if(!checkProductExists($_GET['id'])){
+                    $_SESSION['message'] = 'Ce produit n\'existe pas.';
+
                     header('Location: index.php');
                     exit;
                 }

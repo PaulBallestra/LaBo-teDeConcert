@@ -1,17 +1,17 @@
 <?php
     //MODELS DES CATEGORIES
 
-    //FONCTION QUI VA RETOURNER LE NOMBRE TOTAL DE CATEGORIES
-    function getNumberOfCategories()
+    //FONCTION QUI VA RETOURNER UNE CATEGORIE SPECIFIQUE EN FONCTION DE SON ID
+    function getCategory($id)
     {
         $db = dbConnect();
 
-        $queryNumberOfCategories = $db->query("SELECT COUNT(id) as numberOfCategories FROM categories");
-        $numberOfCategories = $queryNumberOfCategories->fetch();
-        $queryNumberOfCategories->closeCursor();
+        $queryGetCategory = $db->prepare('SELECT * FROM categories WHERE id = ?');
+        $queryGetCategory->execute([
+            $id
+        ]);
 
-        return $numberOfCategories['numberOfCategories'];
-
+        return $queryGetCategory->fetch();
     }
 
     //FONCTION QUI VA RETOURNER TOUTES LES CATEGORIES
@@ -23,4 +23,29 @@
         $resultCategories = $queryAllCategories->fetchAll();
 
         return $resultCategories;
+    }
+
+    //FONCTION QUI VA RETOURNER VRAI SI UNE CERTAINE CATEGORIE EXISTE
+    function checkCategoryExists($id)
+    {
+        $db = dbConnect();
+
+        $queryCheckCategory = $db->prepare('SELECT id FROM categories WHERE id = ?');
+        $queryCheckCategory->execute([
+            $id
+        ]);
+
+        return $queryCheckCategory->fetch();
+    }
+
+    //FONCTION QUI VA RETOURNER LE NOMBRE TOTAL DE CATEGORIES
+    function getNumberOfCategories()
+    {
+        $db = dbConnect();
+
+        $queryNumberOfCategories = $db->query("SELECT COUNT(id) as numberOfCategories FROM categories");
+        $numberOfCategories = $queryNumberOfCategories->fetch();
+        $queryNumberOfCategories->closeCursor();
+
+        return $numberOfCategories['numberOfCategories'];
     }

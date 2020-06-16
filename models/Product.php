@@ -47,3 +47,16 @@
         return $resultGetProductsByCategory;
 
     }
+
+    //FONCTION QUI RETOURNE VRAI SI UN PRODUIT EXISTE EN FONCTION DE SON ID
+    function checkProductExists($id)
+    {
+        $db = dbConnect();
+
+        $queryCheckProduct = $db->prepare('SELECT id FROM products WHERE id = ?');
+        $queryCheckProduct->execute([
+            $id
+        ]);
+
+        return $queryCheckProduct->fetch();
+    }

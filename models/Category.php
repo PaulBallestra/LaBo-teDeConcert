@@ -14,7 +14,7 @@
 
     }
 
-    //Fonction qui va retourner toutes les catégories par ordre alphabétique
+    //FONCTION QUI RETOURNE TOUTES LES CATEGORIES RANGEE PAR ORDRE ALPHABETIQUE
     function getCategories()
     {
         $db = dbConnect();
@@ -22,5 +22,18 @@
         $selectedCategories = $db->query('SELECT * FROM categories ORDER BY name')->fetchAll(); //On récupère toutes les catégories depuis la bd
 
         return $selectedCategories; //on retourne la liste des catégories
+    }
+
+    //FONCTION QUI VA RETOURNER VRAI SI UNE CERTAINE CATEGORIE EXISTE
+    function checkCategoryExists($id)
+    {
+        $db = dbConnect();
+
+        $queryCheckCategory = $db->prepare('SELECT id FROM categories WHERE id = ?');
+        $queryCheckCategory->execute([
+            $id
+        ]);
+
+        return $queryCheckCategory->fetch();
     }
 
