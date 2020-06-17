@@ -535,7 +535,6 @@ form p:hover{
 /* Style de la miniature de la catégorie */
 .productImg{
     max-width: 25vw;
-    max-width: 25vw;
     border-radius: 10px 10px 0px 0px;
     margin: auto;
 }
@@ -544,7 +543,7 @@ form p:hover{
 .productName{
     color: var(--mainFontHoveredColor);
     font: 1.25em "Montserrat SemiBold", sans-serif;
-    margin: 5px;
+    margin: 5px 0 0 0;
 }
 
 /* Style de la ville et code postal sur la carte */
@@ -558,7 +557,7 @@ form p:hover{
 .productCapacity{
     color: var(--mainFontHoveredColor);
     font: 1.10em "Montserrat Light", sans-serif;
-    margin: 5px;
+    margin: 0 0 5px 0;
 }
 
 .productCapacity img{

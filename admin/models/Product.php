@@ -25,6 +25,15 @@
             //on récupère la derniere instance créée dans la bd
             $productId = $db->lastInsertId();
 
+            //on ajoute les liens entre les catégories choisies et le produit,
+            for($i = 0; $i < sizeof($informations['categoriesId']); $i++){
+                $queryAddProductToCategory = $db->prepare('INSERT INTO product_categories (id_product, id_category) VALUES (?, ?)');
+                $queryAddProductToCategory->execute([
+                    $productId,
+                    $informations['categoriesId'][$i]
+                ]);
+            }
+
             //on enregistre l'addresse du produit
             $queryAddAddress = $db->prepare('INSERT INTO addresses (number, street, town, postal_code, country, id_product) VALUES (?, ?, ?, ?, ?, ?)');
             $queryAddAddress->execute([
@@ -87,8 +96,6 @@
 
         $resultUploadImg = false;
 
-        var_dump($_FILES['productImages'][1]);
-
         if(!empty($_FILES['productImages']['tmp_name'])) { //Si il a selectionné un fichier
 
             //on check si l'image n'est pas supérieure à 2mo, sinon on retourne faux
@@ -126,6 +133,18 @@
         //si il a des images, on les supprime avant de le supprimer complement
         if(getProduct($id)['images'] != null)
             unlink('../assets/images/products/' . getProduct($id)['images']);
+
+        //on supprime également les liens entre le produit et les catégories
+        $queryDeleteLinkCategory = $db->prepare('DELETE FROM product_categories WHERE id_product = ?');
+        $queryDeleteLinkCategory->execute([
+            $id
+        ]);
+
+        //on supprime l'addresse du produit
+        $queryDeleteLinkAddress = $db->prepare('DELETE FROM addresses WHERE id_product = ?');
+        $queryDeleteLinkAddress->execute([
+            $id
+        ]);
 
         $queryDeleteProduct = $db->prepare('DELETE FROM products WHERE id = ?');
         $queryDeleteProduct->execute([

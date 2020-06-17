@@ -136,7 +136,7 @@ h1.pageTitle{
 /* Style de la carte une fois qu'elle est hovered */
 .dashboard-card:hover{
     background-color: var(--mainFontColor);
-    border: 3px solid black;
+    border: 3px solid rgba(255, 255, 255, 0);
 }
 
 .dashboard-card:hover h1{
@@ -250,6 +250,10 @@ h1.pageTitle{
     justify-content: start;
 }
 
+.lineInfos h3{
+    width: 2.5vw;
+}
+
 /* Style du texte de la ligne */
 .lineName{
     align-self: start;
@@ -257,6 +261,7 @@ h1.pageTitle{
     color: var(--mainFontColor);
     margin: 15px 10px;
 }
+
 
 /* Style des boutons modifier et supprimer */
 .lineButtons{

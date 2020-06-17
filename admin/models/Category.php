@@ -30,7 +30,7 @@
     {
         $db = dbConnect();
 
-        if(empty($informations['categoryName']) || empty($informations['categoryDescription'])){
+        if(empty($informations['categoryName']) || empty($informations['categoryDescription']) || $informations['categoryImage']['size'] == 0){
             return [false, true]; //on renvoit que tous les champs sont obligatoires
         }
 

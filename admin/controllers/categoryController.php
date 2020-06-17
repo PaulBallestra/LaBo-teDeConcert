@@ -26,7 +26,7 @@
             case 'add': //si l'admin a décidé de valider les informations, on vérifie que tout va bien et on l'ajoute
 
                 //on vérifie que rien n'est vide
-                if(empty($_POST['categoryName']) || empty($_POST['categoryDescription']) || empty($_FILES['categoryImage'])){
+                if(empty($_POST['categoryName']) || empty($_POST['categoryDescription']) || $_FILES['productImages']['size'] == 0){
 
                     //Si il a oublié un champ on l'indique
                     $_SESSION['message'] = 'Tous les champs sont obligatoires !';
@@ -40,6 +40,7 @@
                 }else{ //sinon, on lance la requete d'enregistrement d'une nouvelle catégorie
 
                     $informations = $_POST;
+                    $informations += $_FILES;
 
                     $result = addCategory($informations); //appel de la fonction d'ajout d'une catégorie
 

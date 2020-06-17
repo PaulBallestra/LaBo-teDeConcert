@@ -24,10 +24,9 @@
         <div class="listContentLine <?= $mod%2 == 0 ? ' listContentBright' : ''?>">
             <div class="lineInfos">
                 <!-- Id de la catégorie -->
-                <h4 class="lineName"> <?= $category['id'] ?> </h4>
+                <h3 class="lineName"> <?= $category['id'] ?> </h3>
                 <!-- Nom de la catégorie -->
                 <h4 class="lineName"> <?= $category['name'] ?> </h4>
-
             </div>
 
             <!-- Style des boutons modifier et supprimer -->

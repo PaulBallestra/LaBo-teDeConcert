@@ -22,13 +22,17 @@
 
         <!-- Style d'une ligne qui sera répétée pour chaque users, le mod permet de changer la couleur du background pour simplifier la lecture -->
         <div class="listContentLine <?= $mod%2 == 0 ? ' listContentBright' : ''?>">
-            <!-- Nom de l'user -->
-            <h4 class="lineName"> <?= $user['firstname'] . ' ' . $user['lastname'] ?> </h4>
+            <div class="lineInfos">
+                <!-- Id de l'user -->
+                <h3 class="lineName"> <?= $user['id'] ?> </h3>
+                <!-- Nom/prenom de l'user -->
+                <h4 class="lineName"> <?= $user['firstname'] ?> <?= $user['lastname'] ?> </h4>
+            </div>
 
             <!-- Style des boutons modifier et supprimer -->
             <div class="lineButtons">
-                <a href="index.php?page=categories&action=update&id=<?= $user['id'] ?>"> Modifier </a>
-                <a href="index.php?page=categories&action=delete&id=<?= $user['id'] ?>"> Supprimer </a>
+                <a href="index.php?page=users&action=update&id=<?= $user['id'] ?>"> Modifier </a>
+                <a href="index.php?page=users&action=delete&id=<?= $user['id'] ?>"> Supprimer </a>
             </div>
         </div>
 

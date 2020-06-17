@@ -22,8 +22,12 @@
 
         <!-- Style d'une ligne qui sera répétée pour chaque produits, le mod permet de changer la couleur du background pour simplifier la lecture -->
         <div class="listContentLine <?= $mod%2 == 0 ? ' listContentBright' : ''?>">
-            <!-- Nom du produit -->
-            <h4 class="lineName"> <?= $product['name'] ?> </h4>
+            <div class="lineInfos">
+                <!-- Id du produit -->
+                <h3 class="lineName"> <?= $product['id'] ?> </h3>
+                <!-- Nom du produit -->
+                <h4 class="lineName"> <?= $product['name'] ?> </h4>
+            </div>
 
             <!-- Style des boutons modifier et supprimer -->
             <div class="lineButtons">
