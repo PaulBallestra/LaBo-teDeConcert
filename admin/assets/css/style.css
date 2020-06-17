@@ -16,7 +16,7 @@ body{
     font: 1em var(--mainFont), sans-serif;
     margin: 0;
     padding: 0;
-    background: url('../images/backgroundNYC3.jpg') no-repeat center center fixed;
+    background: url('../images/backgroundNYC.jpg') no-repeat center center fixed;
     background-size: cover;
     filter: grayscale(50%);
     vertical-align: baseline;
@@ -51,14 +51,6 @@ h1.pageTitle{
     text-align: start;
 }
 
-/* Style du texte du nom de la page */
-h3.pageAccroche{
-    font: 1.5em 'Montserrat', sans-serif;
-    color: var(--mainFontColor);
-    margin: auto;
-    text-align: center;
-}
-
 /* Style des box messages qui apparaissent pour aider l'user*/
 .divUserMessage{
     display: flex;
@@ -86,6 +78,10 @@ h3.pageAccroche{
     color: white;
     text-align: center;
     margin-bottom: 2.5vh;
+}
+
+.mainAccroche h3{
+    margin: 5px;
 }
 
 /* Style des boutons */
@@ -247,7 +243,14 @@ h3.pageAccroche{
     margin-bottom: 20px;
 }
 
-/* Style du nom de la ligne */
+/* Style de l'id et du nom de la ligne */
+.lineInfos{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+}
+
+/* Style du texte de la ligne */
 .lineName{
     align-self: start;
     font: 1.15em var(--mainFont), sans-serif;
@@ -347,4 +350,23 @@ form{
 .sectionButtonCreate{
     align-self: center;
     margin-top: 25px;
+}
+
+/* Style des inputs number double pour capacité et prix */
+.inputFormDouble{
+    resize: none;
+    font: 1em var(--mainFont), sans-serif;
+    padding: 5px; /* Padding à l'intérieur des inputtexts */
+    border: 1.5px solid white;
+    border-radius: 5px;
+    color: white;
+    width: calc(100vw * (1/5.80));
+    height: calc(100vh * (1/30));
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+.doubleSectionInput{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }

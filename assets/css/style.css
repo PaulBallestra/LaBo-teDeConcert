@@ -16,7 +16,7 @@ body{
     font: 1em var(--mainFont), sans-serif;
     margin: 0;
     padding: 0;
-    background: url('../images/backgroundNYC3.jpg') no-repeat center center fixed;
+    background: url('../images/backgroundNYC.jpg') no-repeat center center fixed;
     background-size: cover;
     filter: grayscale(50%);
     vertical-align: baseline;
@@ -535,6 +535,7 @@ form p:hover{
 /* Style de la miniature de la catégorie */
 .productImg{
     max-width: 25vw;
+    max-width: 25vw;
     border-radius: 10px 10px 0px 0px;
     margin: auto;
 }
@@ -663,6 +664,7 @@ form p:hover{
     display: flex;
     flex-direction: row;
     justify-content: start;
+    max-width: 35vw;
 }
 
 .h3infosUniqueProduct{

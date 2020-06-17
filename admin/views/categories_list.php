@@ -22,8 +22,13 @@
 
         <!-- Style d'une ligne qui sera répétée pour chaque catégorie, le mod permet de changer la couleur du background pour simplifier la lecture -->
         <div class="listContentLine <?= $mod%2 == 0 ? ' listContentBright' : ''?>">
-            <!-- Nom de la catégorie -->
-            <h4 class="lineName"> <?= $category['name'] ?> </h4>
+            <div class="lineInfos">
+                <!-- Id de la catégorie -->
+                <h4 class="lineName"> <?= $category['id'] ?> </h4>
+                <!-- Nom de la catégorie -->
+                <h4 class="lineName"> <?= $category['name'] ?> </h4>
+
+            </div>
 
             <!-- Style des boutons modifier et supprimer -->
             <div class="lineButtons">

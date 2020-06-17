@@ -123,13 +123,27 @@
                     $title = "Le Boîte de Concert - Modification " . $category['name'];
                     $view = 'views/update_category.php';
                 }else{
-                    //on renvoit vers la page des listes de catégories avec un message d'erreur
-                    $categories = getCategories();
 
-                    //on modifie la variable du nom de la page et de la view
-                    $title = "La Boîte de Concert - Gestion Catégories";
-                    $view = 'views/categories_list.php';
-                    $_SESSION['message'] = 'Catégorie modifiée avec succès !';
+                    //On vérifie que la requete s'est bien passé
+                    if($category == false){
+
+                        $category = getCategory($_GET['id']); //on récupère la categorie selectionnée
+
+                        $_SESSION['old_inputs'] = $informations; //on stocke les anciennes infos
+                        $_SESSION['message'] = 'Une erreur est survenue. Vérifiez la taille de votre image (2Mo max).';
+
+                        $title = "Le Boîte de Concert - Modification " . $category['name'];
+                        $view = 'views/update_category.php';
+
+                    }else{
+                        //on renvoit vers la page des listes de catégories avec un message d'erreur
+                        $categories = getCategories();
+
+                        //on modifie la variable du nom de la page et de la view
+                        $title = "La Boîte de Concert - Gestion Catégories";
+                        $view = 'views/categories_list.php';
+                        $_SESSION['message'] = 'Catégorie modifiée avec succès !';
+                    }
                 }
 
                 break;

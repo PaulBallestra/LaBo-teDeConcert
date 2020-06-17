@@ -101,6 +101,10 @@
 
         if(!empty($_FILES['categoryImage']['tmp_name'])) { //Si il a selectionné un fichier
 
+            //on check si l'image n'est pas supérieure à 2mo, sinon on retourne faux
+            //if(filesize($_FILES['categoryImage']['tmp_name'])/1000 > 2)
+            //    return false;
+
             //on vire l'ancienne image si il y en a une (quand on utilise la fonction en update)
             if(getCategory($categoryId)['image'] != null)
                 unlink('../assets/images/categories/' . getCategory($categoryId)['image']);

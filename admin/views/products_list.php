@@ -1,7 +1,7 @@
 <!-- Affichage du titre de la page de gestion des produits -->
 <section class="mainAccroche">
     <h1 class="pageTitle"> Gestion Produits </h1>
-    <h2> Ajoutez, modifiez et supprimez des produits ! </h2>
+    <h3> Ajoutez, modifiez et supprimez des produits ! </h3>
 </section>
 
 <!-- Affichage de la liste des produits-->
@@ -12,7 +12,7 @@
 
         <h4 class="lineName"> Nouveau Produit ? </h4>
         <div class="lineButtons">
-            <a href="index.php?page=products&action=add"> Ajouter </a>
+            <a href="index.php?page=products&action=new"> Ajouter </a>
         </div>
 
     </div>
@@ -27,8 +27,8 @@
 
             <!-- Style des boutons modifier et supprimer -->
             <div class="lineButtons">
-                <a href="index.php?page=categories&action=update&id=<?= $product['id'] ?>"> Modifier </a>
-                <a href="index.php?page=categories&action=delete&id=<?= $product['id'] ?>"> Supprimer </a>
+                <a href="index.php?page=products&action=update&id=<?= $product['id'] ?>"> Modifier </a>
+                <a href="index.php?page=products&action=delete&id=<?= $product['id'] ?>"> Supprimer </a>
             </div>
         </div>
 
