@@ -8,7 +8,7 @@
 <section>
 
     <!-- Formulaire de mise à jour d'une catégorie -->
-    <form action="index.php?page=categories&action=updated&id=<?= $category['id'] ?>" method="post">
+    <form action="index.php?page=categories&action=updated&id=<?= $category['id'] ?>" method="post" enctype="multipart/form-data">
 
         <!-- Pour chaque input, si il y a une ancienne valeur, on l'écrit dans la textbox sinon, c'est la valeur actuelle en bd -->
 
@@ -27,8 +27,8 @@
         <!-- Section de l'image de la catégorie -->
         <section class="sectionInput inputImage">
             <label for="categoryImage" class="labelName"> Image : </label>
-            <input type="file" name="categoryImage" id="categoryImage" accept="image/gif, image/png, image/jpg, image/jpeg" value="../assets/images/categories/<?= $category['image'] ?>" required>
-            <img style="max-width: 30vw; max-height: 20vh; border: 2px solid white;" src="../assets/images/categories/<?= $category['image'] ?>"> <!-- Miniature de l'image de la catégorie -->
+            <input type="file" name="categoryImage" id="categoryImage" accept="image/gif, image/png, image/jpg, image/jpeg" src="../assets/images/categories/<?= $category['image'] ?>">
+            <img style="max-width: 50vw; max-height: 40vh; border: 2px solid white; color: white;" src="../assets/images/categories/<?= $category['image'] ?>"> <!-- Miniature de l'image de la catégorie -->
         </section>
 
         <!-- Section du bouton update -->

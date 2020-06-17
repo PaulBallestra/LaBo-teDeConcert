@@ -55,26 +55,41 @@
     {
         $db = dbConnect();
 
-        var_dump($informations);
-
         //on check tous les champs
-        if(empty($informations['categoryName']) || empty($informations['categoryDescription']) || empty($informations['categoryImage'])){
+        if(empty($informations['categoryName']) || empty($informations['categoryDescription'])){
             return [false, true]; //on renvoit que tous les champs sont obligatoires
         }
 
         //Query qui va update dans la base de donnée, le nom et la description de la catégorie selectionnée
         $queryUpdateCategory = $db->prepare('UPDATE categories SET name = ?, description = ? WHERE id = ?');
-        $resultUpdateCategory = $queryUpdateCategory->execute([
-            $informations['categoryName'],
+        $resultUpdateCategory = $queryUpdateCategory->execute([$informations['categoryName'],
             $informations['categoryDescription'],
             $id
         ]);
 
-        //si ça s'est bien passé, on met a jour l'image
-        if($resultUpdateCategory)
-            insertCategoryImage($id);
+        if($informations['categoryImage'] != null)
+        insertCategoryImage($id); //mis a jour de l'image
 
         return $resultUpdateCategory;
+    }
+
+    //FONCTION QUI VA SUPPRIMER UNE CATEGORIE EN FONCTION DE SON ID
+    function deleteCategory($id)
+    {
+        $db = dbConnect();
+
+        $categoryToDelete = getCategory($id); //on recupère la dite catégory pour ensuite supprimer l'image qui va avec
+
+        if($categoryToDelete['image'] != null)
+            unlink('../assets/images/categories/'.$categoryToDelete['image']);
+
+        $queryDeleteCategory = $db->prepare('DELETE FROM categories WHERE id = ?');
+        $queryDeleteCategory->execute([
+            $id
+        ]);
+
+        return $queryDeleteCategory;
+
     }
 
     //FONCTION QUI VA AJOUTER UNE IMAGE A UNE CATEGORIE
@@ -83,9 +98,6 @@
         $db = dbConnect();
 
         $resultUploadImg = false;
-
-        var_dump($categoryId);
-        var_dump($_FILES);
 
         if(!empty($_FILES['categoryImage']['tmp_name'])) { //Si il a selectionné un fichier
 
