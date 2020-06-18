@@ -42,7 +42,7 @@
         <!-- Section des images du produit -->
         <section class="sectionInput inputImage">
             <label for="productImages" class="labelName"> Image : </label>
-            <input type="file" name="productImages" id="productImages" accept="image/gif, image/png, image/jpg, image/jpeg" multiple required>
+            <input type="file" name="productImages" id="productImages" accept=".gif, .png, .jpg, .jpeg" placeholder="../assets/images/products/<?= $product['images'] ?>" multiple required>
         </section>
 
         <!-- Section du choix de la/les catégories du produit -->

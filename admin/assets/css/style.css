@@ -312,6 +312,15 @@ h1.pageTitle{
     margin: 10px;
 }
 
+/* Style des inputs et de leurs noms */
+.sectionInputCheckbox{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin: 10px;
+}
+
 /* Style du formulaire */
 form{
     display: flex;

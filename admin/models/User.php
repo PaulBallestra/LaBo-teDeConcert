@@ -1,6 +1,72 @@
 <?php
     //MODEL DES USERS
 
+    //FONCTION QUI VA AJOUTER UN NOUVEL USER
+    function addUser($informations)
+    {
+        $db = dbConnect();
+
+        //en fonction de la valeur de la checkbox, on adapte le booléen
+        if(isset($informations['userIsAdmin']))
+            $isUserAdmin = true;
+        else
+            $isUserAdmin = false;
+
+        //vérification des champs non vides
+        if(empty($informations['userLastname']) || empty($informations['userFirstname']) || empty($informations['userEmail']) || empty($informations['userPassword']) || empty($informations['userPhone']))
+            return [false, false, true];
+
+        //vérification que l'email n'est pas déjà utilisée
+        if(!checkEmailAlreadyUsed($informations['userEmail'])){
+            $queryAddUser = $db->prepare('INSERT INTO users (lastname, firstname, email, password, phone, is_admin) VALUES (?, ?, ?, ?, ?, ?)');
+            $resultAddUser = $queryAddUser->execute([
+                $informations['userLastname'],
+                $informations['userFirstname'],
+                $informations['userEmail'],
+                hash('md5', $informations['userPassword']),
+                $informations['userPhone'],
+                $isUserAdmin
+            ]);
+
+            return [$resultAddUser, false, false];
+        }else{
+            return [false, true, false];
+        }
+
+
+
+    }
+
+    //FONCTION QUI RENVOIT VRAI SI L'EMAIL EST DEJA UTILISEE
+    function checkEmailAlreadyUsed($email){
+
+        $db = dbConnect();
+
+        //Requete qui va recherche si l'email utilisée n'est pas déjà prise
+        $queryTestEmail = $db->prepare("SELECT email, id FROM users WHERE email = ?");
+        $queryTestEmail->execute([
+            $email
+        ]);
+
+        //On stocke l'unique ligne qui revient dans la variable emailAlreadyExist
+        $emailAlreadyExist = $queryTestEmail->fetch();
+
+        return $emailAlreadyExist;
+    }
+
+    //FONCTION QUI SUPPRIME UN UTILISATEUR EN FONCTION DE SON ID
+    function deleteUser($id)
+    {
+        $db = dbConnect();
+
+        $queryDeleteUser = $db->prepare('DELETE FROM users WHERE id = ?');
+        $queryDeleteUser->execute([
+            $id
+        ]);
+
+        return $queryDeleteUser;
+    }
+
     //FONCTION QUI VA CHOPER LE NOMBRE TOTAL D'USERS
     function getNumberOfUsers()
     {

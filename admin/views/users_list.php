@@ -12,7 +12,7 @@
 
         <h4 class="lineName"> Nouvel Utilisateur ? </h4>
         <div class="lineButtons">
-            <a href="index.php?page=users&action=add"> Ajouter </a>
+            <a href="index.php?page=users&action=new"> Ajouter </a>
         </div>
 
     </div>

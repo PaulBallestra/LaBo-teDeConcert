@@ -25,7 +25,7 @@
         <!-- Section de l'image de la catégorie -->
         <section class="sectionInput inputImage">
             <label for="categoryImage" class="labelName"> Image : </label>
-            <input type="file" name="categoryImage" id="categoryImage" accept="image/gif, image/png, image/jpg, image/jpeg" required>
+            <input type="file" name="categoryImage" id="categoryImage" accept=".gif, .png, .jpg, .jpeg" required>
         </section>
 
         <!-- Section du boutton valider -->

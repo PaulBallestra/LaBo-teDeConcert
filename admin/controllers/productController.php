@@ -105,12 +105,12 @@
                 break;
 
             case 'delete':
-                //Appel d'une fonction qui supprimera l'artiste
+                //Appel d'une fonction qui supprimera le produit
                 $resultDeleteProduct = deleteProduct($_GET['id']);
 
                 $_SESSION['message'] = $resultDeleteProduct ? 'Le produit a bien été supprimé !' : 'Erreur lors de la suppresion...';
 
-                header('Location: index.php?page=products&action=list'); //redirection vers la liste des artistes
+                header('Location: index.php?page=products&action=list'); //redirection vers la liste des users
                 exit;
                 break;
 

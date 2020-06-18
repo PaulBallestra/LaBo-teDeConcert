@@ -42,7 +42,7 @@
         <!-- Section des images du produit -->
         <section class="sectionInput inputImage">
             <label for="productImages" class="labelName"> Image : </label>
-            <input type="file" name="productImages" id="productImages" accept="image/gif, image/png, image/jpg, image/jpeg" multiple required>
+            <input type="file" name="productImages" id="productImages" accept=".gif, .png, .jpg, .jpeg" multiple required>
         </section>
 
         <!-- Section du choix de la/les catégories du produit -->
@@ -101,8 +101,6 @@
             <label for="productAddressCountry" class="labelName"> Pays </label>
             <input id="productAddressCountry" type="text" name="productAddressCountry" class="inputForm" value="<?= isset($_SESSION['old_inputs']) ? $_SESSION['old_inputs']['productAddressCountry'] : '' ?>" required>
         </section>
-
-
 
         <!-- Section du boutton valider -->
         <section class="sectionButtonCreate">
