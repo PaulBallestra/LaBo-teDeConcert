@@ -75,6 +75,17 @@
 
             case 'add': //dans le cas ou l'user veut ajouter un produit a son panier
 
+                //on vérifie si l'user est connecté avant de l'ajouter au panier
+                if(!isset($_SESSION['user'])){
+
+                    //Si ce n'est pas le cas, on l'envoit sur la page d'inscription
+                    $_SESSION['message'] = 'Veuillez vous créer un compte pour faire ceci.';
+
+                    header ('Location: index.php?page=register');
+                    exit;
+
+                }
+
                 //si l'id n'est pas set, on renvoit sur l'accueil
                 if(!isset($_GET['id'])){
 
@@ -86,6 +97,7 @@
 
                 //si l'id n'est pas de type number, on renvoit sur l'accueil
                 if(!ctype_digit($_GET['id'])){
+
                     $_SESSION['message'] = 'L\'id n\'est pas valide.';
 
                     header('Location: index.php');
@@ -97,8 +109,7 @@
                 $product = getProduct($_GET['id']);
                 $productAddress = getAddress($_GET['id'], false); //on chope également son adresse
 
-
-                $_SESSION['cart'] .= [
+                $_SESSION['user']['cart'][] = [
                     'id' => $product['id'],
                     'name' => $product['name'],
                     'price' => $product['price'],
@@ -106,11 +117,15 @@
                     'addressStreet' => $productAddress['street'],
                     'addressTown' => $productAddress['town'],
                     'addressPostalCode' => $productAddress['postal_code'],
-                    'addressCountry' => $productAddress['country']
+                    'addressCountry' => $productAddress['country'],
+                    'quantity' => 1
                 ];
 
                 //redirection vers la page des produits
                 $products = getProducts(); //on récupère tous les produits
+
+                //affichage du message comme quoi le produit a été ajouté
+                $_SESSION['message'] = 'Le produit a bien été enregistré dans votre <a style="color: black;" href="' . htmlspecialchars("index.php?page=profile") . '"> panier </a> !';
 
                 $title = 'La Boîte de Concert - Produits';
                 $view = 'views/product_list.php';

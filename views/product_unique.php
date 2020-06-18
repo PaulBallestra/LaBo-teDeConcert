@@ -45,7 +45,7 @@
 
         <!-- Affichage du bouton d'ajout au panier -->
         <section class="sectionButtonaddCartUpdateProfil">
-            <button type="submit" class="btnSubmit" onsubmit="location = 'index.php?page=products&action=add&id=<?= $product['id'] ?>'"> Ajouter au panier </button>
+            <a class="btnSubmit" href="index.php?page=products&action=add&id=<?=$product['id']?>"> Ajouter au panier </a>
         </section>
 
     </div>

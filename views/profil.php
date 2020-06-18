@@ -1,7 +1,5 @@
 <section>
 
-    <?php var_dump($_SESSION['cart']); ?>
-
     <div class="divContentProfilPage">
 
         <!-- Partie gauche de la page 'Profil' -->
@@ -47,19 +45,59 @@
 
             <div class="divInfosContent">
 
-                <?php if(empty($_SESSION['cart'])): ?>
+                <?php if(empty($_SESSION['user']['cart'])): //si son panier est vide on lui indique ?>
                     <h2 style="color: white;"> Vous n'avez pas de produit. </h2>
+                <?php else: //sinon ?>
+
+                    <?php $totalPrice = 0; for($i = 0; $i < $productsInCart; $i++) : ?>
+
+                        <div class="cartProduct product-<?= $_SESSION['user']['cart'][$i]['id'] ?>>">
+
+                            <div class="cartProductCrossInfos">
+                                <!-- Style de la croix du produit -->
+                                <a class="cartProductCross" href="index.php?page=profile&action=delete_product&id=<?= $_SESSION['user']['cart'][$i]['id'] ?>"><img src="assets/images/pictos/picto-cross.svg" alt="Croix de suppresion du produit <?= $_SESSION['user']['cart'][$i]['name'] ?>"></a>
+                                <!-- Style des infos du produit -->
+                                <div class="infosCartProduct infosProduct-number">
+                                    <h3> <?= $_SESSION['user']['cart'][$i]['name'] ?> </h3>
+                                    <h3> <?= $_SESSION['user']['cart'][$i]['addressNumber'] . ' ' . $_SESSION['user']['cart'][$i]['addressStreet'] . ', ' . $_SESSION['user']['cart'][$i]['addressTown'] ?> </h3>
+                                </div>
+                            </div>
+
+                            <h2> <?= $_SESSION['user']['cart'][$i]['price'] . '€' ?>  </h2>
+
+                        </div>
+
+                    <?php $totalPrice += $_SESSION['user']['cart'][$i]['price'];  endfor; ?>
+
+                    <div class="cartTotal">
+
+                            <h3> Total </h3>
+                            <h3> <?= $totalPrice . '€' ?> </h3>
+                    </div>
+
                 <?php endif; ?>
 
             </div>
 
-            <div class="divPanierArticles">
-                <!-- Div des boutons de modification d'un compte et suppresion -->
-                <div class="divButtonsInfos">
-                    <a href="index.php?page=profile&action=update&id=<?=$_SESSION['user']['id']?>"><input type="submit" value="Modifier" class="btnSubmit"></a> <!-- BtnModification des informations -->
-                    <a href="index.php?page=profile&action=delete&id=<?=$_SESSION['user']['id']?>"><input type="submit" value="Supprimer" class="btnSubmit"></a> <!-- BtnSuppresion du compte -->
+            <?php if(!empty($_SESSION['user']['cart'])) : ?>
+                <div class="divPanierArticles">
+                    <!-- Div des boutons de paiement et suppresion du panier -->
+                    <div class="divButtonsInfos">
+                        <a href="index.php?page=profile&action=pay_cart"><input type="submit" value="Payer" class="btnSubmit"></a> <!-- Btn de paiement du panier -->
+                        <a href="index.php?page=profile&action=delete_cart"><input type="submit" value="Supprimer" class="btnSubmit"></a> <!-- btn de suppresion complet du panier -->
+                    </div>
                 </div>
-            </div>
+            <?php else: ?>
+
+                <div class="divPanierArticles">
+                    <!-- Div des boutons des catégories et produits si le panier est vide -->
+                    <div class="divButtonsInfos">
+                        <a href="index.php?page=categories&action=list"><input type="submit" value="Voir Catégories" class="btnSubmit"></a>
+                        <a href="index.php?page=products&action=list"><input type="submit" value="Voir Produits" class="btnSubmit"></a>
+                    </div>
+                </div>
+
+            <?php endif; ?>
 
         </div>
 

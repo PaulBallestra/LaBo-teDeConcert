@@ -305,6 +305,11 @@ form p:hover{
     margin: 0px auto;
     color: white;
     justify-content: space-between;
+    max-width: 45vw;
+}
+
+.divInfosContent{
+    margin: 20px auto;
 }
 
 /* Style du nom prenom de l'user */
@@ -348,6 +353,7 @@ form p:hover{
 .divPanierContent{
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     margin: 0px auto;
 }
 
@@ -362,6 +368,62 @@ form p:hover{
 .divPanierTitle img{
     width: 100px;
 }
+
+/* Style d'un produit lorsqu'il est dans le panier */
+.cartProduct{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-height: 15vh;
+    margin: 5px auto;
+    padding-bottom: 10px;
+    border-bottom: 1px solid white;
+}
+
+/* Style du prix d'un produit dans le panier */
+.cartProduct h2{
+    font: 1.30em "Montserrat Medium", sans-serif;
+    color: var(--mainFontColor);
+    margin: auto 0;
+    padding-left: 50px;
+}
+
+.cartProductCrossInfos{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+}
+
+/* Style d'un produit lorsqu'il est dans le panier */
+.infosCartProduct{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Style de la croix de suppresion d'un produit */
+.cartProductCross{
+    margin: auto 10px;
+}
+
+/* Style des infos du produit dans le panier */
+.infosCartProduct h3{
+    font: 1.30em "Montserrat Thin", sans-serif;
+    color: var(--mainFontColor);
+    margin: 2.5px 0;
+}
+
+.cartTotal{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.cartTotal h3{
+    font: 1.30em "Montserrat Medium", sans-serif;
+    color: var(--mainFontColor);
+}
+
 
 @media (max-width: 950px){
     .divContentProfilPage{

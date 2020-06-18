@@ -9,8 +9,6 @@
         switch ($_GET['page']) {
 
             case 'profile': //dans le cas ou il veut afficher sa page de profil
-                $title = "La Boîte de Concert - Votre Profil";
-                $view = 'views/profil.php';
 
                 if(isset($_GET['action'])){
 
@@ -31,7 +29,6 @@
                             $title = "La Boîte de Concert - Suppression Profil";
                             $view = 'views/delete_profil.php';
                             break;
-
 
                         case 'update_profile': //dans le cas ou il a voulu modifier son profil
 
@@ -141,9 +138,47 @@
                             }
 
                             break;
+
+                        case 'delete_product': //dans le cas ou l'user veut supprimer un item de son panier
+
+                            //si l'id n'est pas set, on renvoit sur le profil
+                            if(!isset($_GET['id'])){
+
+                                $_SESSION['message'] = 'Une erreur est survenue.';
+                                header('Location: index.php?page=profile');
+                                exit;
+                            }
+
+                            //si l'id n'est pas de type number, on renvoit sur le profil
+                            if(!ctype_digit($_GET['id'])){
+
+                                $_SESSION['message'] = 'L\'id n\'est pas valide.';
+
+                                header('Location: index.php?page=profile');
+                                exit;
+                            }
+
+                            //si tout se passe bien, on supprime le produit
+                            unset($_SESSION['user']['cart'][array_search($_GET['id'], $_SESSION['user']['cart'])]);
+
+                            $_SESSION['message'] = 'Votre produit a bien été supprimé de son panier !';
+
+                            break;
+
+                        case 'delete_cart': //si il veut supprimer son panier
+                            $_SESSION['user']['cart'] = [];
+
+                            $_SESSION['message'] = 'Votre panier a bien été supprimé !';
+
+                            break;
                     }
 
                 }
+
+                $productsInCart = sizeof($_SESSION['user']['cart']);
+
+                $title = "La Boîte de Concert - Votre Profil";
+                $view = 'views/profil.php';
 
                 break;
 
