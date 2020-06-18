@@ -2,6 +2,7 @@
     //CONTROLLER DES PRODUITS
     require 'models/Product.php';
     require 'models/Category.php'; //pour afficher toutes les catégories lors de la création et la modification d'un produit
+    require 'models/Address.php'; //pour afficher les adresses
 
     //si on a recu un parametre dans action
     if(isset($_GET['action'])){
@@ -54,7 +55,42 @@
 
                 break;
 
-            case 'display': //dans le cas ou il veut afficher un produit spécifique
+            case 'update': //dans le cas ou il veut modifier un produit spécifique
+
+                //on vérifie que l'id n'est pas vide et qu'il y a obligatoirement un id
+                if(!isset($_GET['id'])){
+
+                    //on renvoit vers la page des listes de catégories avec un message d'erreur
+                    $products = getProducts();
+
+                    //on modifie la variable du nom de la page et de la view
+                    $title = "La Boîte de Concert - Gestion Produits";
+                    $view = 'views/products_list.php';
+
+                    $_SESSION['message'] = 'Une erreur est survenue. Veuillez réessayer.';
+
+                }else if(!checkCategoryExists($_GET['id'])){ //On check ensuite que l'id existe bien dans la bd
+
+                    //si ce n'est pas le cas en renvoit vers la page des produits avec un message
+
+                    //on renvoit vers la page des listes de catégories avec un message d'erreur
+                    $products = getProducts();
+
+                    //on modifie la variable du nom de la page et de la view
+                    $title = "La Boîte de Concert - Gestion Produits";
+                    $view = 'views/products_list.php';
+
+                    $_SESSION['message'] = 'Ce produit n\'existe pas.';
+
+                }else {//sinon on continue l'opération en l'affichant dans son formulaire
+
+                    $categories = getCategories(); //on récupère les categories pour les afficher dans le select
+                    $product = getProduct($_GET['id']); //on récupère le produit selectionné
+                    $productAddress = getAddress($_GET['id'], false);
+
+                    $title = "Le Boîte de Concert - Modification " . $product['name'];
+                    $view = 'views/update_product.php';
+                }
                 break;
 
             case 'delete':

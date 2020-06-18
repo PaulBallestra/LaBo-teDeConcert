@@ -11,10 +11,10 @@
         <div class="divTrierPar">
 
             <h3> Trier par : </h3>
-            <select name="selectSearchOrderBy">
-                <option value="alphabetique"> Nom </option>
-                <option value="capacite"> Capacité </option>
-                <option value="capacite"> Ville </option>
+            <select name="selectSearchOrderBy" onchange="location = 'index.php?page=products&action=list&orderBy=' + this.options[this.selectedIndex].value;">
+                <option value="name" <?= isset($_GET['orderBy']) ? ($_GET['orderBy'] == 'name' ? 'selected' : '') : '' ?>> Nom </option>
+                <option value="capacity" <?= isset($_GET['orderBy']) ? ($_GET['orderBy'] == 'capacity' ? 'selected' : '') : '' ?>> Capacité </option>
+                <option value="town" <?= isset($_GET['orderBy']) ? ($_GET['orderBy'] == 'town' ? 'selected' : '') : '' ?>> Ville </option>
             </select>
 
         </div>
@@ -26,7 +26,7 @@
 
 <!-- Affichage de la liste des produits -->
 <section class="productsContent">
-
+    
     <!-- Pour chaque catégorie on boucle pour créer sa carte -->
     <?php foreach ($products as $product): ?>
 

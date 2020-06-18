@@ -26,7 +26,7 @@
             case 'add': //si l'admin a décidé de valider les informations, on vérifie que tout va bien et on l'ajoute
 
                 //on vérifie que rien n'est vide
-                if(empty($_POST['categoryName']) || empty($_POST['categoryDescription']) || $_FILES['productImages']['size'] == 0){
+                if(empty($_POST['categoryName']) || empty($_POST['categoryDescription']) || $_FILES['categoryImage']['size'] == 0){
 
                     //Si il a oublié un champ on l'indique
                     $_SESSION['message'] = 'Tous les champs sont obligatoires !';
@@ -70,7 +70,7 @@
             case 'update': //dans le cas ou l'action est de modifier une catégorie
 
                 //on vérifie que l'id n'est pas vide et qu'il y a obligatoirement un id
-                if(!isset($_GET['id']) || !ctype_digit($_GET['id'])){
+                if(!isset($_GET['id'])){
 
                     //on renvoit vers la page des listes de catégories avec un message d'erreur
                     $categories = getCategories();

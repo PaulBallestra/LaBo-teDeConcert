@@ -4,8 +4,8 @@
 
     require '../helpers.php'; //on chope le helpers qui est dans le dossier parent
 
-    //on vérifie bien qu'il est toujours admin et que ce n'est pas un user fantome
-    if($_SESSION['user']['is_admin'] != 1 || !isset($_SESSION['user'])){
+    //on vérifie bien qu'il n'est pas un user unconnected et qu'il est admin
+    if(!isset($_SESSION['user']) || $_SESSION['user']['is_admin'] != 1){
         header('Location: ../index.php'); //redirection vers la page d'accueil
         exit;
     }

@@ -24,6 +24,30 @@
         return $selectedProducts; //On retourne le tableau de tous les produits
     }
 
+    //FONCTION QUI RETOURNE TOUS LES PRODUIT PAR CAPACITE
+    function getProductsByCapacity()
+    {
+        $db = dbConnect();
+
+        $selectedProducts = $db->query('SELECT * FROM products ORDER BY capacity DESC')->fetchAll();
+
+        return $selectedProducts;
+    }
+
+    function getProductsByTown()
+    {
+        $db = dbConnect();
+
+        $selectedProducts = $db->query('
+            SELECT A.town, P.*
+            FROM addresses A, products P
+            WHERE A.id_product = P.id
+            ORDER BY A.town
+        ')->fetchAll();
+
+        return $selectedProducts;
+    }
+
     //FONCTION QUI RETOURNE TOUS LES PRODUITS EN FONCTION DE LA CATEGORIE SELECTIONNÉE
     function getProductsByCategory($idCategory)
     {

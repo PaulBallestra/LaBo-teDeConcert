@@ -416,6 +416,10 @@ form p:hover{
     background-color: black;
 }
 
+.categoryCard:hover h2{
+    color: var(--mainFontColor);
+}
+
 /* Style des noms des catégories */
 .categoriesContent a{
     text-decoration: none;
@@ -524,7 +528,10 @@ form p:hover{
 /* Style de la carte quand on est en hover dessus */
 .productCard:hover{
     background-color: black;
-    color: white;
+}
+
+.productCard:hover h2{
+    color: var(--mainFontColor);
 }
 
 /* Style des noms des produits */

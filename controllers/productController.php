@@ -8,7 +8,31 @@
         switch($_GET['action']){
 
             case 'list': //Pour l'affichage de toutes les catégories
-                $products = getProducts(); //on récupère toutes les catégories
+
+                //Si l'user veut les afficher par ... (alors il y a by dans l'url)
+                if(isset($_GET['orderBy'])){
+                    //en fonction du parametre on adapte la fonction
+                    switch($_GET['orderBy']){
+                        case 'name':
+                            $products = getProducts(); //on chope tous les produits par ordre  alphabétique (ordre de base)
+                            break;
+
+                        case 'capacity':
+                            $products = getProductsByCapacity();
+                            break;
+
+                        case 'town':
+                            $products = getProductsByTown();
+                            break;
+
+                        default:
+                            $products = getProducts();
+                            break;
+                    }
+
+                }else //sinon on affiche la liste triée par ordre alphabétique
+                    $products = getProducts(); //on récupère tous les produits
+
 
                 $title = 'La Boîte de Concert - Produits';
                 $view = 'views/product_list.php';

@@ -14,7 +14,7 @@
 
         <a href="index.php?page=products&action=display&id=<?= $product['id'] ?>">
             <div class="productCard pro-<?= $product['id'] ?>">
-                <img class="productImg" src="assets/images/backgroundLA.jpg" alt="<?= 'Miniature ' . $product['name'] ?>">
+                <img class="productImg" src="assets/images/products/<?= $product['images'] ?>" alt="<?= 'Miniature ' . $product['name'] ?>">
                 <h2 class="productName"> <?= $product['name'] ?> </h2>
                 <h2 class="productTownPostalCode"> <?= $productAddress['town'] . ' - ' . $productAddress['postal_code'] ?> </h2>
                 <h2 class="productCapacity">  <?= $product['capacity'] ?> <img src="assets/images/pictos/picto-capacity.svg"> </h2>
