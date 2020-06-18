@@ -37,7 +37,7 @@
         <!-- Section du numéro de téléphone d'un user (pas obligatoire) -->
         <section class="sectionInput">
             <label for="userPhone" class="labelName"> Téléphone </label>
-            <input id="userPhone" type="number" name="userPhone" class="inputForm" value="<?= isset($_SESSION['old_inputs']) ? $_SESSION['old_inputs']['userPhone'] : 'ifozijfoziefjoij' ?>">
+            <input id="userPhone" type="number" name="userPhone" class="inputForm" value="<?= isset($_SESSION['old_inputs']) ? $_SESSION['old_inputs']['userPhone'] : $user['phone'] ?>">
         </section>
 
         <!-- Section de la ville du produit -->
