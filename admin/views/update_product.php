@@ -52,21 +52,20 @@
 
                 <?php foreach ($categories as $category) : ?>
 
-                    <option value=<?= $category['id'] ?>>
+                    <option value=<?= $category['id'] ?> <?=  checkCategoryOfProduct($_GET['id'], $category['id']) ? 'selected' : '' //on vérifie si le produit est lié a la catégorie, si oui on le selectionne ?>>
                         <?= $category['name'] ?>
-                    </option> <!-- value est la valeur retournée en post -->
+                    </option>
 
                 <?php endforeach; ?>
 
             </select>
         </section>
 
-
+        <!-- ADRESSE DU PRODUIT -->
         <section class="mainAccroche" style="margin: 30px 0px 0px 0px">
             <h2> Adresse du produit </h2>
         </section>
 
-        <!-- ADRESSE DU PRODUIT -->
         <!-- Section du numéro de l'adresse du produit -->
         <section class="sectionInput">
             <label for="productAddressNumber" class="labelName"> Numéro </label>

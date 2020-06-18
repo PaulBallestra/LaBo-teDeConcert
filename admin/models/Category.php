@@ -25,6 +25,26 @@
         return $resultCategories;
     }
 
+    //FONCTION QUI RENVOIT TOUTES LES CATEGORIES D'UN PRODUIT
+    function checkCategoryOfProduct($idProduct, $idCategory)
+    {
+        $db = dbConnect();
+
+        $querySelectedCategories = $db->prepare('
+            SELECT C.id
+            FROM categories C
+            INNER JOIN product_categories PC ON C.id = PC.id_category
+            WHERE PC.id_product = ?
+            AND PC.id_category = ?');
+
+        $querySelectedCategories->execute([
+            $idProduct,
+            $idCategory
+        ]);
+
+        return $querySelectedCategories->fetch();
+    }
+
     //FONCTION QUI VA PUSH DANS LA BD UNE NOUVELLE CATEGORIE
     function addCategory($informations)
     {

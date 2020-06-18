@@ -26,7 +26,7 @@
 
 <!-- Affichage de la liste des produits -->
 <section class="productsContent">
-    
+
     <!-- Pour chaque catégorie on boucle pour créer sa carte -->
     <?php foreach ($products as $product): ?>
 

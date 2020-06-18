@@ -45,6 +45,17 @@
                     header('Location: index.php?page=products&action=new'); //lien vers la page de création d'une catégorie
                     exit;
 
+                }else if($result[2] == true){
+
+                    $_SESSION['message'] = 'Vérifiez le type des champs !';
+
+                    //Et on sauvegarde les anciens inputs pour éviter qu'il retape tout dans le rechargement
+                    $_SESSION['old_inputs'] = $_POST;
+                    $_SESSION['old_inputs'] += $_FILES; //également les images
+
+                    header('Location: index.php?page=products&action=new'); //lien vers la page de création d'une catégorie
+                    exit;
+
                 }else{
                     //si tous s'est bien passé on renvoit sur la liste des produits
                     $_SESSION['message'] = 'Produit enregistré !';
@@ -86,7 +97,7 @@
 
                     $categories = getCategories(); //on récupère les categories pour les afficher dans le select
                     $product = getProduct($_GET['id']); //on récupère le produit selectionné
-                    $productAddress = getAddress($_GET['id'], false);
+                    $productAddress = getAddress($_GET['id'], false); //on récupère l'adresse du produit
 
                     $title = "Le Boîte de Concert - Modification " . $product['name'];
                     $view = 'views/update_product.php';

@@ -74,6 +74,8 @@
                 break;
 
             default:
+                $products = getProducts();
+
                 $title = 'La Boîte de Concert - Produits';
                 $view = 'views/product_list.php';
                 break;

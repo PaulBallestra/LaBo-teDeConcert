@@ -8,9 +8,12 @@
 
         //vérification des champs non vide
         if(empty($informations['productName']) || empty($informations['productDescription']) || empty($informations['productCapacity']) || empty($informations['productPrice']) || $informations['productImages']['size'] == 0 || empty($informations['categoriesId']) || empty($informations['productAddressNumber']) || empty($informations['productAddressStreet'])
-            || empty($informations['productAddressTown']) || empty($informations['productAddressPostalCode']) || empty($informations['productAddressCountry'])){
+            || empty($informations['productAddressTown']) || empty($informations['productAddressPostalCode']) || empty($informations['productAddressCountry']))
             return [false, true]; //on renvoit que tous les champs sont obligatoires
-        }
+
+        //vérification des types des valeurs que l'admin rentre
+        if(!ctype_digit($informations['productPrice']) || !ctype_digit($informations['productCapacity']) || !ctype_digit($informations['productAddressNumber']) || !ctype_digit($informations['productAddressPostalCode']))
+            return [false, false, true]; //on renvoit true en 3 pour indiquer l'erreur de type
 
         $queryAddProduct = $db->prepare('INSERT INTO products (name, description, capacity, price) VALUES (?, ?, ?, ?)');
         $resultAddProduct = $queryAddProduct->execute([
@@ -51,6 +54,12 @@
         }
 
         return $resultAddProduct;
+    }
+
+    //FONCTION QUI VA METTRE A JOUR UN PRODUIT
+    function updateProduct($information)
+    {
+
     }
 
     //FONCTION QUI NOUS RETOURNE LE NOMBRE TOTAL DE PRODUITS
