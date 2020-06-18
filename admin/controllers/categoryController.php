@@ -108,9 +108,6 @@
                 $informations = $_POST; //on stocke les données en post dans $informations
                 $informations += $_FILES; //on récupère également l'image en files
 
-                //Vérification des champs non vide
-
-                //si ça s'est bien passé, on retourne sur la liste des catégories, sinon retour au formulaire avec les anciennes valeurs
                 $category = updateCategory($_GET['id'], $informations); //on update la catégorie
 
                 //on vérifie qu'il n'y a pas une erreur de champs non rempli

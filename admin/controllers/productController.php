@@ -53,14 +53,14 @@
                     $_SESSION['old_inputs'] = $_POST;
                     $_SESSION['old_inputs'] += $_FILES; //également les images
 
-                    header('Location: index.php?page=products&action=new'); //lien vers la page de création d'une catégorie
+                    header('Location: index.php?page=products&action=new'); //lien vers la page de création d'un produit
                     exit;
 
                 }else{
                     //si tous s'est bien passé on renvoit sur la liste des produits
                     $_SESSION['message'] = 'Produit enregistré !';
 
-                    header('Location: index.php?page=products&action=list'); //lien vers la page de création d'une catégorie
+                    header('Location: index.php?page=products&action=list'); //lien vers la liste des produits
                 }
                 exit;
 

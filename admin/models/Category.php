@@ -87,8 +87,9 @@
             $id
         ]);
 
+        //si l'image aussi a été updatée, on la met a jour
         if($informations['categoryImage'] != null)
-        insertCategoryImage($id); //mis a jour de l'image
+            insertCategoryImage($id); //mis a jour de l'image
 
         return $resultUpdateCategory;
     }
