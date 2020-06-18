@@ -1,5 +1,7 @@
 <section>
 
+    <?php var_dump($_SESSION['cart']); ?>
+
     <div class="divContentProfilPage">
 
         <!-- Partie gauche de la page 'Profil' -->

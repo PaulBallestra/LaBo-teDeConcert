@@ -525,6 +525,15 @@ form p:hover{
     margin: 20px;
 }
 
+/* Style du logo de la capctié d'une salle */
+.capacitySVG{
+    display: inline-block;
+}
+
+.capacitySVGHovered{
+    display: none;
+}
+
 /* Style de la carte quand on est en hover dessus */
 .productCard:hover{
     background-color: black;
@@ -532,6 +541,14 @@ form p:hover{
 
 .productCard:hover h2{
     color: var(--mainFontColor);
+}
+
+.productCard:hover .capacitySVG{
+    display: none;
+}
+
+.productCard:hover .capacitySVGHovered{
+    display: inline-block;
 }
 
 /* Style des noms des produits */

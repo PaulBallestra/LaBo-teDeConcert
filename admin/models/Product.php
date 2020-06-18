@@ -56,9 +56,12 @@
         return $resultAddProduct;
     }
 
-    //FONCTION QUI VA METTRE A JOUR UN PRODUIT
-    function updateProduct($information)
+    //FONCTION QUI VA METTRE A JOUR UN PRODUIT EN FONCTION DE SON ID
+    function updateProduct($id, $informations)
     {
+        $db = dbConnect();
+
+
 
     }
 
@@ -155,6 +158,7 @@
             $id
         ]);
 
+        //suppresion du produit
         $queryDeleteProduct = $db->prepare('DELETE FROM products WHERE id = ?');
         $queryDeleteProduct->execute([
             $id

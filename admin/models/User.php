@@ -57,12 +57,13 @@
         $queryExecuteContent .= $informations['userEmail'] . ',';
         $queryExecuteContent .= $informations['userPhone']. ',';
 
+        //vérification si le passord a été modifié
         if(isset($informations['userPassword']) && !empty($informations['userPassword'])) {
             $query .= ', password = ?';
             $queryExecuteContent .= hash('md5', $informations['userPassword']) . ',';
         }
 
-
+        //Vérification de la ckeckbox isAdmin
         if(isset($informations['userIsAdmin'])){
             $query .= ', is_admin = ?';
 
@@ -77,7 +78,7 @@
 
 
         $query .= ' WHERE id = ?';
-        $queryExecuteContent .= $id;
+        $queryExecuteContent .= $id; //on ferme la queryString avec l'id de l'user
 
 
         $queryUpdateUser = $db->prepare($query);

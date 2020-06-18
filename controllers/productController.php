@@ -73,6 +73,49 @@
                 $view = 'views/product_unique.php';
                 break;
 
+            case 'add': //dans le cas ou l'user veut ajouter un produit a son panier
+
+                //si l'id n'est pas set, on renvoit sur l'accueil
+                if(!isset($_GET['id'])){
+
+                    $_SESSION['message'] = 'Aucun produit de ce type.';
+
+                    header('Location: index.php');
+                    exit;
+                }
+
+                //si l'id n'est pas de type number, on renvoit sur l'accueil
+                if(!ctype_digit($_GET['id'])){
+                    $_SESSION['message'] = 'L\'id n\'est pas valide.';
+
+                    header('Location: index.php');
+                    exit;
+                }
+
+                //sinon on l'ajoute au panier
+                //en sauvegardant les infos nécessaires
+                $product = getProduct($_GET['id']);
+                $productAddress = getAddress($_GET['id'], false); //on chope également son adresse
+
+
+                $_SESSION['cart'] .= [
+                    'id' => $product['id'],
+                    'name' => $product['name'],
+                    'price' => $product['price'],
+                    'addressNumber' => $productAddress['number'],
+                    'addressStreet' => $productAddress['street'],
+                    'addressTown' => $productAddress['town'],
+                    'addressPostalCode' => $productAddress['postal_code'],
+                    'addressCountry' => $productAddress['country']
+                ];
+
+                //redirection vers la page des produits
+                $products = getProducts(); //on récupère tous les produits
+
+                $title = 'La Boîte de Concert - Produits';
+                $view = 'views/product_list.php';
+                break;
+
             default:
                 $products = getProducts();
 
