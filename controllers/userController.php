@@ -151,23 +151,23 @@
                             //On vérifie que son panier n'est pas vide avant de le supprimer
                             if(empty(getProductsInCart(getIdCartOfUser($_SESSION['user']['id'])))){
                                 $_SESSION['message'] = 'Vous n\'avez aucun produits. ';
+                                $numberProductsInCart = sizeof(getProductsInCart(getIdCartOfUser($_SESSION['user']['id'])));
                                 header('Location: index.php?page=profile');
                                 exit;
                             }
 
                             //si l'id n'est pas set, on renvoit sur le profil
                             if(!isset($_GET['id'])){
-
                                 $_SESSION['message'] = 'Une erreur est survenue.';
+                                $numberProductsInCart = sizeof(getProductsInCart(getIdCartOfUser($_SESSION['user']['id'])));
                                 header('Location: index.php?page=profile');
                                 exit;
                             }
 
                             //si l'id n'est pas de type number, on renvoit sur le profil
                             if(!ctype_digit($_GET['id'])){
-
                                 $_SESSION['message'] = 'L\'id n\'est pas valide.';
-
+                                $numberProductsInCart = sizeof(getProductsInCart(getIdCartOfUser($_SESSION['user']['id'])));
                                 header('Location: index.php?page=profile');
                                 exit;
                             }
@@ -175,6 +175,7 @@
                             //si tout se passe bien, on supprime le produit
                             unset($_SESSION['user']['cart'][array_search($_GET['id'], $_SESSION['user']['cart'])]);
 
+                            $_SESSION['user']['cart'] = array_merge($_SESSION['user']['cart']); //on merge pour reset les index du cart en session
 
                             deleteProductInCart(getIdCartOfUser($_SESSION['user']['id']), $_GET['id']);
 
@@ -260,6 +261,8 @@
 
                             //et on supprime les liens en bd
                             deleteProductsInCart(getIdCartOfUser($_SESSION['user']['id']));
+
+                            $numberProductsInCart = 0;
 
                             $_SESSION['message'] = 'Votre panier a bien été supprimé !';
 

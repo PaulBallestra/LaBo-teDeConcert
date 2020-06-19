@@ -14,9 +14,12 @@
                 <h3> <?= $_SESSION['user']['cart'][$i]['addressNumber'] . ' ' . $_SESSION['user']['cart'][$i]['addressStreet'] . ', ' . $_SESSION['user']['cart'][$i]['addressTown'] ?> </h3>
             </div>
 
-            <h3 style="color: white;"> <?= $_SESSION['user']['cart'][$i]['quantity'] ?> </h3>
+            <div class="" style="display: flex; flex-direction: row; justify-content: center;">
+                <h3 style="color: white;"> <?= $_SESSION['user']['cart'][$i]['quantity'] ?> </h3>
 
-            <h2> <?= $_SESSION['user']['cart'][$i]['price'] . '€' ?>  </h2>
+                <h2> <?= $_SESSION['user']['cart'][$i]['price'] . '€' ?>  </h2>
+            </div>
+
 
         </div>
 
