@@ -172,6 +172,13 @@
                                 exit;
                             }
 
+                            //si il ne possède pas cet id dans son panier, on renvoit sur la page de profil (également pour regler le probleme de si il supprime puis va sur payer puis revient, lorsqu'il revient, cela supprimait une 2eme fois)
+                            if(empty(checkProductInCart($_GET['id'],getIdCartOfUser($_SESSION['user']['id'])))){
+                                $numberProductsInCart = sizeof(getProductsInCart(getIdCartOfUser($_SESSION['user']['id'])));
+                                header('Location: index.php?page=profile');
+                                exit;
+                            }
+
                             //si tout se passe bien, on supprime le produit
                             unset($_SESSION['user']['cart'][array_search($_GET['id'], $_SESSION['user']['cart'])]);
 
