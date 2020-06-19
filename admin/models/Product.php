@@ -187,6 +187,12 @@
             $id
         ]);
 
+        //on supprime le produit de tous les paniers
+        $queryDeleteProductInAllCart = $db->prepare('DELETE FROM products_cart WHERE id_product = ?');
+        $queryDeleteProductInAllCart->execute([
+            $id
+        ]);
+
         //suppresion du produit
         $queryDeleteProduct = $db->prepare('DELETE FROM products WHERE id = ?');
         $queryDeleteProduct->execute([
