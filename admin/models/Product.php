@@ -66,7 +66,69 @@
     {
         $db = dbConnect();
 
+        //vérification des champs non vides
+        if(empty($informations['productName']) || empty($informations['productDescription']) || empty($informations['productCapacity']) || empty($informations['productPrice'])
+            || empty($informations['categoriesId']) || empty($informations['productAddressNumber']) || empty($informations['productAddressStreet'])
+            || empty($informations['productAddressTown']) || empty($informations['productAddressPostalCode']) || empty($informations['productAddressCountry'])){
 
+            return [false, true]; //on retourne true en 1 pour indiquer qu'il y a des erreur de champs
+        }
+
+        if(!ctype_digit($informations['productCapacity']) || !ctype_digit($informations['productPrice']) || !ctype_digit($informations['productAddressPostalCode']) || !ctype_digit($informations['productAddressNumber'])){
+            return [false, false, true];
+        }
+
+
+        $queryUpdateProduct = $db->prepare('UPDATE products SET name = ?, description = ?, capacity = ?, price = ? WHERE id = ?');
+        $queryUpdateProduct->execute([
+            $informations['productName'],
+            $informations['productDescription'],
+            $informations['productCapacity'],
+            $informations['productPrice'],
+            $id
+        ]);
+
+        //on update son adresse
+        $queryUpdateAddressProduct = $db->prepare('UPDATE addresses SET number = ?, street = ?, town = ?, postal_code = ?, country = ? WHERE id_product = ?');
+        $queryUpdateAddressProduct->execute([
+            $informations['productAddressNumber'],
+            $informations['productAddressStreet'],
+            $informations['productAddressTown'],
+            $informations['productAddressPostalCode'],
+            $informations['productAddressCountry'],
+            $id
+        ]);
+
+        //on met a jour ensuite ses catégories dans la table entre les catégories et les produits
+        //en supprimant les anciens liens
+        $queryDeleteOldLinks = $db->prepare('DELETE FROM product_categories WHERE id_product = ?');
+        $queryDeleteOldLinks->execute([
+            $id
+        ]);
+
+        //on ajoute les nouvelles
+        //on ajoute les liens entre les catégories choisies et le produit
+        for($i = 0; $i < sizeof($informations['categoriesId']); $i++){
+            $queryAddProductToCategory = $db->prepare('INSERT INTO product_categories (id_product, id_category) VALUES (?, ?)');
+            $queryAddProductToCategory->execute([
+                $id,
+                $informations['categoriesId'][$i]
+            ]);
+        }
+        
+        if(!empty($informations['productImage1']['name'])){
+            insertProductImage($id, 1);
+        }
+
+        if(!empty($informations['productImage2']['name'])){
+            insertProductImage($id, 2);
+        }
+
+        if(!empty($informations['productImage3']['name'])){
+            insertProductImage($id, 3);
+        }
+
+        return [$queryUpdateProduct, false, false];
     }
 
     //FONCTION QUI NOUS RETOURNE LE NOMBRE TOTAL DE PRODUITS
@@ -103,6 +165,82 @@
         ]);
 
         return $queryAddProduct->fetch();
+    }
+
+    //FONCTION QUI VA AJOUTER UNE IMAGE 1, 2, 3 A UN PRODUIT
+    function insertProductImage($productId, $numImage)
+    {
+        $db = dbConnect();
+
+        $resultUploadImg = false;
+
+        $threeImages = explode(',', getProduct($productId)['images']); //on récupère le tableau de l'explosion du champ images
+        $allowed_extensions = array('jpg', 'png', 'jpeg', 'gif'); //type des images choisies
+
+        switch($numImage){
+
+            case 1: //on unset celui qui est update
+                unlink('../assets/images/products/' . $threeImages[0]);
+                $my_file_extensionNum = pathinfo($_FILES['productImage1']['name'], PATHINFO_EXTENSION);
+                break;
+
+            case 2:
+                unlink('../assets/images/products/' . $threeImages[1]);
+                $my_file_extensionNum = pathinfo($_FILES['productImage2']['name'], PATHINFO_EXTENSION);
+                break;
+
+            case 3:
+                unlink('../assets/images/products/' . $threeImages[2]);
+                $my_file_extensionNum = pathinfo($_FILES['productImage3']['name'], PATHINFO_EXTENSION);
+                break;
+
+        }
+
+        if (in_array($my_file_extensionNum, $allowed_extensions)) {
+
+            switch($numImage){
+                case 1:
+                    $new_file_name = $productId . '-1.' . $my_file_extensionNum;
+                    break;
+
+                case 2:
+                    $new_file_name = $productId . '-2.' . $my_file_extensionNum;
+                    break;
+
+                case 3:
+                    $new_file_name = $productId . '-3.' . $my_file_extensionNum;
+                    break;
+            }
+
+            $destination = '../assets/images/products/' . $new_file_name;
+
+            $queryContent = ''; //content de la query
+
+            switch($numImage){
+                case 1:
+                    $queryContent = $new_file_name . ',' . $threeImages[1] . ',' . $threeImages[2]; //content de la query quand c'est la 1ere qui est update
+                    $resultUploadImg1 = move_uploaded_file($_FILES['productImage1']['tmp_name'], $destination);
+                    break;
+
+                case 2:
+                    $queryContent = $threeImages[0] . ',' . $new_file_name . ',' . $threeImages[2]; //content de la query quand c'est la 2eme qui est update
+                    $resultUploadImg1 = move_uploaded_file($_FILES['productImage2']['tmp_name'], $destination);
+                    break;
+
+                case 3:
+                    $queryContent = $threeImages[0] . ',' . $threeImages[1] . ',' . $new_file_name; //content de la query quand c'est la 3eme qui est update
+                    $resultUploadImg1 = move_uploaded_file($_FILES['productImage3']['tmp_name'], $destination);
+                    break;
+            }
+
+
+            //update du nom de l'image de l'enregistrement d'id
+            $query = $db->query("UPDATE products SET images = '$queryContent' WHERE id = $productId");
+
+            return $query;
+        }
+
+        return $resultUploadImg;
     }
 
     //FONCTION QUI VA AJOUTER DES IMAGES A UN PRODUIT

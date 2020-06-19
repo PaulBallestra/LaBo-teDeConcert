@@ -116,6 +116,63 @@
                 }
                 break;
 
+            case 'updated': //dans le cas ou il a mis a jour un produit
+
+                $informations = $_POST; //on stocke les données en post dans $informations
+                $informations += $_FILES; //on récupère également des images en files
+
+                $product = updateProduct($_GET['id'], $informations); //on update le produit
+
+                //on vérifie qu'il n'y a pas une erreur de champs non rempli
+                if($product[1]){
+
+                    $product = getProduct($_GET['id']); //on récupère le produit selectionnée
+                    $categories = getCategories(); //on récupère les categories pour les afficher dans le select
+
+                    $_SESSION['old_inputs'] = $informations; //on stocke les anciennes infos
+                    $_SESSION['message'] = 'Tous les champs sont obligatoires !';
+
+                    $title = "Le Boîte de Concert - Modification " . $product['name'];
+                    $view = 'views/update_product.php';
+
+                }else if($product[2]){ //si c'est l'erreur du type des champs
+
+                    $product = getProduct($_GET['id']); //on récupère le produit selectionnée
+                    $categories = getCategories(); //on récupère les categories pour les afficher dans le select
+
+                    $_SESSION['old_inputs'] = $informations; //on stocke les anciennes infos
+                    $_SESSION['message'] = 'Vérifiez le type des champs.';
+
+                    $title = "Le Boîte de Concert - Modification " . $product['name'];
+                    $view = 'views/update_product.php';
+
+                }else{ //sinon
+                    //On vérifie que la requete s'est bien passé
+                    if($product == false){
+
+                        $product = getProduct($_GET['id']); //on récupère lae produit selectionné
+                        $categories = getCategories(); //on récupère les categories pour les afficher dans le select
+
+                        $_SESSION['old_inputs'] = $informations; //on stocke les anciennes infos
+                        $_SESSION['message'] = 'Une erreur est survenue.';
+
+                        $title = "Le Boîte de Concert - Modification " . $product['name'];
+                        $view = 'views/update_product.php';
+
+                    }else{
+                        //on renvoit vers la page des listes de catégories avec un message d'erreur
+                        $products = getProducts();
+
+                        $_SESSION['message'] = 'Produit modifié avec succès !';
+
+                        //on modifie la variable du nom de la page et de la view
+                        $title = "La Boîte de Concert - Gestion Produits";
+                        $view = 'views/products_list.php';
+                    }
+                }
+
+                break;
+
             case 'delete':
                 //Appel d'une fonction qui supprimera le produit
                 $resultDeleteProduct = deleteProduct($_GET['id']);
