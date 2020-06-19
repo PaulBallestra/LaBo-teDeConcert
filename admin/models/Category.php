@@ -88,7 +88,7 @@
         ]);
 
         //si l'image aussi a été updatée, on la met a jour
-        if($informations['categoryImage'] != null)
+        if(!empty($informations['categoryImage']['name']))
             insertCategoryImage($id); //mis a jour de l'image
 
         return $resultUpdateCategory;
@@ -133,7 +133,7 @@
             //    return false;
 
             //on vire l'ancienne image si il y en a une (quand on utilise la fonction en update)
-            if(getCategory($categoryId)['image'] != null)
+            if(!empty(getCategory($categoryId)['image']))
                 unlink('../assets/images/categories/' . getCategory($categoryId)['image']);
 
             $allowed_extensions = array('jpg', 'png', 'jpeg', 'gif');

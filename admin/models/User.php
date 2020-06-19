@@ -67,13 +67,10 @@
         if(isset($informations['userIsAdmin'])){
             $query .= ', is_admin = ?';
 
-            if($informations['userIsAdmin'] == 1)
+            if($informations['userIsAdmin'] == 'on')
                 $queryExecuteContent .= '1,';
             else
                 $queryExecuteContent .= '0,';
-        }else{
-            $query .= ', is_admin = ?';
-            $queryExecuteContent .= '0, ';
         }
 
 
