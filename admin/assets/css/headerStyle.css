@@ -68,6 +68,10 @@ nav{
     text-align: center;
 }
 
+.imgLogo{
+    max-width: 240px;
+}
+
 /* Style général de la barre de nav */
 #navigation{
     display: flex;
@@ -144,6 +148,11 @@ nav{
 
 /* Media query pour le responsive */
 @media (max-width: 950px){
+
+    .imgLogo{
+        max-width: 180px;
+    }
+
     /* On active la checkbox */
     .trigger{
         display: block;
@@ -206,6 +215,12 @@ nav{
         margin: 0;
     }
 
+}
+
+@media (max-width: 550px) {
+    .imgLogo{
+        max-width: 140px;
+    }
 }
 
 /*--------------------------- CONNECTED ---------------------------*/

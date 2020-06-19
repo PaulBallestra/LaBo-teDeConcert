@@ -60,6 +60,10 @@ nav{
     opacity: 1;
 }
 
+.imgLogo{
+    max-width: 240px;
+}
+
 /* Style du logo */
 #logo{
     margin: 35px 30px;
@@ -144,6 +148,11 @@ nav{
 
 /* Media query pour le responsive */
 @media (max-width: 950px){
+
+    .imgLogo{
+        max-width: 180px;
+    }
+
     /* On active la checkbox */
     .trigger{
         display: block;
@@ -153,6 +162,7 @@ nav{
         display: flex;
         flex-direction: row;
         justify-content: space-around;
+        margin: 25px 15px;
     }
 
     /* On cache le menu Men Women Kids pour l'afficher ensuite dans le menu burger */
@@ -206,6 +216,17 @@ nav{
         margin: 0;
     }
 
+}
+
+@media (max-width: 550px){
+
+    .imgLogo{
+        max-width: 140px;
+    }
+
+    #logo{
+        margin: 10px 10px;
+    }
 }
 
 /*--------------------------- CONNECTED ---------------------------*/

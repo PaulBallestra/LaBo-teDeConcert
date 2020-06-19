@@ -70,6 +70,36 @@
         }
     }
 
+    //FONCTION QUI VA SUPPRIMER UN USER DONNE
+    function deleteUser($id)
+    {
+        $db = dbConnect();
+
+        //on supprime également l'adresse qui lui est lié
+        $queryDeleteAddressUser = $db->prepare('
+            DELETE 
+            FROM addresses
+            WHERE id_user = ?');
+
+        $queryDeleteAddressUser->execute([$id]);
+
+        //on supprime le panier qui lui est lié
+        $queryDeleteCartUser = $db->prepare('
+            DELETE
+            FROM carts
+            WHERE id_user = ?
+        ');
+        $queryDeleteCartUser->execute([$id]);
+
+        //suppresion de l'user en question
+        $queryDeleteUser = $db->prepare('DELETE FROM users WHERE id = ?');
+        $queryDeleteUser->execute([
+            $id
+        ]);
+
+        return $queryDeleteUser;
+    }
+
     //FONCTION DE CONNEXION D'UN UTILISATEUR
     function connectUser($informations)
     {

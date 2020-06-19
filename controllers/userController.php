@@ -277,6 +277,48 @@
                             $view = 'views/profil.php';
 
                             break;
+
+                        case 'delete_account':
+
+                            if(!isset($_GET['id'])){
+
+                                $numberProductsInCart = sizeof(getProductsInCart(getIdCartOfUser($_SESSION['user']['id'])));
+
+                                $_SESSION['message'] = 'Une erreur est survenue !';
+
+                                $title = "La Boîte de Concert - Votre Profil";
+                                $view = 'views/profil.php';
+                            }
+
+                            if(!ctype_digit($_GET['id'])){
+                                $numberProductsInCart = sizeof(getProductsInCart(getIdCartOfUser($_SESSION['user']['id'])));
+
+                                $_SESSION['message'] = 'Cet id n\'existe pas.';
+
+                                $title = "La Boîte de Concert - Votre Profil";
+                                $view = 'views/profil.php';
+                            }
+
+                            if($_GET['id'] != $_SESSION['user']['id']){
+                                $numberProductsInCart = sizeof(getProductsInCart(getIdCartOfUser($_SESSION['user']['id'])));
+
+                                $_SESSION['message'] = 'Cet id n\'est le vôtre !';
+
+                                $title = "La Boîte de Concert - Votre Profil";
+                                $view = 'views/profil.php';
+                            }
+
+                            //on vire la session et on supprime l'user
+                            unset($_SESSION['user']);
+
+                            deleteUser($_GET['id']);
+
+                            $_SESSION['message'] = 'Votre compte a bien été supprimé ! Au revoir...';
+
+                            $title = "La Boîte de Concert - Accueil";
+                            $view = 'views/index.php';
+
+                            break;
                     }
 
                 }else{

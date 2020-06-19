@@ -6,6 +6,6 @@
 
 <section class="sectionBtnDeleteProfile">
 
-    <a href="" class="btnSubmit"> Au revoir </a>
+    <a href="index.php?page=profile&action=delete_profile&id=<?= $_SESSION['user']['id'] ?>" class="btnSubmit"> Au revoir </a>
 
 </section>
