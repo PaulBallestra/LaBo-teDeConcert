@@ -34,6 +34,7 @@
         return $selectedProducts;
     }
 
+    //FONCTION QUI RETOURNE TOUS LES PRODUITS PAR VILLE
     function getProductsByTown()
     {
         $db = dbConnect();
@@ -97,6 +98,22 @@
         ]);
 
         return $queryAddProduct;
+    }
+
+    //FONCTION QUI VA VERIFIER QU'UN PRODUIT N'EST PAS DEJA DANS LE PANIER DE L'USER
+    function checkProductInCart($idProduct, $idCart)
+    {
+        $db = dbConnect();
+
+        $queryCheckProductInCart = $db->prepare('SELECT * FROM products_cart WHERE id_cart = ? AND id_product = ?');
+        $queryCheckProductInCart->execute([
+            $idCart,
+            $idProduct
+        ]);
+
+        $resultQuery = $queryCheckProductInCart->fetch();
+
+        return $resultQuery;
     }
 
     //FUNCTION QUI VA RETOURNER TOUS LES PRODUITS D'UN PANIER SPECIFIQUE

@@ -1,7 +1,7 @@
 <?php
     //MODELS DES PANIERS
 
-    //FONCTION QUI VA AJOUTER UN CART A UN USER LORS DE SON INSCRIPTION
+    //FONCTION QUI VA CREER UN CART A UN USER LORS DE SON INSCRIPTION
     function createCart($idUser)
     {
         $db = dbConnect();
@@ -12,24 +12,6 @@
         ]);
 
         return $queryCreateCart;
-    }
-
-    //FONCTION QUI VA RETOURNER TOUS LES PRODUITS (ID) D'UN PANIER EN FONCTION D'UN USER
-    function getProductsCart($idUser)
-    {
-        $db = dbConnect();
-
-        $queryGetProductsCart = $db->prepare('
-                SELECT PC.id_product
-                FROM products_cart PC
-                INNER JOIN carts C ON C.id = PC.id_cart
-                WHERE C.id_user = ?');
-
-        $queryGetProductsCart->execute([
-            $idUser
-        ]);
-
-        return $queryGetProductsCart->fetchAll();
     }
 
     //FONCTION QUI RENVOIT L'ID DU CART DE L'USER

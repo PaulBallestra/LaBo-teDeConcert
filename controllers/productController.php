@@ -79,30 +79,53 @@
 
                 //on vérifie si l'user est connecté avant de l'ajouter au panier
                 if(!isset($_SESSION['user'])){
-
                     //Si ce n'est pas le cas, on l'envoit sur la page d'inscription
                     $_SESSION['message'] = 'Veuillez vous créer un compte pour faire ceci.';
 
                     header ('Location: index.php?page=register');
                     exit;
-
                 }
 
                 //si l'id n'est pas set, on renvoit sur l'accueil
                 if(!isset($_GET['id'])){
-
                     $_SESSION['message'] = 'Aucun produit de ce type.';
 
-                    header('Location: index.php');
+                    $products = getProducts(); //on récupère tous les produits
+
+                    header('Location: index.php?page=products&action=list'); //si ce n'est pas le cas, on le renvoit sur la page des produits
                     exit;
                 }
 
                 //si l'id n'est pas de type number, on renvoit sur l'accueil
                 if(!ctype_digit($_GET['id'])){
-
                     $_SESSION['message'] = 'L\'id n\'est pas valide.';
 
-                    header('Location: index.php');
+                    $products = getProducts(); //on récupère tous les produits
+
+                    header('Location: index.php?page=products&action=list'); //si ce n'est pas le cas, on le renvoit sur la page des produits
+                    exit;
+                }
+
+                //on vérifie que le produit existe
+                if(!checkProductExists($_GET['id'])){
+                    $_SESSION['message'] = 'Aucun produit correspondant.';
+
+                    $products = getProducts(); //on récupère tous les produits
+
+                    header('Location: index.php?page=products&action=list'); //si ce n'est pas le cas, on le renvoit sur la page des produits
+                    exit;
+                }
+
+                //On vérifie qu'il n'a pas déjà ce produit
+                if(!empty(checkProductInCart($_GET['id'], getIdCartOfUser($_SESSION['user']['id'])))){
+                    //si c'est le cas, il ne peut pas
+                    //redirection vers la page des produits
+                    $products = getProducts(); //on récupère tous les produits
+
+                    //affichage du message comme quoi le produit a été ajouté
+                    $_SESSION['message'] = 'Vous ne pouvez pas ajouter 2 fois ce produit.';
+
+                    header('Location: index.php?page=products&action=list');
                     exit;
                 }
 
