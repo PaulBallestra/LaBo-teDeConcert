@@ -6,9 +6,26 @@
 <!-- Contenu de la page d'un produit unique -->
 <section class="contentUniqueProduct">
 
-    <!-- Div qui contiendra le carrousel des images du produit unique -->
+    <!-- Div qui contiendra le slider des images du produit unique -->
     <div class="imagesUniqueProduct">
-        <img src="assets/images/products/<?= $productImages[0] ?>" alt="Photo presentation <?= $product['name'] ?>">
+
+        <div class="slides">
+
+            <figure id="slides1">
+                <img src="assets/images/products/<?= $productImages[0] ?>" alt="Photo presentation <?= $product['name'] ?>">
+            </figure>
+
+            <figure id="slides2">
+                <img src="assets/images/products/<?= $productImages[1] ?>" alt="Photo presentation <?= $product['name'] ?>">
+            </figure>
+
+            <figure id="slides3">
+                <img src="assets/images/products/<?= $productImages[2] ?>" alt="Photo presentation <?= $product['name'] ?>">
+            </figure>
+
+
+        </div>
+
     </div>
 
     <div class="infosUniqueProduct">
@@ -35,6 +52,12 @@
         <div class="valueInfosProduct">
             <h3 class="h3infosUniqueProduct"> Pays: </h3>
             <h3 class="h3valueUniqueProduct"> <?= $productAddress['country'] ?> </h3>
+        </div>
+
+        <!-- Affichage de la capacité du produit -->
+        <div class="valueInfosProduct">
+            <h3 class="h3infosUniqueProduct"> Capacité: </h3>
+            <h3 class="h3valueUniqueProduct"> <?= $product['capacity'] ?> </h3>
         </div>
 
         <!-- Affichage de la description du produit -->

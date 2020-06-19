@@ -19,7 +19,7 @@
                     <img class="productImg" src="assets/images/products/<?= $images[0] ?>" alt="<?= 'Miniature ' . $product['name'] ?>">
                     <h2 class="productName"> <?= $product['name'] ?> </h2>
                     <h2 class="productTownPostalCode"> <?= $productAddress['town'] . ' - ' . $productAddress['postal_code'] ?> </h2>
-                    <h2 class="productCapacity">  <?= $product['capacity'] ?> <img src="assets/images/pictos/picto-capacity.svg"> </h2>
+                    <h2 class="productCapacity">  <?= $product['capacity'] ?> <img class="capacitySVG" src="assets/images/pictos/picto-capacity.svg"> <img class="capacitySVGHovered" src="assets/images/pictos/picto-capacity-hovered?svg"> </h2>
                 </div>
             </a>
 

@@ -90,6 +90,11 @@ h3.pageAccroche{
 
 
 @media (max-width: 950px){
+
+    body{
+        overflow-x: hidden;
+    }
+
     .mainAccroche{
         font-size: 0.70em;
     }
@@ -212,6 +217,22 @@ form p:hover{
 
 }
 
+@media (max-width: 550px) {
+
+    .btnSubmit{
+        font: 0.85em var(--headerFont), sans-serif;
+        margin-top: 5px;
+        margin-right: 7.5px;
+        margin-left: 7.5px;
+        padding: 8px 20px 10px;
+        color: var(--mainFontColor); /* Couleur du texte */
+        border-radius: 20px;
+        border: 1.5px solid white; /* Bordure blanche */
+        background-color: rgba(0, 0, 0, 0.75); /*background noir avec un peu de transparence*/
+    }
+    
+}
+
 /*------------------------------- INDEX PAGE -------------------------------*/
 /* Section qui comporte le pin et l'accroche */
 .sectionSearchPinAccueil{
@@ -305,11 +326,14 @@ form p:hover{
     margin: 0px auto;
     color: white;
     justify-content: space-between;
-    max-width: 45vw;
 }
 
 .divInfosContent{
     margin: 20px auto;
+}
+
+.divInfosContentRecap{
+    margin: 20px 20vw;
 }
 
 /* Style du nom prenom de l'user */
@@ -355,6 +379,22 @@ form p:hover{
     flex-direction: column;
     justify-content: space-between;
     margin: 0px auto;
+}
+
+.divPanierContent p{
+    font: 1em 'Montserrat Thin', sans-serif;
+    color: white;
+    align-self: center;
+}
+
+.divPanierBas {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.divPanierBas p:hover{
+    text-decoration: underline;
 }
 
 /* Style du titre du panier */
@@ -530,7 +570,7 @@ form p:hover{
     }
 
     .categoryCard{
-        margin: 10px auto;
+        margin: 5px auto;
         width: 25vw;
     }
 }
@@ -681,6 +721,7 @@ form p:hover{
 @media (max-width: 520px){
     .sectionProductInput{
         flex-direction: column;
+        margin: 15px 0;
     }
 
     .divTrierPar{
@@ -725,8 +766,54 @@ form p:hover{
 
 /* Style de la div qui contiendra toutes les images */
 .imagesUniqueProduct{
+    position: relative;
+    width: 600px;
+    overflow: hidden;
+    height: 450px;
     margin-left: auto;
     padding-right: 5px;
+}
+
+/* CARROUSEL DES IMAGES DU PRODUIT */
+/* container de toutes les slides */
+.slides{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    max-height: 100%;
+}
+
+.slides figure{
+    display: inline-block;
+    width: 40vw;
+    max-height: 100%;
+    margin: 0;
+}
+
+/* Lorsque l'user survole une image, elel se met en pause */
+.slides:hover {
+    animation-play-state: paused; /* Mise en pause de l'animation */
+}
+
+@keyframes slide {
+    0%, 20%, 100% {
+        left: 0; /*1ère image*/
+    }
+    35%, 50% {
+        left: -40vw; /*2ème image*/
+    }
+    70%, 95% {
+        left: -80vw; /*3ème image*/
+    }
+}
+
+.slides{
+    animation-name: slide;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
 }
 
 /* Taille max de l'image */
@@ -741,7 +828,9 @@ form p:hover{
     flex-direction: column;
     justify-content: start;
     margin-right: auto;
+    margin-top: 15px;
     padding-left: 5px;
+    width: auto;
 }
 
 /* Style du nom de la valeur et de la valeur */
@@ -770,6 +859,20 @@ form p:hover{
 }
 
 @media (max-width: 1050px){
+
+    .infosUniqueProduct{
+        width: 50vw;
+        margin: 10px 0;
+    }
+
+    .imagesUniqueProduct{
+        width: 55vw;
+    }
+
+    .valueInfosProduct{
+        width: 75vw;
+    }
+
     .h3infosUniqueProduct{
         font-size: 1em;
     }
@@ -782,6 +885,10 @@ form p:hover{
 @media (max-width: 950px){
     .contentUniqueProduct{
         flex-direction: column;
+    }
+
+    .valueInfosProduct{
+        width: 100%;
     }
 
     h1.pageTitle{
@@ -811,7 +918,7 @@ form p:hover{
         font-size: 1em;
     }
 
-    .imagesUniqueProduct img{
+    .imagesUniqueProduct{
         width: 275px;
         height: 200px;
     }

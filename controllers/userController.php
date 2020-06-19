@@ -148,6 +148,13 @@
 
                         case 'delete_product': //dans le cas ou l'user veut supprimer un item de son panier
 
+                            //On vérifie que son panier n'est pas vide avant de le supprimer
+                            if(empty(getProductsInCart(getIdCartOfUser($_SESSION['user']['id'])))){
+                                $_SESSION['message'] = 'Vous n\'avez aucun produits. ';
+                                header('Location: index.php?page=profile');
+                                exit;
+                            }
+
                             //si l'id n'est pas set, on renvoit sur le profil
                             if(!isset($_GET['id'])){
 
@@ -173,12 +180,80 @@
 
                             $_SESSION['message'] = 'Votre produit a bien été supprimé de son panier !';
 
+                            $numberProductsInCart = sizeof(getProductsInCart(getIdCartOfUser($_SESSION['user']['id'])));
+
                             $title = "La Boîte de Concert - Votre Profil";
                             $view = 'views/profil.php';
+                            break;
+
+                        case 'pay_cart': //dans le cas ou l'user veut aller sur la page de paiement de sa commande
+
+                            $numberProductsInCart = sizeof(getProductsInCart(getIdCartOfUser($_SESSION['user']['id'])));
+
+                            $title = "La Boîte de Concert - Paiement de votre commande";
+                            $view = 'views/order_cart.php';
+
+                            break;
+
+                        case 'paid': //dans le cas ou l'user a cliqué sur Valider de la page de paiement
+
+                            if(isset($_GET['id'])){ //on vérifie bien qu'on ait un id de cart
+
+                                //check du type de l'id envoyé
+                                if(!ctype_digit($_GET['id'])){
+                                    $_SESSION['message'] = 'L\'id ne correspond pas.';
+
+                                    $numberProductsInCart = sizeof(getProductsInCart(getIdCartOfUser($_SESSION['user']['id'])));
+
+                                    $title = "La Boîte de Concert - Votre Profil";
+                                    $view = 'views/profil.php';
+                                }else if(getIdCartOfUser($_SESSION['user']['id']) != $_GET['id']){ //check si c'est bien le cart de l'user et non un autre
+                                    $_SESSION['message'] = 'Une erreur est survenue. Veuillez recommencer.';
+
+                                    $numberProductsInCart = sizeof(getProductsInCart(getIdCartOfUser($_SESSION['user']['id'])));
+                                    $title = "La Boîte de Concert - Votre Profil";
+                                    $view = 'views/profil.php';
+                                }else{ //sinon
+
+                                    //on enregistre la commande
+
+
+                                    //on supprime son panier actuel (en session)
+                                    $_SESSION['user']['cart'] = [];
+
+                                    //on supprime son panier en db
+                                    deleteProductsInCart(getIdCartOfUser($_SESSION['user']['id']));
+
+                                    //Et on l'informe que sa commande a bien été passée
+                                    $_SESSION['message'] = 'Votre commande est un succès !';
+
+                                    $numberProductsInCart = sizeof(getProductsInCart(getIdCartOfUser($_SESSION['user']['id'])));
+
+                                    $title = "La Boîte de Concert - Votre Profil";
+                                    $view = 'views/profil.php';
+                                }
+
+                            }else{ //sinon on le renvoit sur le profil
+
+                                $_SESSION['message'] = 'Une erreur est survenue. Veuillez recommencer.';
+
+                                $numberProductsInCart = sizeof(getProductsInCart(getIdCartOfUser($_SESSION['user']['id'])));
+
+                                $title = "La Boîte de Concert - Votre Profil";
+                                $view = 'views/profil.php';
+
+                            }
 
                             break;
 
                         case 'delete_cart': //si il veut supprimer son panier
+
+                            //On vérifie qu'il a des produits dedans avant de le supprimer
+                            if(empty(getProductsInCart(getIdCartOfUser($_SESSION['user']['id'])))){
+                                $_SESSION['message'] = 'Votre panier est vide.';
+                                header('Location: index.php?page=profile');
+                                exit;
+                            }
 
                             //on le supprime en session
                             $_SESSION['user']['cart'] = [];

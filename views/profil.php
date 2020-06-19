@@ -40,7 +40,7 @@
         <div class="divPanierContent">
 
             <div class="divPanierTitle">
-                <h1 class="pageTitle"> Panier (0) </h1>
+                <h1 class="pageTitle"> Panier (<?= $numberProductsInCart ?>) </h1>
             </div>
 
             <div class="divInfosContent">
@@ -79,25 +79,31 @@
 
             </div>
 
-            <?php if(!empty($_SESSION['user']['cart'])) : ?>
-                <div class="divPanierArticles">
-                    <!-- Div des boutons de paiement et suppresion du panier -->
-                    <div class="divButtonsInfos">
-                        <a href="index.php?page=profile&action=pay_cart"><input type="submit" value="Payer" class="btnSubmit"></a> <!-- Btn de paiement du panier -->
-                        <a href="index.php?page=profile&action=delete_cart"><input type="submit" value="Supprimer" class="btnSubmit"></a> <!-- btn de suppresion complet du panier -->
-                    </div>
-                </div>
-            <?php else: ?>
+            <div class="divPanierBas">
 
-                <div class="divPanierArticles">
-                    <!-- Div des boutons des catégories et produits si le panier est vide -->
-                    <div class="divButtonsInfos">
-                        <a href="index.php?page=categories&action=list"><input type="submit" value="Voir Catégories" class="btnSubmit"></a>
-                        <a href="index.php?page=products&action=list"><input type="submit" value="Voir Produits" class="btnSubmit"></a>
+                <?php if(!empty($_SESSION['user']['cart'])) : ?>
+                    <div class="divPanierArticles">
+                        <!-- Div des boutons de paiement et suppresion du panier -->
+                        <div class="divButtonsInfos">
+                            <a href="index.php?page=profile&action=pay_cart"><input type="submit" value="Payer" class="btnSubmit"></a> <!-- Btn de paiement du panier -->
+                            <a href="index.php?page=profile&action=delete_cart"><input type="submit" value="Supprimer" class="btnSubmit"></a> <!-- btn de suppresion complet du panier -->
+                        </div>
                     </div>
-                </div>
+                <?php else: ?>
 
-            <?php endif; ?>
+                    <div class="divPanierArticles">
+                        <!-- Div des boutons des catégories et produits si le panier est vide -->
+                        <div class="divButtonsInfos">
+                            <a href="index.php?page=categories&action=list"><input type="submit" value="Voir Catégories" class="btnSubmit"></a>
+                            <a href="index.php?page=products&action=list"><input type="submit" value="Voir Produits" class="btnSubmit"></a>
+                        </div>
+                    </div>
+
+                <?php endif; ?>
+
+                <p> <a href="">Anciennes commandes</a></p>
+
+            </div>
 
         </div>
 
