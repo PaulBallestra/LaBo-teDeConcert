@@ -6,6 +6,7 @@
         <title> <?= $title ?> </title>
         <meta name="Description" content="Contenu">
         <link href="assets/css/style.css" rel="stylesheet">
+        <link rel="icon" type="image/png" href="assets/images/logo_favicon.png" />
 
     </head>
 
