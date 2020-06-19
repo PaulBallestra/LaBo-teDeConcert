@@ -8,19 +8,31 @@
 <section class="productsContent">
 
     <!-- Pour chaque catégorie on boucle pour créer sa carte -->
-    <?php foreach ($productsInCategory as $product): ?>
+    <?php if(!empty($productsInCategory)): //on check si la catégorie n'est pas vide
 
-        <?php $productAddress = getAddress($product['id'], false) ?> <!-- On chope son adresse pour l'afficher ensuite -->
+        foreach ($productsInCategory as $product): ?>
 
-        <a href="index.php?page=products&action=display&id=<?= $product['id'] ?>">
-            <div class="productCard pro-<?= $product['id'] ?>">
-                <img class="productImg" src="assets/images/products/<?= $product['images'] ?>" alt="<?= 'Miniature ' . $product['name'] ?>">
-                <h2 class="productName"> <?= $product['name'] ?> </h2>
-                <h2 class="productTownPostalCode"> <?= $productAddress['town'] . ' - ' . $productAddress['postal_code'] ?> </h2>
-                <h2 class="productCapacity">  <?= $product['capacity'] ?> <img src="assets/images/pictos/picto-capacity.svg"> </h2>
-            </div>
-        </a>
+            <?php $productAddress = getAddress($product['id'], false); $images = explode(',',$product['images']); ?> <!-- On chope son adresse pour l'afficher ensuite, et les images -->
 
-    <?php endforeach; ?>
+            <a href="index.php?page=products&action=display&id=<?= $product['id'] ?>">
+                <div class="productCard pro-<?= $product['id'] ?>">
+                    <img class="productImg" src="assets/images/products/<?= $images[0] ?>" alt="<?= 'Miniature ' . $product['name'] ?>">
+                    <h2 class="productName"> <?= $product['name'] ?> </h2>
+                    <h2 class="productTownPostalCode"> <?= $productAddress['town'] . ' - ' . $productAddress['postal_code'] ?> </h2>
+                    <h2 class="productCapacity">  <?= $product['capacity'] ?> <img src="assets/images/pictos/picto-capacity.svg"> </h2>
+                </div>
+            </a>
+
+        <?php endforeach; ?>
+
+    <?php else: //sinon on indique a l"user que la catégorie est vide?>
+
+        <section style="margin: 10% auto;">
+
+            <h1 style="color: white;"> Cette catégorie est vide. </h1>
+
+        </section>
+
+    <?php endif; ?>
 
 </section>

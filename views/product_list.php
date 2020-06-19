@@ -11,10 +11,10 @@
         <div class="divTrierPar">
 
             <h3> Trier par : </h3>
-            <select name="selectSearchOrderBy" onchange="location = 'index.php?page=products&action=list&orderBy=' + this.options[this.selectedIndex].value;">
-                <option value="name" <?= isset($_GET['orderBy']) ? ($_GET['orderBy'] == 'name' ? 'selected' : '') : '' ?>> Nom </option>
-                <option value="capacity" <?= isset($_GET['orderBy']) ? ($_GET['orderBy'] == 'capacity' ? 'selected' : '') : '' ?>> Capacité </option>
-                <option value="town" <?= isset($_GET['orderBy']) ? ($_GET['orderBy'] == 'town' ? 'selected' : '') : '' ?>> Ville </option>
+            <select name="selectSearchOrderBy" onchange="location = 'index.php?page=products&action=list&by=' + this.options[this.selectedIndex].value;">
+                <option value="name" <?= isset($_GET['by']) ? ($_GET['by'] == 'name' ? 'selected' : '') : '' ?>> Nom </option>
+                <option value="capacity" <?= isset($_GET['by']) ? ($_GET['by'] == 'capacity' ? 'selected' : '') : '' ?>> Capacité </option>
+                <option value="town" <?= isset($_GET['by']) ? ($_GET['by'] == 'town' ? 'selected' : '') : '' ?>> Ville </option>
             </select>
 
         </div>

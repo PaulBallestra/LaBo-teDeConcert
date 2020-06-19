@@ -10,9 +10,9 @@
             case 'list': //Pour l'affichage de toutes les catégories
 
                 //Si l'user veut les afficher par ... (alors il y a by dans l'url)
-                if(isset($_GET['orderBy'])){
+                if(isset($_GET['by'])){
                     //en fonction du parametre on adapte la fonction
-                    switch($_GET['orderBy']){
+                    switch($_GET['by']){
                         case 'name':
                             $products = getProducts(); //on chope tous les produits par ordre  alphabétique (ordre de base)
                             break;
