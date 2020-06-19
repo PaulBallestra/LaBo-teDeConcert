@@ -1,7 +1,8 @@
 <?php
 
-    require ('models/Product.php');
-    require ('models/Address.php');
+    require 'models/Product.php';
+    require 'models/Address.php';
+    require 'models/Cart.php';
 
     if(isset($_GET['action'])){
 
@@ -106,6 +107,8 @@
                 }
 
                 //sinon on l'ajoute au panier
+                addProductInCart($_GET['id'], getIdCartOfUser($_SESSION['user']['id']));
+
                 //en sauvegardant les infos nécessaires
                 $product = getProduct($_GET['id']);
                 $productAddress = getAddress($_GET['id'], false); //on chope également son adresse

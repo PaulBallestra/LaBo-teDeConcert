@@ -2,6 +2,8 @@
     //CONTROLER DE L'USER
     require 'models/User.php';
     require 'models/Address.php'; //on require le model des adresses
+    require 'models/Cart.php';
+    require 'models/Product.php';
 
     //On vérifie qu'il y a bien un post envoyé
     if(isset($_GET['page']) && isset($_SESSION['is_connected'])) {
@@ -12,13 +14,15 @@
 
                 if(isset($_GET['action'])){
 
-                    switch ($_GET['action']){
+                    switch ($_GET['action']){ //en fonction de l'action, on adapte la sortie
 
                         case 'update': //dans le cas ou l'user veut modifier des informations de son compte
 
-                            if(isset($_GET['id'])){
+                            if(isset($_GET['id'])){ //si il y a bien un id envoyé
+
                                 $title = "La Boîte de Concert - Modification Profil";
                                 $view = 'views/update_profil.php';
+
                             }else{ //redirection vers sa page de profil
                                 $title = "La Boîte de Concert - Votre Profil";
                                 $view = 'views/profil.php';
@@ -51,6 +55,9 @@
                                     'phone' => $user['phone']
                                 ];
 
+                                $title = "La Boîte de Concert - Modification Profil";
+                                $view = 'views/update_profil.php';
+
                             }elseif($userProfileUpdated[0] == false){ //Si il y a eu un probleme
 
                                 if($userProfileUpdated[1] == true && $userProfileUpdated[2] == false){
@@ -70,8 +77,8 @@
                                 //Et on sauvegarde les anciens inputs pour éviter qu'il retape tout dans le rechargement de la page
                                 $_SESSION['old_inputs'] = $_POST;
 
-                                header('Location: index.php?page=profile&action=update&id=' . $_SESSION['user']['id']); //redirection vers l'update du profil en réaffichant ses anciennes valeurs
-                                exit;
+                                $title = "La Boîte de Concert - Modification Profil";
+                                $view = 'views/update_profil.php';
                             }
 
                             break;
@@ -161,24 +168,38 @@
                             //si tout se passe bien, on supprime le produit
                             unset($_SESSION['user']['cart'][array_search($_GET['id'], $_SESSION['user']['cart'])]);
 
+
+                            deleteProductInCart(getIdCartOfUser($_SESSION['user']['id']), $_GET['id']);
+
                             $_SESSION['message'] = 'Votre produit a bien été supprimé de son panier !';
+
+                            $title = "La Boîte de Concert - Votre Profil";
+                            $view = 'views/profil.php';
 
                             break;
 
                         case 'delete_cart': //si il veut supprimer son panier
+
+                            //on le supprime en session
                             $_SESSION['user']['cart'] = [];
 
+                            //et on supprime les liens en bd
+                            deleteProductsInCart(getIdCartOfUser($_SESSION['user']['id']));
+
                             $_SESSION['message'] = 'Votre panier a bien été supprimé !';
+
+                            $title = "La Boîte de Concert - Votre Profil";
+                            $view = 'views/profil.php';
 
                             break;
                     }
 
+                }else{
+                    $numberProductsInCart = sizeof(getProductsInCart(getIdCartOfUser($_SESSION['user']['id'])));
+
+                    $title = "La Boîte de Concert - Votre Profil";
+                    $view = 'views/profil.php';
                 }
-
-                $productsInCart = sizeof($_SESSION['user']['cart']);
-
-                $title = "La Boîte de Concert - Votre Profil";
-                $view = 'views/profil.php';
 
                 break;
 

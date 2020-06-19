@@ -49,7 +49,7 @@
                     <h2 style="color: white;"> Vous n'avez pas de produit. </h2>
                 <?php else: //sinon ?>
 
-                    <?php $totalPrice = 0; for($i = 0; $i < $productsInCart; $i++) : ?>
+                    <?php $totalPrice = 0; for($i = 0; $i < $numberProductsInCart; $i++) : ?>
 
                         <div class="cartProduct product-<?= $_SESSION['user']['cart'][$i]['id'] ?>>">
 

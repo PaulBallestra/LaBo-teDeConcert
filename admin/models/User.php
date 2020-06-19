@@ -117,6 +117,14 @@
 
         $queryDeleteAddressUser->execute([$id]);
 
+        //on supprime le panier qui lui est lié
+        $queryDeleteCartUser = $db->prepare('
+            DELETE
+            FROM carts
+            WHERE id_user = ?
+        ');
+        $queryDeleteCartUser->execute([$id]);
+
         //suppresion de l'user en question
         $queryDeleteUser = $db->prepare('DELETE FROM users WHERE id = ?');
         $queryDeleteUser->execute([

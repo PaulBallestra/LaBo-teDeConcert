@@ -109,6 +109,12 @@
             $id
         ]);
 
+        //suppresion des liens entre la catégories et les produits
+        $queryDeleteLinkOfProducts = $db->prepare('DELETE FROM product_categories WHERE id_category = ?');
+        $queryDeleteLinkOfProducts->execute([
+            $id
+        ]);
+
         return $queryDeleteCategory;
 
     }

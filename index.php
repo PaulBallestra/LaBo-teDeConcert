@@ -33,6 +33,7 @@
 
                 $_SESSION['is_connected'] = 0; //on passe le flag de connexion a 0
 
+
                 unset($_SESSION['user']); //on unset la session de l'user
 
                 header('Location: index.php');

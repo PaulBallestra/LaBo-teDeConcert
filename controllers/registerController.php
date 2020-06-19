@@ -1,6 +1,7 @@
 <?php
     //CONTROLLER DU REGISTER
     require_once 'models/User.php';
+    require_once 'models/Cart.php';
 
     $title = "La Boîte de Concert - Inscription";
     $view = 'views/register.php';
@@ -49,6 +50,9 @@
                         }else{ //Si ça s'est bien passé alors on enregistre ses données dans la session
 
                             $_SESSION['is_connected'] = 1; //on passe le flag de connexion à 1
+
+                            createCart($_SESSION['user']['id']); //création de son panier
+                            $_SESSION['user']['cart'] = []; //son panier aussi en session
 
                             //on indique a l'user si son compte a pu étre créé ou non
                             $_SESSION['message'] = $_SESSION['user']['firstname'] . ' votre compte a bien été enregistré, bienvenue !';

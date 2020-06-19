@@ -84,3 +84,74 @@
 
         return $queryCheckProduct->fetch();
     }
+
+    //FONCTION QUI VA AJOUTER UN PRODUIT SPECIFIQUE DANS UN PANIER SPECIFIQUE
+    function addProductInCart($idProduct, $idCart)
+    {
+        $db = dbConnect();
+
+        $queryAddProduct = $db->prepare('INSERT INTO products_cart (id_product, id_cart) VALUES (?, ?)');
+        $queryAddProduct->execute([
+            $idProduct,
+            $idCart
+        ]);
+
+        return $queryAddProduct;
+    }
+
+    //FUNCTION QUI VA RETOURNER TOUS LES PRODUITS D'UN PANIER SPECIFIQUE
+    function getProductsInCart($idCart)
+    {
+        $db = dbConnect();
+
+        $queryGetProducts = $db->prepare('
+            SELECT P.*
+            FROM products P
+            INNER JOIN products_cart PC ON PC.id_product = P.id
+            WHERE PC.id_cart = ?');
+
+        $queryGetProducts->execute([
+            $idCart
+        ]);
+
+        return $queryGetProducts->fetchAll();
+    }
+
+    //FONCTION QUI VA SUPPRIMER UN PRODUIT SPECIFIQUE D'UN PANIER SPECIFIQUE
+    function deleteProductInCart($idCart, $idProduct)
+    {
+        $db = dbConnect();
+
+        $queryDeleteProduct = $db->prepare('
+            DELETE
+            FROM products_cart
+            WHERE id_cart = ?
+            AND id_product = ?
+        ');
+
+        $queryDeleteProduct->execute([
+            $idCart,
+            $idProduct
+        ]);
+
+        return $queryDeleteProduct;
+    }
+
+    //FONCTION QUI VA SUPPRIMER TOUS LES PRODUITS LIES A UN PANIER
+    function deleteProductsInCart($idCart)
+    {
+        $db = dbConnect();
+
+        $queryDeleteProducts = $db->prepare('
+            DELETE PC.*
+            FROM products_cart PC
+            INNER JOIN carts C ON C.id = PC.id_cart
+            WHERE C.id = ?
+        ');
+
+        $queryDeleteProducts->execute([
+            $idCart
+        ]);
+
+        return $queryDeleteProducts;
+    }

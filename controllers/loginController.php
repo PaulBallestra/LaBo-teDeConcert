@@ -2,6 +2,8 @@
 
     require 'models/User.php';
     require 'models/Address.php';
+    require 'models/Cart.php';
+    require 'models/Product.php';
 
     $title = "La Boîte de Concert - Connexion";
     $view = 'views/login.php';
@@ -60,8 +62,32 @@
                             'phone' => $user['phone']
                         ];
 
-                        //on met initialise son panier
-                        $_SESSION['user']['cart'] = [];
+                        //on récupère son panier
+                        $idCartUser = getIdCartOfUser($_SESSION['user']['id']);
+
+                        //si son panier n'est pas vide, on l'enregistre en session
+                        if(sizeof(getProductsInCart($idCartUser)) != 0){
+
+                            for($i = 0; $i < sizeof(getProductsInCart($idCartUser)); $i++){
+
+                                $product = getProduct(getProductsInCart($idCartUser)[$i]['id']);
+                                $productAddress = getAddress(getProductsInCart($idCartUser)[$i]['id'], false);
+
+                                $_SESSION['user']['cart'][] = [
+                                    'id' => $product['id'],
+                                    'name' => $product['name'],
+                                    'price' => $product['price'],
+                                    'addressNumber' => $productAddress['number'],
+                                    'addressStreet' => $productAddress['street'],
+                                    'addressTown' => $productAddress['town'],
+                                    'addressPostalCode' => $productAddress['postal_code'],
+                                    'addressCountry' => $productAddress['country'],
+                                    'quantity' => 1
+                                ];
+
+                            }
+
+                        }
 
                         //On teste maintenant si il a une adresse liée a son compte
                         if(checkAddressExists($_SESSION['user']['id'])){
@@ -83,9 +109,7 @@
 
                         header('Location: index.php'); //redirection vers l'index
                         exit;
-
                     }
-
                 }
                 break;
         }
