@@ -278,7 +278,7 @@
 
                             break;
 
-                        case 'delete_account':
+                        case 'delete_profile': //dans le cas ou l'user veut supprimer son compte
 
                             if(!isset($_GET['id'])){
 
@@ -308,6 +308,8 @@
                                 $view = 'views/profil.php';
                             }
 
+                            $_SESSION['is_connected'] = 0; //on passe le flag de connexion a 0
+
                             //on vire la session et on supprime l'user
                             unset($_SESSION['user']);
 
@@ -315,8 +317,8 @@
 
                             $_SESSION['message'] = 'Votre compte a bien été supprimé ! Au revoir...';
 
-                            $title = "La Boîte de Concert - Accueil";
-                            $view = 'views/index.php';
+                            header('Location: index.php');
+                            exit;
 
                             break;
                     }
