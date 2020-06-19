@@ -34,6 +34,10 @@ a{
     color: var(--mainFontColor);
 }
 
+.imgLogo{
+    max-width: 240px;
+}
+
 /* Changement de la couleur du texte des boutons non header */
 .btnSubmit:hover a{
     color: black;
@@ -91,6 +95,10 @@ h3.pageAccroche{
 
 @media (max-width: 950px){
 
+    .imgLogo{
+        max-width: 180px;
+    }
+
     body{
         overflow-x: hidden;
     }
@@ -98,6 +106,13 @@ h3.pageAccroche{
     .mainAccroche{
         font-size: 0.70em;
     }
+}
+
+@media (max-width: 550px){
+    .imgLogo{
+        width: 140px;
+    }
+
 }
 
 /*------------------------------- REGISTER/LOGIN PAGE -------------------------------*/
@@ -464,6 +479,12 @@ form p:hover{
     color: var(--mainFontColor);
 }
 
+.sectionBtnDeleteProfile{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
 
 @media (max-width: 950px){
     .divContentProfilPage{
@@ -810,7 +831,7 @@ form p:hover{
 
 .slides{
     animation-name: slide;
-    animation-duration: 10s;
+    animation-duration: 15s;
     animation-iteration-count: infinite;
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;

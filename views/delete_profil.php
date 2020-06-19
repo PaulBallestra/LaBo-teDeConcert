@@ -4,8 +4,8 @@
     <h3> Nous sommes triste de vous voir partir :'( </h3>
 </section>
 
-<section>
+<section class="sectionBtnDeleteProfile">
 
-    <h3> Etes vous sur de vouloir nous quitter ? </h3>
+    <a href="" class="btnSubmit"> Au revoir </a>
 
 </section>

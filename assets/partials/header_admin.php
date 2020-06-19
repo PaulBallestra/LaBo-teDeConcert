@@ -12,7 +12,7 @@
 
         <!-- Logo du site -->
         <ul id="logo">
-            <li><a href="index.php"> logo </a></li>
+            <li><a href="index.php"><img class="imgLogo" src="assets/images/logo.png" alt="Logo La Boite de Concert"> </a></li>
         </ul>
 
         <!-- Navigation entre les pages du site -->
