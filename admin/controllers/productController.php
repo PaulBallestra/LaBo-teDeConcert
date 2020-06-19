@@ -45,7 +45,7 @@
                     header('Location: index.php?page=products&action=new'); //lien vers la page de création d'une catégorie
                     exit;
 
-                }else if($result[2] == true){
+                }else if($result[2] == true){ //vérification si il n'y a pas d'erreur comme des lettres dans les champs number
 
                     $_SESSION['message'] = 'Vérifiez le type des champs !';
 
@@ -56,13 +56,25 @@
                     header('Location: index.php?page=products&action=new'); //lien vers la page de création d'un produit
                     exit;
 
+                }else if($result[3] == true){ //si il y a l'erreur du type des images
+
+                    $_SESSION['message'] = 'Vérifiez le type des images !';
+
+                    //Et on sauvegarde les anciens inputs pour éviter qu'il retape tout dans le rechargement
+                    $_SESSION['old_inputs'] = $_POST;
+                    $_SESSION['old_inputs'] += $_FILES; //également les images
+
+                    header('Location: index.php?page=products&action=new'); //lien vers la page de création d'un produit
+                    exit;
+
                 }else{
+
                     //si tous s'est bien passé on renvoit sur la liste des produits
                     $_SESSION['message'] = 'Produit enregistré !';
 
                     header('Location: index.php?page=products&action=list'); //lien vers la liste des produits
+                    exit;
                 }
-                exit;
 
                 break;
 
@@ -80,7 +92,7 @@
 
                     $_SESSION['message'] = 'Une erreur est survenue. Veuillez réessayer.';
 
-                }else if(!checkCategoryExists($_GET['id'])){ //On check ensuite que l'id existe bien dans la bd
+                }else if(!getProduct($_GET['id'])){ //On check ensuite que l'id existe bien dans la bd (donc si ça nous renvoit un produit et pas false)
 
                     //si ce n'est pas le cas en renvoit vers la page des produits avec un message
 

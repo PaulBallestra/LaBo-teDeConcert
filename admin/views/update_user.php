@@ -12,25 +12,25 @@
 
         <!-- Section du nom de l'user -->
         <section class="sectionInput">
-            <label for="userLastname" class="labelName"> Nom </label>
+            <label for="userLastname" class="labelName"> Nom *</label>
             <input id="userLastname" type="text" name="userLastname" class="inputForm" value="<?= isset($_SESSION['old_inputs']) ? $_SESSION['old_inputs']['userLastname'] : $user['lastname'] ?>" required>
         </section>
 
         <!-- Section du prénom de l'user -->
         <section class="sectionInput">
-            <label for="userFirstname" class="labelName"> Prénom </label>
+            <label for="userFirstname" class="labelName"> Prénom *</label>
             <input id="userFirstname" type="text" name="userFirstname" class="inputForm" value="<?= isset($_SESSION['old_inputs']) ? $_SESSION['old_inputs']['userFirstname'] : $user['firstname'] ?>" required>
         </section>
 
         <!-- Section de l'email de l'user -->
         <section class="sectionInput">
-            <label for="userEmail" class="labelName"> Email </label>
+            <label for="userEmail" class="labelName"> Email *</label>
             <input id="userEmail" type="text" name="userEmail" class="inputForm" value="<?= isset($_SESSION['old_inputs']) ? $_SESSION['old_inputs']['userEmail'] : $user['email'] ?>" required>
         </section>
 
         <!-- Section du password de l'user -->
         <section class="sectionInput">
-            <label for="userPassword" class="labelName"> Mot de passe </label>
+            <label for="userPassword" class="labelName"> Mot de passe *</label>
             <input id="userPassword" type="password" name="userPassword" class="inputForm">
         </section>
 
@@ -46,13 +46,15 @@
             <input id="userIsAdmin" type="checkbox" name="userIsAdmin" <?= $user['is_admin'] == '1' ? 'checked' : '' ?>>
         </section>
 
-        <!-- On indique a l'admin que l'utilisateur pourra ajouter son adresse via son compte directement -->
-        <p style="color: white;"> Si vous voulez ajouter une adresse à cet utilisateur. Veuillez le faire via le formulaire du Front-Office. </p>
+        <p> * : Champs obligatoires. </p>
 
         <!-- Section du boutton valider -->
         <section class="sectionButtonCreate">
             <button type="submit" class="btnSubmit"> Valider </button>
         </section>
+
+        <!-- On indique a l'admin que l'utilisateur pourra ajouter son adresse via son compte directement -->
+        <p style="color: white;"> Si vous voulez ajouter une adresse à cet utilisateur. Veuillez le faire via le formulaire du Front-Office. </p>
 
     </form>
 

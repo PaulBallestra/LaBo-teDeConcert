@@ -67,6 +67,7 @@
 
                 //on stocke l'unique produit
                 $product = getProduct($_GET['id']);
+                $productImages = explode(',', $product['images']);
                 $productAddress = getAddress($_GET['id'], false); //on chope également son adresse
 
                 $title = 'La Boîte de Concert - ' . $product['name'];

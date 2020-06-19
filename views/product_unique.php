@@ -8,7 +8,7 @@
 
     <!-- Div qui contiendra le carrousel des images du produit unique -->
     <div class="imagesUniqueProduct">
-        <img src="assets/images/products/<?= $product['images'] ?>" alt="Photo presentation <?= $product['name'] ?>">
+        <img src="assets/images/products/<?= $productImages[0] ?>" alt="Photo presentation <?= $product['name'] ?>">
     </div>
 
     <div class="infosUniqueProduct">

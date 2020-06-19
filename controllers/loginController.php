@@ -60,6 +60,9 @@
                             'phone' => $user['phone']
                         ];
 
+                        //on met initialise son panier
+                        $_SESSION['user']['cart'] = [];
+
                         //On teste maintenant si il a une adresse liée a son compte
                         if(checkAddressExists($_SESSION['user']['id'])){
                             //on la récupère et on la met en session

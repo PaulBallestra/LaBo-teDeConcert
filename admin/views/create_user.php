@@ -12,25 +12,25 @@
 
         <!-- Section du nom de l'user -->
         <section class="sectionInput">
-            <label for="userLastname" class="labelName"> Nom </label>
+            <label for="userLastname" class="labelName"> Nom *</label>
             <input id="userLastname" type="text" name="userLastname" class="inputForm" value="<?= isset($_SESSION['old_inputs']) ? $_SESSION['old_inputs']['userLastname'] : '' ?>" required>
         </section>
 
         <!-- Section du prénom de l'user -->
         <section class="sectionInput">
-            <label for="userFirstname" class="labelName"> Prénom </label>
+            <label for="userFirstname" class="labelName"> Prénom *</label>
             <input id="userFirstname" type="text" name="userFirstname" class="inputForm" value="<?= isset($_SESSION['old_inputs']) ? $_SESSION['old_inputs']['userFirstname'] : '' ?>" required>
         </section>
 
         <!-- Section de l'email de l'user -->
         <section class="sectionInput">
-            <label for="userEmail" class="labelName"> Email </label>
+            <label for="userEmail" class="labelName"> Email *</label>
             <input id="userEmail" type="text" name="userEmail" class="inputForm" value="<?= isset($_SESSION['old_inputs']) ? $_SESSION['old_inputs']['userEmail'] : '' ?>" required>
         </section>
 
         <!-- Section du password de l'user -->
         <section class="sectionInput">
-            <label for="userPassword" class="labelName"> Mot de passe </label>
+            <label for="userPassword" class="labelName"> Mot de passe *</label>
             <input id="userPassword" type="password" name="userPassword" class="inputForm" value="" required>
         </section>
 
@@ -47,13 +47,14 @@
             <input id="userIsAdmin" type="checkbox" name="userIsAdmin">
         </section>
 
-        <p style="color: white;"> Si vous voulez ajouter une adresse à cet utilisateur. Veuillez le faire via le formulaire du Front-Office. </p>
-
+        <p> * : Champs obligatoires. </p>
 
         <!-- Section du boutton valider -->
         <section class="sectionButtonCreate">
             <button type="submit" class="btnSubmit"> Valider </button>
         </section>
+
+        <p style="color: white;"> Si vous voulez ajouter une adresse à cet utilisateur. Veuillez le faire via le formulaire du Front-Office. </p>
 
     </form>
 

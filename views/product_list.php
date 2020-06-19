@@ -30,11 +30,14 @@
     <!-- Pour chaque catégorie on boucle pour créer sa carte -->
     <?php foreach ($products as $product): ?>
 
-        <?php $productAddress = getAddress($product['id'], false) ?>
+        <?php $productAddress = getAddress($product['id'], false); //récupération de l'adresse
+        //Récupération de la premiere image du produit
+        $images = explode(',',$product['images']);
+        ?>
 
         <a href="index.php?page=products&action=display&id=<?= $product['id'] ?>">
             <div class="productCard pro-<?= $product['id'] ?>">
-                <img class="productImg" src="assets/images/products/<?= $product['images'] ?>" alt="<?= 'Miniature ' . $product['name'] ?>">
+                <img class="productImg" src="assets/images/products/<?= $images[0] ?>" alt="<?= 'Miniature ' . $product['name'] ?>">
                 <h2 class="productName"> <?= $product['name'] ?> </h2>
                 <h2 class="productTownPostalCode"> <?= $productAddress['town'] . ' - ' . $productAddress['postal_code'] ?> </h2>
                 <h2 class="productCapacity">  <?= $product['capacity'] ?> <img class="capacitySVG" src="assets/images/pictos/picto-capacity.svg"> <img class="capacitySVGHovered" src="assets/images/pictos/picto-capacity-hovered?svg"> </h2>

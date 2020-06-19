@@ -328,6 +328,13 @@ form{
     align-items: center;
 }
 
+/* Style du paragraphe champs obligatoire */
+form p{
+    font: 0.75em var(--mainFont), sans-serif;
+    color: white;
+    margin: 5px 0px 24px 0px;
+}
+
 /* Style du nom de la textbox */
 .labelName{
     font: 1em 'Montserrat Medium', sans-serif;
@@ -363,7 +370,7 @@ form{
 /* Style de la section qui contiendra le bouton valider */
 .sectionButtonCreate{
     align-self: center;
-    margin-top: 25px;
+    margin-top: 10px;
 }
 
 /* Style des inputs number double pour capacité et prix */
@@ -383,4 +390,17 @@ form{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+}
+
+.sectionImages{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.miniatureImage{
+    max-width: 50vw;
+    max-height: 40vh;
+    border: 2px solid white;
+    color: white;
 }

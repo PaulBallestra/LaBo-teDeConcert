@@ -3,7 +3,7 @@
     //lancement de la session
     session_start();
 
-    $_SESSION['cart'] = []; //Création du panier de la connexion de l'user
+    $_SESSION['cart'] = [];
 
     require 'helpers.php'; //On require le helpers qui fait la connection avec la base de donnée
 
