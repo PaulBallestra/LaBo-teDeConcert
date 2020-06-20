@@ -101,7 +101,7 @@
 
                 <?php endif; ?>
 
-                <p> <a href="">Anciennes commandes</a></p>
+                <p> <a href="index.php?page=profile&action=orders">Anciennes commandes</a></p>
 
             </div>
 

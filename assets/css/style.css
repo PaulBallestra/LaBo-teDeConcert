@@ -1012,3 +1012,65 @@ form p:hover{
 
 }
 
+/*------------------------------- OLD ORDERS PAGE -------------------------------*/
+.ordersContent{
+    margin: auto 25vw auto 25vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.ordersDetails{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+    border: 1px solid var(--mainFontColor);
+}
+
+.orderInfo{
+    font: 1.30em "Montserrat Medium", sans-serif;
+    color: var(--mainFontColor);
+    margin: 15px 0 5px;
+}
+
+.orderProductInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-bottom: 1px solid white;
+}
+
+.orderProductInfo h3{
+    font: 1.15em "Montserrat Thin", sans-serif;
+    color: var(--mainFontColor);
+    margin: 10px 0;
+}
+
+@media (max-width: 950px) {
+    .ordersContent{
+        margin: auto 5vw auto 5vw;
+    }
+
+    .ordersContent h2{
+        font-size: 1em;
+    }
+
+    .ordersContent h3{
+        font-size: 0.90em;
+    }
+}
+
+@media (max-width: 950px) {
+    .ordersContent{
+        margin: auto 2.5vw auto 2.5vw;
+    }
+
+    .ordersContent h2{
+        font-size: 0.90em;
+    }
+
+    .ordersContent h3{
+        font-size: 0.80em;
+    }
+}

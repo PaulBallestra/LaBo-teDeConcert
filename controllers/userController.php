@@ -233,7 +233,6 @@
                                         $informationsProduct = [
                                             'id' => $_SESSION['user']['cart'][$i]['id'],
                                             'name' => $_SESSION['user']['cart'][$i]['name'],
-                                            'description' => getProduct($_SESSION['user']['cart'][$i]['id'])['description'],
                                             'capacity' => getProduct($_SESSION['user']['cart'][$i]['id'])['capacity'],
                                             'price' => getProduct($_SESSION['user']['cart'][$i]['id'])['price'],
                                             'addressNumber' => $_SESSION['user']['cart'][$i]['addressNumber'],
@@ -274,6 +273,17 @@
                                 $view = 'views/profil.php';
 
                             }
+
+                            break;
+
+                        case 'orders': //dans le cas ou il veut voir ses anciennes commandes
+
+
+                            //On chope les commandes que l'user possède
+                            $orders = getOrders($_SESSION['user']['id']);
+
+                            $title = 'La Boîte de Concert - Vos commandes';
+                            $view = 'views/orders_list.php';
 
                             break;
 

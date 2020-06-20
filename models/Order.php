@@ -31,3 +31,30 @@
 
         return $querySetOrderDetails;
     }
+
+    //FONCTION QUI VA RETOURNE LES ID DES COMMANDES D'UN USER
+    function getOrders($idUser)
+    {
+        $db = dbConnect();
+
+        $queryGetOrders = $db->prepare('SELECT * FROM orders WHERE id_user = ?');
+        $queryGetOrders->execute([
+            $idUser
+        ]);
+
+
+        return $queryGetOrders->fetchAll();
+    }
+
+    //FUNCTION QUI VA RETOURNER LES DETAILS D'UNE COMMANDE D'ID EN PARAMETRE
+    function getDetailsOfOrder($id)
+    {
+        $db = dbConnect();
+
+        $queryGetDetails = $db->prepare('SELECT * FROM order_details WHERE id_order = ?');
+        $queryGetDetails->execute([
+            $id
+        ]);
+
+        return $queryGetDetails->fetchAll();
+    }
