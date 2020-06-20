@@ -49,6 +49,24 @@
         return $selectedProducts;
     }
 
+    //FONCTION QUI VA RENVOYER TOUS LES PRODUITS QUI CORRESPONDENT A LA RECHERCHE
+    function getProductsBySearch($informations)
+    {
+        $db = dbConnect();
+
+        $safe_value = htmlspecialchars($_POST['search']);
+
+        //§requete qui va chercher tous ce qui a un rapport avec la recherche
+        $queryGetProducts = $db->query("
+            SELECT P.* 
+            FROM products P
+            INNER JOIN addresses A ON A.id_product = P.id
+            WHERE P.name LIKE '%".$safe_value."%' OR P.description LIKE '%".$safe_value."%' OR P.capacity LIKE '%".$safe_value."%' OR P.price LIKE '%".$safe_value."%'
+            OR A.number LIKE '%".$safe_value."%' OR A.street LIKE '%".$safe_value."%' OR A.town LIKE '%".$safe_value."%' OR A.postal_code LIKE '%".$safe_value."%' OR A.country LIKE '%".$safe_value."%'")->fetchAll();
+
+        return $queryGetProducts;
+    }
+
     //FONCTION QUI RETOURNE TOUS LES PRODUITS EN FONCTION DE LA CATEGORIE SELECTIONNÉE
     function getProductsByCategory($idCategory)
     {

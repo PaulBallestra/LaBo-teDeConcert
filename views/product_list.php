@@ -3,24 +3,29 @@
 
     <h1 class="pageTitle"> Produits </h1>
 
-    <section class="sectionProductInput">
+    <form action="index.php?page=products&action=search" method="post" >
+        <section class="sectionProductInput">
 
-        <!-- Barre de recherche de produit pour l'user -->
-        <input id="search" type="text" name="search" class="inputForm" placeholder="Recherche">
+            <!-- Barre de recherche de produit pour l'user -->
+            <input id="search" type="text" name="search" class="inputForm" placeholder="Recherche">
 
-        <div class="divTrierPar">
+            <div class="divTrierPar">
 
-            <h3> Trier par : </h3>
-            <select name="selectSearchOrderBy" onchange="location = 'index.php?page=products&action=list&by=' + this.options[this.selectedIndex].value;">
-                <option value="name" <?= isset($_GET['by']) ? ($_GET['by'] == 'name' ? 'selected' : '') : '' ?>> Nom </option>
-                <option value="capacity" <?= isset($_GET['by']) ? ($_GET['by'] == 'capacity' ? 'selected' : '') : '' ?>> Capacité </option>
-                <option value="town" <?= isset($_GET['by']) ? ($_GET['by'] == 'town' ? 'selected' : '') : '' ?>> Ville </option>
-            </select>
+                <h3> Trier par : </h3>
+                <select name="selectSearchOrderBy" onchange="location = 'index.php?page=products&action=list&by=' + this.options[this.selectedIndex].value;">
+                    <option value="name" <?= isset($_GET['by']) ? ($_GET['by'] == 'name' ? 'selected' : '') : '' ?>> Nom </option>
+                    <option value="capacity" <?= isset($_GET['by']) ? ($_GET['by'] == 'capacity' ? 'selected' : '') : '' ?>> Capacité </option>
+                    <option value="town" <?= isset($_GET['by']) ? ($_GET['by'] == 'town' ? 'selected' : '') : '' ?>> Ville </option>
+                </select>
 
-        </div>
+            </div>
 
 
-    </section>
+        </section>
+
+        <button class="btnSubmit"> Rechercher </button>
+
+    </form>
 
 </section>
 

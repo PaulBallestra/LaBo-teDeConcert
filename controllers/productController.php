@@ -158,6 +158,28 @@
                 $view = 'views/product_list.php';
                 break;
 
+            case 'search': //dans le cas ou il veut rechercher un produit
+
+                $informations = $_POST;
+
+                if(!isset($informations['search']) && !empty($informations['search'])){
+                    //Si ce n'est pas le cas, on l'envoit sur la page d'inscription
+                    $_SESSION['message'] = 'Votre recherche est erronée.';
+
+                    $products = getProducts(); //on récupère tous les produits
+
+                    header ('Location: index.php?page=products&action=list');
+                    exit;
+                }
+                
+                $products = getProductsBySearch($informations['search']);
+
+
+                $title = "La Boîte de Concert - Recherche";
+                $view = 'views/product_list.php';
+
+                break;
+
             default:
                 $products = getProducts();
 
