@@ -27,7 +27,7 @@
         <!-- Section de l'image de la catégorie -->
         <section class="sectionInput inputImage">
             <label for="categoryImage" class="labelName"> Image * </label>
-            <input type="file" name="categoryImage" id="categoryImage" accept=".gif, .png, .jpg, .jpeg" src="../assets/images/categories/<?= $category['image'] ?>">
+            <input type="file" name="categoryImage" id="categoryImage" width="1920" height="1200" accept=".gif, .png, .jpg, .jpeg" src="../assets/images/categories/<?= $category['image'] ?>">
             <img class="miniatureImage" src="../assets/images/categories/<?= $category['image'] ?>"> <!-- Miniature de l'image de la catégorie -->
         </section>
 

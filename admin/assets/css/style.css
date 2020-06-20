@@ -118,6 +118,7 @@ h1.pageTitle{
     display: flex;
     flex-direction: row;
     justify-content: center;
+    margin: 15vh 0;
 }
 
 /* Style d'une carte en particulier */

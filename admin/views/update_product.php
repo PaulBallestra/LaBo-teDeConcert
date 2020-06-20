@@ -50,14 +50,14 @@
             <!-- Section des images du produit -->
             <div class="sectionInput inputImage">
                 <label for="productImage1" class="labelName"> Image 1 * </label>
-                <input type="file" name="productImage1" id="productImage1" accept=".gif, .png, .jpg, .jpeg" max="2mo">
+                <input type="file" name="productImage1" id="productImage1" accept=".gif, .png, .jpg, .jpeg" width="800" height="600">
                 <img class="miniatureImage" src="../assets/images/products/<?= explode(',',$product['images'])[0] ?>"> <!-- Miniature de l'image 1 du produit -->
             </div>
 
             <!-- Section des images du produit -->
             <div class="sectionInput inputImage">
                 <label for="productImage2" class="labelName"> Image 2 * </label>
-                <input type="file" name="productImage2" id="productImage2" accept=".gif, .png, .jpg, .jpeg">
+                <input type="file" name="productImage2" id="productImage2" accept=".gif, .png, .jpg, .jpeg" width="800" height="600">
                 <img class="miniatureImage" src="../assets/images/products/<?= explode(',',$product['images'])[1] ?>"> <!-- Miniature de l'image 1 du produit -->
 
             </div>
@@ -65,7 +65,7 @@
             <!-- Section des images du produit -->
             <div class="sectionInput inputImage">
                 <label for="productImage3" class="labelName"> Image 3 * </label>
-                <input type="file" name="productImage3" id="productImage3" accept=".gif, .png, .jpg, .jpeg">
+                <input type="file" name="productImage3" id="productImage3" accept=".gif, .png, .jpg, .jpeg" width="800" height="600">
                 <img class="miniatureImage" src="../assets/images/products/<?= explode(',',$product['images'])[2] ?>"> <!-- Miniature de l'image 1 du produit -->
             </div>
 

@@ -83,7 +83,7 @@
                 //on vérifie que l'id n'est pas vide et qu'il y a obligatoirement un id
                 if(!isset($_GET['id'])){
 
-                    //on renvoit vers la page des listes de catégories avec un message d'erreur
+                    //on renvoit vers la page des listes des produits avec un message d'erreur
                     $products = getProducts();
 
                     //on modifie la variable du nom de la page et de la view
