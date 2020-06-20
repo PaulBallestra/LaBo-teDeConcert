@@ -3,6 +3,7 @@
     require 'models/Product.php';
     require 'models/Address.php';
     require 'models/Cart.php';
+    require 'models/Category.php';
 
     if(isset($_GET['action'])){
 
@@ -177,6 +178,18 @@
                 $products = getProductsBySearch($_SESSION['search']);
 
                 $title = "La Boîte de Concert - Recherche";
+                $view = 'views/product_list.php';
+
+                break;
+
+            case 'indexSearch':
+
+                $informations = $_POST;
+
+                $products = getProductsByIndexSearch($informations); //récupération de tous les produits
+
+
+                $title = 'La Boîte de Concert - Recherche';
                 $view = 'views/product_list.php';
 
                 break;

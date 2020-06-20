@@ -29,7 +29,7 @@
     {
         $db = dbConnect();
 
-        $selectedProducts = $db->query('SELECT * FROM products ORDER BY capacity DESC')->fetchAll();
+        $selectedProducts = $db->query('SELECT * FROM products WHERE quantity >= 1 ORDER BY capacity DESC')->fetchAll();
 
         return $selectedProducts;
     }
@@ -43,6 +43,7 @@
             SELECT A.town, P.*
             FROM addresses A, products P
             WHERE A.id_product = P.id
+            AND P.quantity >= 1
             ORDER BY A.town
         ')->fetchAll();
 
@@ -65,7 +66,57 @@
             INNER JOIN categories C ON C.id = PC.id_category
             WHERE P.name LIKE '%".$safe_value."%' OR P.description LIKE '%".$safe_value."%' OR P.capacity LIKE '%".$safe_value."%' OR P.price LIKE '%".$safe_value."%'
             OR A.number LIKE '%".$safe_value."%' OR A.street LIKE '%".$safe_value."%' OR A.town LIKE '%".$safe_value."%' OR A.postal_code LIKE '%".$safe_value."%' OR A.country LIKE '%".$safe_value."%'
-            OR C.name LIKE '%".$safe_value."%' OR C.description LIKE '%".$safe_value."%'")->fetchAll();
+            OR C.name LIKE '%".$safe_value."%' OR C.description LIKE '%".$safe_value."%'
+            AND P.quantity >= 1")->fetchAll();
+
+        return $queryGetProducts;
+    }
+
+    //FONCTION QUI VA RENVOYER TOUS LES PRODUTIS QUI CORRESPONDENT A LA RECHERCHE DE L'USER
+    function getProductsByIndexSearch($informations)
+    {
+        $db = dbConnect();
+
+        $safe_value = htmlspecialchars($informations['searchTown']);
+
+        $capacityValue = array(1, 2, 3, 4);
+
+
+        //en fonction de la selected value
+        switch($informations['searchCapacity']){
+            case 1:
+                $queryMin = 100;
+                $queryMax = 2500;
+                break;
+
+            case 2:
+                $queryMin = 2500;
+                $queryMax = 5000;
+                break;
+
+            case 3:
+                $queryMin = 5000;
+                $queryMax = 10000;
+                break;
+
+            case 4:
+                $queryMin = 10000;
+                $queryMax = 100000;
+                break;
+        }
+
+        $queryGetProducts = $db->query("
+            SELECT DISTINCT P.*
+            FROM products P
+            INNER JOIN product_categories PC ON PC.id_product = P.id
+            INNER JOIN addresses A ON A.id_product = P.id
+            WHERE PC.id_category = '".$informations['searchCategory']."'
+            AND P.capacity BETWEEN '".$queryMin."' AND '".$queryMax."'
+            AND P.name LIKE '%".$safe_value."%'
+            OR P.description LIKE '%".$safe_value."%'
+            OR A.town LIKE '%".$safe_value."%'
+            AND P.quantity >= 1
+        ")->fetchAll();
 
         return $queryGetProducts;
     }
@@ -82,6 +133,7 @@
             INNER JOIN product_categories PC ON C.id = PC.id_category
             INNER JOIN products P ON PC.id_product = P.id
             WHERE c.id = ?
+            AND P.quantity >= 1            
         ");
 
         $queryGetProductsByCategory->execute([

@@ -32,23 +32,35 @@
 <!-- Affichage de la liste des produits -->
 <section class="productsContent">
 
-    <!-- Pour chaque catégorie on boucle pour créer sa carte -->
-    <?php foreach ($products as $product): ?>
+    <?php if(sizeof($products) != 0) : ?>
 
-        <?php $productAddress = getAddress($product['id'], false); //récupération de l'adresse
-        //Récupération de la premiere image du produit
-        $images = explode(',',$product['images']);
-        ?>
+        <!-- Pour chaque catégorie on boucle pour créer sa carte -->
+        <?php foreach ($products as $product): ?>
 
-        <a href="index.php?page=products&action=display&id=<?= $product['id'] ?>">
-            <div class="productCard pro-<?= $product['id'] ?>">
-                <img class="productImg" src="assets/images/products/<?= $images[0] ?>" alt="<?= 'Miniature ' . $product['name'] ?>">
-                <h2 class="productName"> <?= $product['name'] ?> </h2>
-                <h2 class="productTownPostalCode"> <?= $productAddress['town'] . ' - ' . $productAddress['postal_code'] ?> </h2>
-                <h2 class="productCapacity">  <?= $product['capacity'] ?> <img class="capacitySVG" src="assets/images/pictos/picto-capacity.svg"> <img class="capacitySVGHovered" src="assets/images/pictos/picto-capacity-hovered?svg"> </h2>
-            </div>
-        </a>
+            <?php $productAddress = getAddress($product['id'], false); //récupération de l'adresse
+            //Récupération de la premiere image du produit
+            $images = explode(',',$product['images']);
+            ?>
 
-    <?php endforeach; ?>
+            <a href="index.php?page=products&action=display&id=<?= $product['id'] ?>">
+                <div class="productCard pro-<?= $product['id'] ?>">
+                    <img class="productImg" src="assets/images/products/<?= $images[0] ?>" alt="<?= 'Miniature ' . $product['name'] ?>">
+                    <h2 class="productName"> <?= $product['name'] ?> </h2>
+                    <h2 class="productTownPostalCode"> <?= $productAddress['town'] . ' - ' . $productAddress['postal_code'] ?> </h2>
+                    <h2 class="productCapacity">  <?= $product['capacity'] ?> <img class="capacitySVG" src="assets/images/pictos/picto-capacity.svg"> <img class="capacitySVGHovered" src="assets/images/pictos/picto-capacity-hovered?svg"> </h2>
+                </div>
+            </a>
+
+        <?php endforeach; ?>
+
+    <?php else: //dans le cas ou il n'y a aucuns résultats ?>
+
+        <section style="margin: 10% auto;">
+
+            <h1 style="color: white;"> Aucuns résultats. </h1>
+
+        </section>
+
+    <?php endif; ?>
 
 </section>

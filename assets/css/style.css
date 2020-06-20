@@ -247,12 +247,25 @@ form p:hover{
 }
 
 /*------------------------------- INDEX PAGE -------------------------------*/
+
+.inputFormSelect{
+    font: 1em var(--mainFont), sans-serif;
+    padding: 5px; /* Padding à l'intérieur des inputtexts */
+    border: 1.5px solid white;
+    border-radius: 5px;
+    color: white;
+    width: calc(100vw * (1/2.75));
+    height: calc(100vh * (1/21));
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
 /* Section qui comporte le pin et l'accroche */
 .sectionSearchPinAccueil{
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    margin: 15vh 0;
 }
 
 /* Div du pin et des searchbar */
@@ -902,6 +915,12 @@ form p:hover{
 }
 
 @media (max-width: 950px){
+
+    .divPinAccueil{
+        padding: 0;
+        justify-content: center;
+    }
+
     .contentUniqueProduct{
         flex-direction: column;
     }
@@ -912,6 +931,10 @@ form p:hover{
 
     h1.pageTitle{
         font-size: 1.5em;
+    }
+
+    h3.pageAccroche{
+        font-size: 1.25em;
     }
 
     .imagesUniqueProduct{
@@ -935,6 +958,12 @@ form p:hover{
 
     h1.pageTitle{
         font-size: 1em;
+        margin: 15px;
+    }
+
+    h3.pageAccroche{
+        font-size: 0.75em;
+        margin: 15px;
     }
 
     .imagesUniqueProduct{

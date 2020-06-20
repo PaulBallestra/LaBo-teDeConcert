@@ -5,5 +5,7 @@
     require_once 'models/Product.php';
     require_once 'models/User.php';
 
+    $categories = getCategories();
+
     $title = "La Boîte de Concert - Accueil";
     $view = 'views/index.php';
