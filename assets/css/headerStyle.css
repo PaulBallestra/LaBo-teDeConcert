@@ -20,7 +20,7 @@ header{
 }
 
 nav{
-    margin: 0 15px;
+    margin: 0;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -66,7 +66,7 @@ nav{
 
 /* Style du logo */
 #logo{
-    margin: 35px 30px;
+    margin: 25px 0px;
     padding: 0;
     list-style: none;
     text-align: center;
@@ -76,7 +76,7 @@ nav{
 #navigation{
     display: flex;
     flex-direction: row;
-    margin: 35px 30px; /* Margin de la barre */
+    margin: 25px 30px 25px 0px; /* Margin de la barre */
     padding: 0;
     list-style: none;
     text-align: center;
@@ -147,7 +147,7 @@ nav{
 
 
 /* Media query pour le responsive */
-@media (max-width: 950px){
+@media (max-width: 1000px){
 
     .imgLogo{
         max-width: 180px;
