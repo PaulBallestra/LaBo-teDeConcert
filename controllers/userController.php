@@ -4,6 +4,7 @@
     require 'models/Address.php'; //on require le model des adresses
     require 'models/Cart.php';
     require 'models/Product.php';
+    require 'models/Order.php';
 
     //On vérifie qu'il y a bien un post envoyé
     if(isset($_GET['page']) && isset($_SESSION['is_connected'])) {
@@ -200,7 +201,6 @@
 
                             $title = "La Boîte de Concert - Paiement de votre commande";
                             $view = 'views/order_cart.php';
-
                             break;
 
                         case 'paid': //dans le cas ou l'user a cliqué sur Valider de la page de paiement
@@ -215,16 +215,39 @@
 
                                     $title = "La Boîte de Concert - Votre Profil";
                                     $view = 'views/profil.php';
-                                }else if(getIdCartOfUser($_SESSION['user']['id']) != $_GET['id']){ //check si c'est bien le cart de l'user et non un autre
+                                }else if($_SESSION['user']['id'] != $_GET['id']){ //check si c'est bien l'actuel user et non un autre
                                     $_SESSION['message'] = 'Une erreur est survenue. Veuillez recommencer.';
 
                                     $numberProductsInCart = sizeof(getProductsInCart(getIdCartOfUser($_SESSION['user']['id'])));
                                     $title = "La Boîte de Concert - Votre Profil";
                                     $view = 'views/profil.php';
-                                }else{ //sinon
+                                }else { //sinon
 
                                     //on enregistre la commande
+                                    $nbProducts = sizeof(getProductsInCart(getIdCartOfUser($_SESSION['user']['id']))); //nombre de produits dans le panier
 
+                                    $order = addOrder($_GET['id'], $_SESSION['user']['cart']['price']); //on ajoute la commande (et ça nous retourne l'id de la commande créée)
+
+                                    for ($i = 0; $i < $nbProducts; $i++) {
+
+                                        $informationsProduct = [
+                                            'id' => $_SESSION['user']['cart'][$i]['id'],
+                                            'name' => $_SESSION['user']['cart'][$i]['name'],
+                                            'description' => getProduct($_SESSION['user']['cart'][$i]['id'])['description'],
+                                            'capacity' => getProduct($_SESSION['user']['cart'][$i]['id'])['capacity'],
+                                            'price' => getProduct($_SESSION['user']['cart'][$i]['id'])['price'],
+                                            'addressNumber' => $_SESSION['user']['cart'][$i]['addressNumber'],
+                                            'addressStreet' => $_SESSION['user']['cart'][$i]['addressStreet'],
+                                            'addressTown' => $_SESSION['user']['cart'][$i]['addressTown'],
+                                            'addressPostalCode' => getAddress($_SESSION['user']['cart'][$i]['id'], false)['postal_code'],
+                                            'addressCountry' => getAddress($_SESSION['user']['cart'][$i]['id'], false)['country'],
+                                            'quantity' => $_SESSION['user']['cart'][$i]['quantity']
+                                        ];
+
+                                        setOrderDetails($order, $informationsProduct); //on rajoute les details du du produit dans la facture
+                                        orderedProduct($informationsProduct['id'], $informationsProduct['quantity']);
+
+                                    }
 
                                     //on supprime son panier actuel (en session)
                                     $_SESSION['user']['cart'] = [];

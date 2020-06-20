@@ -19,7 +19,7 @@
     {
         $db = dbConnect();
 
-        $selectedProducts = $db->query('SELECT * FROM products ORDER BY name')->fetchAll(); //On récupère tous les produits depuis la bd que l'on stocke dans selectedProducts
+        $selectedProducts = $db->query('SELECT * FROM products WHERE quantity >= 1 ORDER BY name')->fetchAll(); //On récupère tous les produits depuis la bd que l'on stocke dans selectedProducts
 
         return $selectedProducts; //On retourne le tableau de tous les produits
     }
@@ -192,4 +192,20 @@
         ]);
 
         return $queryDeleteProducts;
+    }
+
+    //FONCTION QUI VA UPDATE LA QUANTITE D'UN PRODUIT EN FONCTION DE LA QUANTITE ACHETEE
+    function orderedProduct($id, $quantity)
+    {
+        $db = dbConnect();
+
+        $calculNewQuantity = getProduct($id)['quantity']-$quantity;
+
+        $querySetQuantityProduct = $db->prepare('UPDATE products SET quantity = ? WHERE id = ?');
+        $querySetQuantityProduct->execute([
+            $calculNewQuantity,
+            $id
+        ]);
+
+        return $querySetQuantityProduct;
     }

@@ -23,7 +23,10 @@
 
         </div>
 
-        <?php $totalPrice += $_SESSION['user']['cart'][$i]['price'];  endfor; ?>
+        <?php
+            $totalPrice += $_SESSION['user']['cart'][$i]['price']; //maj du prix total
+            $_SESSION['user']['cart']['price'] = $totalPrice; //on stocke le prix total en session
+        endfor; ?>
 
     <div class="cartTotal">
 
@@ -46,7 +49,7 @@
     <section class="sectionFormulaire">
 
         <!-- Formulaire d'inscription -->
-        <form action="index.php?page=profile&action=paid&id=<?= getIdCartOfUser($_SESSION['user']['id']) ?>" method="post">
+        <form action="index.php?page=profile&action=paid&id=<?= $_SESSION['user']['id'] ?>" method="post">
 
             <section class="sectionInput">
                 <!-- Numéro de carte de l'user -->

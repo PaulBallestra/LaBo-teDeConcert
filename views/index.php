@@ -16,14 +16,3 @@
     </div>
 
 </section>
-
-<!-- Section du slider des catégories -->
-<section class="sectionCategoriesAccueil">
-
-    <div class="divSliderCategoriesAccueil">
-
-        <h1 class="pageTitle"> Ou parcourez nos catégories </h1>
-
-    </div>
-
-</section>
