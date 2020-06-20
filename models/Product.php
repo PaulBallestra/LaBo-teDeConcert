@@ -54,15 +54,18 @@
     {
         $db = dbConnect();
 
-        $safe_value = htmlspecialchars($_POST['search']);
+        $safe_value = htmlspecialchars($informations);
 
         //§requete qui va chercher tous ce qui a un rapport avec la recherche
         $queryGetProducts = $db->query("
-            SELECT P.* 
+            SELECT DISTINCT P.* 
             FROM products P
             INNER JOIN addresses A ON A.id_product = P.id
+            INNER JOIN product_categories PC ON PC.id_product = P.id
+            INNER JOIN categories C ON C.id = PC.id_category
             WHERE P.name LIKE '%".$safe_value."%' OR P.description LIKE '%".$safe_value."%' OR P.capacity LIKE '%".$safe_value."%' OR P.price LIKE '%".$safe_value."%'
-            OR A.number LIKE '%".$safe_value."%' OR A.street LIKE '%".$safe_value."%' OR A.town LIKE '%".$safe_value."%' OR A.postal_code LIKE '%".$safe_value."%' OR A.country LIKE '%".$safe_value."%'")->fetchAll();
+            OR A.number LIKE '%".$safe_value."%' OR A.street LIKE '%".$safe_value."%' OR A.town LIKE '%".$safe_value."%' OR A.postal_code LIKE '%".$safe_value."%' OR A.country LIKE '%".$safe_value."%'
+            OR C.name LIKE '%".$safe_value."%' OR C.description LIKE '%".$safe_value."%'")->fetchAll();
 
         return $queryGetProducts;
     }

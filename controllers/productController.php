@@ -170,10 +170,11 @@
 
                     header ('Location: index.php?page=products&action=list');
                     exit;
+                }else{
+                    $_SESSION['search'] = $informations['search'];
                 }
                 
-                $products = getProductsBySearch($informations['search']);
-
+                $products = getProductsBySearch($_SESSION['search']);
 
                 $title = "La Boîte de Concert - Recherche";
                 $view = 'views/product_list.php';
