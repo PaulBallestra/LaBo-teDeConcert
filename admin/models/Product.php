@@ -7,12 +7,12 @@
         $db = dbConnect();
 
         //vérification des champs non vide
-        if(empty($informations['productName']) || empty($informations['productDescription']) || empty($informations['productCapacity']) || empty($informations['productPrice']) || $informations['productImage1']['size'] == 0 || $informations['productImage2']['size'] == 0 || $informations['productImage3']['size'] == 0 || empty($informations['categoriesId']) || empty($informations['productAddressNumber']) || empty($informations['productAddressStreet'])
+        if(empty($informations['productName']) || empty($informations['productDescription']) || empty($informations['productCapacity']) || empty($informations['productPrice']) || empty($informations['productQuantity']) || $informations['productImage1']['size'] == 0 || $informations['productImage2']['size'] == 0 || $informations['productImage3']['size'] == 0 || empty($informations['categoriesId']) || empty($informations['productAddressNumber']) || empty($informations['productAddressStreet'])
             || empty($informations['productAddressTown']) || empty($informations['productAddressPostalCode']) || empty($informations['productAddressCountry']))
             return [false, true]; //on renvoit que tous les champs sont obligatoires
 
         //vérification des types des valeurs que l'admin rentre
-        if(!ctype_digit($informations['productPrice']) || !ctype_digit($informations['productCapacity']) || !ctype_digit($informations['productAddressNumber']) || !ctype_digit($informations['productAddressPostalCode']))
+        if(!ctype_digit($informations['productPrice']) || !ctype_digit($informations['productCapacity']) || !ctype_digit($informations['productQuantity']) || !ctype_digit($informations['productAddressNumber']) || !ctype_digit($informations['productAddressPostalCode']))
             return [false, false, true]; //on renvoit true en 3 pour indiquer l'erreur de type
 
         $allowed_extensions = array('jpg', 'png', 'jpeg', 'gif'); //extensions tolérées pour les images
@@ -20,12 +20,13 @@
         if(!in_array(pathinfo($informations['productImage1']['name'], PATHINFO_EXTENSION), $allowed_extensions) || !in_array(pathinfo($informations['productImage2']['name'], PATHINFO_EXTENSION), $allowed_extensions) || !in_array(pathinfo($informations['productImage3']['name'], PATHINFO_EXTENSION), $allowed_extensions))
             return [false, false, false, true]; //on renvoit une erreur sur le type des images
 
-        $queryAddProduct = $db->prepare('INSERT INTO products (name, description, capacity, price) VALUES (?, ?, ?, ?)');
+        $queryAddProduct = $db->prepare('INSERT INTO products (name, description, capacity, price, quantity) VALUES (?, ?, ?, ?, ?)');
         $resultAddProduct = $queryAddProduct->execute([
             $informations['productName'],
             $informations['productDescription'],
             $informations['productCapacity'],
             $informations['productPrice'],
+            $informations['productQuantity']
         ]);
 
         if($resultAddProduct){
