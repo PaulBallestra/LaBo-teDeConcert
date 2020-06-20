@@ -39,6 +39,12 @@
 
         </section>
 
+        <!-- Section du prix du produit -->
+        <section class="sectionInput">
+            <label for="productQuantity" class="labelName"> Quantité *</label>
+            <input id="productQuantity" type="number" name="productQuantity" class="inputForm" value="<?= isset($_SESSION['old_inputs']) ? $_SESSION['old_inputs']['productQuantity'] : $product['quantity'] ?>" required>
+        </section>
+
         <section class="sectionImages">
 
             <!-- Section des images du produit -->

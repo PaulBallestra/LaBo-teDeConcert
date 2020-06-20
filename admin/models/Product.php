@@ -67,24 +67,25 @@
         $db = dbConnect();
 
         //vérification des champs non vides
-        if(empty($informations['productName']) || empty($informations['productDescription']) || empty($informations['productCapacity']) || empty($informations['productPrice'])
+        if(empty($informations['productName']) || empty($informations['productDescription']) || empty($informations['productCapacity']) || empty($informations['productPrice'] || empty($informations['productQuantity']))
             || empty($informations['categoriesId']) || empty($informations['productAddressNumber']) || empty($informations['productAddressStreet'])
             || empty($informations['productAddressTown']) || empty($informations['productAddressPostalCode']) || empty($informations['productAddressCountry'])){
 
             return [false, true]; //on retourne true en 1 pour indiquer qu'il y a des erreur de champs
         }
 
-        if(!ctype_digit($informations['productCapacity']) || !ctype_digit($informations['productPrice']) || !ctype_digit($informations['productAddressPostalCode']) || !ctype_digit($informations['productAddressNumber'])){
+        if(!ctype_digit($informations['productCapacity']) || !ctype_digit($informations['productQuantity']) || !ctype_digit($informations['productPrice']) || !ctype_digit($informations['productAddressPostalCode']) || !ctype_digit($informations['productAddressNumber'])){
             return [false, false, true];
         }
 
 
-        $queryUpdateProduct = $db->prepare('UPDATE products SET name = ?, description = ?, capacity = ?, price = ? WHERE id = ?');
+        $queryUpdateProduct = $db->prepare('UPDATE products SET name = ?, description = ?, capacity = ?, price = ?, quantity = ? WHERE id = ?');
         $queryUpdateProduct->execute([
             $informations['productName'],
             $informations['productDescription'],
             $informations['productCapacity'],
             $informations['productPrice'],
+            $informations['productQuantity'],
             $id
         ]);
 
