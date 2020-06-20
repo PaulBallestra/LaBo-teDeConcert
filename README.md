@@ -2,6 +2,8 @@
 
 Bienvenue sur mon site : La Boîte de Concert !
 
+Alors je préviens direct, le responsive a été ma plus grande phobie durant ce projet, mais quand vous passez en responsive, le menu ne s'affiche pas mais il est bien la en haut a droite de l'écran comme d'habitude, pensez a cliquer plusieurs fois (il marche, le menu burger est juste pas visible) 
+
 Sur ce site vous pourrez parcourir de nombreuses salles de concert et ce dans plusieurs catégories.
 
 Vous pouvez parcourir les catégories ainsi que leurs produits.
