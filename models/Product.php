@@ -111,10 +111,10 @@
             INNER JOIN product_categories PC ON PC.id_product = P.id
             INNER JOIN addresses A ON A.id_product = P.id
             WHERE PC.id_category = '".$informations['searchCategory']."'
-            AND P.capacity BETWEEN '".$queryMin."' AND '".$queryMax."'
             AND P.name LIKE '%".$safe_value."%'
             OR P.description LIKE '%".$safe_value."%'
             OR A.town LIKE '%".$safe_value."%'
+            AND P.capacity BETWEEN '".$queryMin."' AND '".$queryMax."'
             AND P.quantity >= 1
         ")->fetchAll();
 

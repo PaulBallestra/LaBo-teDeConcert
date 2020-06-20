@@ -17,27 +17,39 @@
 
     </div>
 
-    <!-- Pour chaque utilisateurs, on créé une ligne avec un bouton modifier et supprimer -->
-    <?php $mod = 0; foreach ($users as $user): ?>
+    <?php if(!empty($users)) : ?>
 
-        <!-- Style d'une ligne qui sera répétée pour chaque users, le mod permet de changer la couleur du background pour simplifier la lecture -->
-        <div class="listContentLine <?= $mod%2 == 0 ? ' listContentBright' : ''?>">
-            <div class="lineInfos">
-                <!-- Id de l'user -->
-                <h3 class="lineName"> <?= $user['id'] ?> </h3>
-                <!-- Nom/prenom de l'user -->
-                <h4 class="lineName"> <?= $user['firstname'] ?> <?= $user['lastname'] ?> </h4>
+        <!-- Pour chaque utilisateurs, on créé une ligne avec un bouton modifier et supprimer -->
+        <?php $mod = 0; foreach ($users as $user): ?>
+
+            <!-- Style d'une ligne qui sera répétée pour chaque users, le mod permet de changer la couleur du background pour simplifier la lecture -->
+            <div class="listContentLine <?= $mod%2 == 0 ? ' listContentBright' : ''?>">
+                <div class="lineInfos">
+                    <!-- Id de l'user -->
+                    <h3 class="lineName"> <?= $user['id'] ?> </h3>
+                    <!-- Nom/prenom de l'user -->
+                    <h4 class="lineName"> <?= $user['firstname'] ?> <?= $user['lastname'] ?> </h4>
+                </div>
+
+                <!-- Style des boutons modifier et supprimer -->
+                <div class="lineButtons">
+                    <a href="index.php?page=users&action=update&id=<?= $user['id'] ?>"> Modifier </a>
+                    <a href="index.php?page=users&action=delete&id=<?= $user['id'] ?>"> Supprimer </a>
+                </div>
             </div>
 
-            <!-- Style des boutons modifier et supprimer -->
-            <div class="lineButtons">
-                <a href="index.php?page=users&action=update&id=<?= $user['id'] ?>"> Modifier </a>
-                <a href="index.php?page=users&action=delete&id=<?= $user['id'] ?>"> Supprimer </a>
-            </div>
-        </div>
+            <?php $mod++; ?>
 
-        <?php $mod++; ?>
+        <?php endforeach; ?>
 
-    <?php endforeach; ?>
+    <?php else: //sinon on indique a l"admin qu'il n'y a aucun users?>
+
+    <section style="margin: 10% auto;">
+
+        <h1 style="color: white;"> Aucune utilisateurs. </h1>
+
+    </section>
+
+    <?php endif; ?>
 
 </section>

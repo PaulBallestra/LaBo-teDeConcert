@@ -240,10 +240,16 @@
                                             'addressTown' => $_SESSION['user']['cart'][$i]['addressTown'],
                                             'addressPostalCode' => getAddress($_SESSION['user']['cart'][$i]['id'], false)['postal_code'],
                                             'addressCountry' => getAddress($_SESSION['user']['cart'][$i]['id'], false)['country'],
-                                            'quantity' => $_SESSION['user']['cart'][$i]['quantity']
+                                            'quantity' => $_SESSION['user']['cart'][$i]['quantity'],
                                         ];
 
-                                        setOrderDetails($order, $informationsProduct); //on rajoute les details du du produit dans la facture
+                                        $informationsUser = [
+                                            'id' => $_SESSION['user']['id'],
+                                            'lastname' => $_SESSION['user']['lastname'],
+                                            'firstname' => $_SESSION['user']['firstname'],
+                                        ];
+
+                                        setOrderDetails($order, $informationsProduct, $informationsUser); //on rajoute les details du du produit et de l'user dans la facture
                                         orderedProduct($informationsProduct['id'], $informationsProduct['quantity']);
 
                                     }

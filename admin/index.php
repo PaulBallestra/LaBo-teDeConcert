@@ -26,6 +26,10 @@
                 require 'controllers/userController.php';
                 break;
 
+            case 'orders': //si il veut afficher la gestion des commandes
+                require 'controllers/orderController.php';
+                break;
+
             default :
                 require 'controllers/indexController.php';
                 break;

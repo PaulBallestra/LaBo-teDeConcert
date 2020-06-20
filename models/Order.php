@@ -16,17 +16,19 @@
     }
 
     //FUNCTION QUI VA AJOUTER LES PRODUITS DE LA COMMANDE NUM id
-    function setOrderDetails($idOrder, $informations)
+    function setOrderDetails($idOrder, $informationsProduct, $informationsUser)
     {
         $db = dbConnect();
 
-        $stringProduct = implode("/", $informations);
+        $stringProduct = implode("/", $informationsProduct);
+        $stringUser = implode("/", $informationsUser);
 
-        $querySetOrderDetails = $db->prepare('INSERT INTO order_details (id_order, product, quantity) VALUES (?, ?, ?)');
+        $querySetOrderDetails = $db->prepare('INSERT INTO order_details (id_order, product, quantity, user) VALUES (?, ?, ?, ?)');
         $querySetOrderDetails->execute([
             $idOrder,
             $stringProduct,
-            $informations['quantity']
+            $informationsProduct['quantity'],
+            $stringUser
         ]);
 
         return $querySetOrderDetails;

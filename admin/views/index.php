@@ -30,4 +30,12 @@
         </div>
     </a>
 
+    <a href="index.php?page=orders&action=list">
+        <!-- Carte des commandes -->
+        <div class="dashboard-card">
+            <h1 class="numberOf-card"> <?= $numberOfOrders ?> </h1>
+            <h2 class="titleOf-card"> Commandes </h2>
+        </div>
+    </a>
+
 </section>
